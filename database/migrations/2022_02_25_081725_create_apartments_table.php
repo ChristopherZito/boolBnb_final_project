@@ -22,8 +22,8 @@ class CreateApartmentsTable extends Migration
             $table->smallInteger('square_meters') -> unsigned();
             $table->string('address');
             $table->string('city', 60);
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->float('latitude' , 10,7);
+            $table->float('longitude' , 10,7);
             $table->string('image');
             $table->boolean('visibility');
             
