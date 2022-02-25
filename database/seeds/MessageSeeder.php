@@ -16,30 +16,57 @@ class MessageSeeder extends Seeder
     public function run()
     {
         DB::table('messages')->insert([
-            'email_sender' => 'fake@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 1,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'fake@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 1,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'fake@gmail.com',
+            'email_sender' => 'christopher.zito@gmail.com',
             'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
             'apartment_id' => 2,
         ]);
         DB::table('messages')->insert([
-            'email_sender' => 'fake@gmail.com',
+            'email_sender' => 'alberto.dragoni@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 4,
+        ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'francesco.santi@gmail.com',
             'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
             'apartment_id' => 1,
         ]);
         DB::table('messages')->insert([
-            'email_sender' => 'fake@gmail.com',
+            'email_sender' => 'gabriele.manfre@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 5,
+        ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'jacopo.chessa@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 3,
+        ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'nome.cognome@gmail.com',
             'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
             'apartment_id' => 2,
         ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'nome.cognome@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 4,
+        ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'nome.cognome@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 1,
+        ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'nome.cognome@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 5,
+        ]);
+        DB::table('messages')->insert([
+            'email_sender' => 'nome.cognome@gmail.com',
+            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+            'apartment_id' => 3,
+        ]);
+
+        
 
         
     }

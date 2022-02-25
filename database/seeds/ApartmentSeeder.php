@@ -30,6 +30,8 @@ class ApartmentSeeder extends Seeder
             'user_id' => 1,
 
         ]);
+
+
         DB::table('apartments')->insert([
             'description' => 'bilocale, in centro, secondo piano con terrazzo',
             'rooms' => 6,
@@ -86,6 +88,83 @@ class ApartmentSeeder extends Seeder
             'latitude' => 45.4408963,
             'longitude' => 9.1377814,
             'image' => 'https://unsplash.it/300/300?image=5',
+            'visibility' => 1,
+            'user_id' => 5,
+
+        ]);
+
+
+        DB::table('apartments')->insert([
+            'description' => 'monolocale, molto molto  molto molto molto molto molto molto piccolo',
+            'rooms' => 1,
+            'beds' => 2,
+            'bathrooms' => 1,
+            'square_meters' => 50,
+            'address' => 'Via Giovanni Keplero, 34',
+            'city' => 'Roma',
+            'latitude' => 41.8838611,
+            'longitude' => 12.4765523,
+            'image' => 'https://unsplash.it/300/300?image=1',
+            'visibility' => 1,
+            'user_id' => 1,
+
+        ]);
+        DB::table('apartments')->insert([
+            'description' => 'monolocale, molto molto  molto molto molto molto molto molto piccolo',
+            'rooms' => 1,
+            'beds' => 2,
+            'bathrooms' => 1,
+            'square_meters' => 50,
+            'address' => 'Via Giovanni Keplero, 34',
+            'city' => 'Roma',
+            'latitude' => 41.8858311,
+            'longitude' => 12.4865223,
+            'image' => 'https://unsplash.it/300/300?image=1',
+            'visibility' => 1,
+            'user_id' => 2,
+
+        ]);
+        DB::table('apartments')->insert([
+            'description' => 'monolocale, molto molto  molto molto molto molto molto molto piccolo',
+            'rooms' => 1,
+            'beds' => 2,
+            'bathrooms' => 1,
+            'square_meters' => 50,
+            'address' => 'Via Giovanni Keplero, 34',
+            'city' => 'Roma',
+            'latitude' => 41.8383811,
+            'longitude' => 12.476923,
+            'image' => 'https://unsplash.it/300/300?image=1',
+            'visibility' => 1,
+            'user_id' => 3,
+
+        ]);
+        DB::table('apartments')->insert([
+            'description' => 'monolocale, molto molto  molto molto molto molto molto molto piccolo',
+            'rooms' => 1,
+            'beds' => 2,
+            'bathrooms' => 1,
+            'square_meters' => 50,
+            'address' => 'Via Giovanni Keplero, 34',
+            'city' => 'Roma',
+            'latitude' => 41.8828651,
+            'longitude' => 12.4765823,
+            'image' => 'https://unsplash.it/300/300?image=1',
+            'visibility' => 1,
+            'user_id' => 4,
+
+        ]);
+        DB::table('apartments')->insert([
+            'description' => 'monolocale, molto molto  molto molto molto molto molto molto piccolo',
+            'rooms' => 1,
+            'beds' => 2,
+            'bathrooms' => 1,
+            'square_meters' => 50,
+            'address' => 'Via Giovanni Keplero, 34',
+            'city' => 'Roma',
+            'latitude' => 41.8138315,
+            'longitude' => 12.4765523,
+            'image' => 'https://unsplash.it/300/300?image=1',
             'visibility' => 1,
             'user_id' => 5,
 

@@ -15,30 +15,15 @@ class ViewSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('views')->insert([
-            'data_views' => '2022-02-03',
-            'apartment_id' => 1,
-        ]);
+        for($x = 0; $x < 50; $x++){
 
-        DB::table('views')->insert([
-            'data_views' => '2021-02-03',
-            'apartment_id' => 1,
-        ]);
-        
-        DB::table('views')->insert([
-            'data_views' => '2022-02-03',
-            'apartment_id' => 1,
-        ]);
+            $i = rand(1,5);
 
-        DB::table('views')->insert([
-            'data_views' => '2022-02-03',
-            'apartment_id' => 2,
-        ]);
-
-        DB::table('views')->insert([
-            'data_views' => '2022-02-03',
-            'apartment_id' => 2,
-        ]);
+            DB::table('views')->insert([
+                'data_views' => '2022-02-03',
+                'apartment_id' => $i,
+            ]);
+        }
     }
 }
 
