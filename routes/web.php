@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,3 +28,7 @@ Route::get('/show/{id}', 'HomeController@show') -> name('show');
 
 //remove elements 
 Route::get('/delete/{id}', 'HomeController@delete') -> name('delete');
+
+//add elements
+Route::get('/create', 'HomeController@create' ) -> name('create');
+Route::post('/store', 'HomeController@store') -> name('store');

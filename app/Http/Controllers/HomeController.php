@@ -42,5 +42,36 @@ class HomeController extends Controller
 
         return redirect() -> route('dashboard');
     }
+    public function create(){
+        return view('pages.create');
+    }
+    public function store(Request $request) {
+        $data = $request->validate([
+            'description' => 'required|string|max:1000',
+            'rooms' => 'required|integer|min:1',
+            'beds' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'square_meters' => 'required|integer|min:10',
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|max:60',
+        ]);
+        $data['image'] = 'https://a0.muscache.com/im/pictures/1e87d9ab-159b-41a1-8553-89f14876f92a.jpg?im_w=1200';
+        $data['latitude'] = 45.4855254;
+        $data['longitude'] = 9.4855254;
+        $data['visibility'] = 1; 
+        // $data['user_id'] = Auth::user() -> id;
+        $apartment = Apartment::make($data);
+        $user = Auth::user($data);
+        $apartment -> user() -> associate($user);
+        $apartment -> save();
+
+        return redirect() -> route('dashboard');
+        
+        
+
+
+        
+
+    }
 
 }

@@ -8,7 +8,7 @@
         Appartamento
     </h3>
    <div>
-       <a class="btn btn-primary"href="">ADD</a>
+       <a class="btn btn-primary"href="{{route('create')}}">ADD</a>
    </div>
     @foreach ($apartments as $apartment)
         @if ($apartment -> visibility == 1)
