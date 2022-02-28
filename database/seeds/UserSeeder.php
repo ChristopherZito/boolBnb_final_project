@@ -55,6 +55,62 @@ class UserSeeder extends Seeder
             'date_of_birth' => '1989-07-21',
 
         ]);
+        DB::table('users')->insert([
+            'name'=> 'Lucia',
+            'surname' =>  'Mari',
+            'email' => 'lucia.mari@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1990-04-19',
+
+        ]);
+        DB::table('users')->insert([
+            'name'=> 'Chiara',
+            'surname' =>  'Devitis',
+            'email' => 'chiara.devitis@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1988-12-15',
+
+        ]);
+        DB::table('users')->insert([
+            'name'=> 'Marco',
+            'surname' =>  'Bianchi',
+            'email' => 'marco.bianchi@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1975-01-10',
+
+        ]);
+        DB::table('users')->insert([
+            'name'=> 'Mario',
+            'surname' =>  'Rossi',
+            'email' => 'mario.rossi@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1966-10-03',
+
+        ]);
+        DB::table('users')->insert([
+            'name'=> 'Stefania',
+            'surname' =>  'Verdi',
+            'email' => 'stefania.verdi@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1994-07-23',
+
+        ]);
+        DB::table('users')->insert([
+            'name'=> 'Elisa',
+            'surname' =>  'Campinoti',
+            'email' => 'elisa.campinoti@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1976-05-29',
+
+        ]);
+        DB::table('users')->insert([
+            'name'=> 'Nicola',
+            'surname' =>  'Capobianco',
+            'email' => 'nicola.capobianco@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'date_of_birth' => '1961-11-21',
+
+        ]);
 
     }
 }
