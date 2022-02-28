@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Apartment;
 
@@ -17,8 +18,13 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $apartments = Apartment::all();
-
+        $apartments = [];
+        $allApartments = Apartment::all();
+        foreach ($allApartments as $apartment){
+            if ($apartment -> user_id == Auth::user() -> id){
+                array_push($apartments,$apartment);
+            }
+        }
         return view('pages.dashboard', compact('apartments'));
     }
 }

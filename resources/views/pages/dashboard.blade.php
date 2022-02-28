@@ -8,6 +8,6 @@
         Appartamento
     </h3>
     @foreach ($apartments as $apartment)
-        {{$apartment -> description }} <br>
+        {{$apartment -> description }} <br>  
     @endforeach
 @endsection
