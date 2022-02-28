@@ -8,11 +8,20 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <script src="{{asset('js/app.js')}}" defer></script> 
 
-    <title>Home</title>
+    <title>@yield('title')</title>
+    
 </head>
 <body>
     <div id="app">
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @include('components.header')
     
         @yield('content')
