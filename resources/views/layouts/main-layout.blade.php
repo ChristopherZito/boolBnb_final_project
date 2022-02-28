@@ -12,7 +12,7 @@
     
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="container bg-dark text-light p-4">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

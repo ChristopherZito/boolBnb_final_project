@@ -27,4 +27,20 @@ class HomeController extends Controller
         }
         return view('pages.dashboard', compact('apartments'));
     }
+
+    public function show($id){
+
+        $selectApartment = Apartment::findOrFail($id);
+        return view('pages.show', compact('selectApartment'));
+    }
+
+    public function delete($id){
+        $apartment = Apartment::findOrFail($id);
+
+        $apartment -> visibility = 0;
+        $apartment -> save();
+
+        return redirect() -> route('dashboard');
+    }
+
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
@@ -22,3 +22,8 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
 ///////////////////////////////////////////////////////////////////////////////
 Route::get('/dashboard', 'HomeController@dashboard') -> name('dashboard');
+
+Route::get('/show/{id}', 'HomeController@show') -> name('show');
+
+//remove elements 
+Route::get('/delete/{id}', 'HomeController@delete') -> name('delete');
