@@ -21,6 +21,8 @@ class ViewSeeder extends Seeder
 
             DB::table('views')->insert([
                 'data_views' => '2022-02-03',
+                'time_views' => '11:00:30',
+                'ip' => '127.1.159.2',
                 'apartment_id' => $i,
             ]);
         }
