@@ -1,7 +1,11 @@
 <header>
     @auth
-        Benvenuto
+        Benvenuto {{Auth::user() -> email}}
+        <br>
+        
         <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
+        <a class="btn btn-danger" href="{{route('home')}}">Home</a>
+        <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
     @endauth
         @guest
             <div>
