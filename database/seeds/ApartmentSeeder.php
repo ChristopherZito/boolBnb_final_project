@@ -177,7 +177,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Roma',
             'latitude' => 41.8828651,
             'longitude' => 12.4765823,
-            'image' => 'https://unsplash.it/300/300?image=1',
+            'image' => 'https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg',
             'visibility' => 1,
             'user_id' => 4,
 

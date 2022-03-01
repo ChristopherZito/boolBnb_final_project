@@ -6,3 +6,57 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+#main_header{
+    height: 100px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .container_header{
+        
+        display: flex;
+        justify-content: space-around; 
+        width: 100%; 
+        
+        .link{
+            width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .user{
+            display: flex;
+            align-items: center;
+            h6 {
+                color: white;
+            }
+        }
+    }
+}
+
+.col-laterali{
+    background-color: blue;
+}
+
+.col-centrale{
+    background-color: red;
+    // margin: 0 50px 0 50px;
+}
+
+
+.apart-stats{
+    margin-bottom: 50px;
+}
+.apart-info{
+    margin-bottom: 50px;
+}
+
+
+.container-show-content{
+    display: flex;
+}
+    
+
+

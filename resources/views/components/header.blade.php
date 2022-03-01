@@ -1,12 +1,37 @@
-<header>
-    @auth
-        Benvenuto {{Auth::user() -> email}}
-        <br>
+<header id="main_header">
+
+    <div class="container_header">
+
+
+        {{-- logo --}}
+        <div class="logo">
+            <h1>
+                LOGO
+            </h1>
+        </div>
+
+        @auth
+
+        {{-- navigazione --}}
+        <div class="link">
+            <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
+            <a class="btn btn-danger" href="{{route('home')}}">Home</a>
+            <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
+        </div>
         
-        <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
-        <a class="btn btn-danger" href="{{route('home')}}">Home</a>
-        <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
-    @endauth
+        {{-- account --}}
+        <div class="user">
+            <h6>
+                Benvenuto <br>
+                {{Auth::user() -> email}}
+            </h6>
+            
+        </div>
+        
+        @endauth
+        
+    </div>
+    
         @guest
             <div>
                 <h1> Register: </h1>

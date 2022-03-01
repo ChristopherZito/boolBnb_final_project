@@ -1,5 +1,4 @@
-@charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.6.1 (https://getbootstrap.com/)
@@ -10961,5 +10960,55 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+#main_header {
+  height: 100px;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#main_header .container_header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#main_header .container_header .link {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#main_header .container_header .user {
+  display: flex;
+  align-items: center;
+}
+
+#main_header .container_header .user h6 {
+  color: white;
+}
+
+.col-laterali {
+  background-color: blue;
+}
+
+.col-centrale {
+  background-color: red;
+}
+
+.apart-stats {
+  margin-bottom: 50px;
+}
+
+.apart-info {
+  margin-bottom: 50px;
+}
+
+.container-show-content {
+  display: flex;
 }
 
