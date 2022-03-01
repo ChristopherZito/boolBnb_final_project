@@ -26,7 +26,10 @@
             <label for="image">Immagine:</label>
             <input type="file" name="image" ><br>
 
-            
+            @foreach ($optionals as $optional)
+                <input type="checkbox" name="optionals[]" value="{{$optional->id}}">
+                <label for="optionals" class="mr-3">{{$optional->name}}</label>
+            @endforeach
 
             <input class="btn btn-primary m-4" type="submit" value="Invia">
         </form>

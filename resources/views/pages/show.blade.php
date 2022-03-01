@@ -14,7 +14,11 @@
         address: {{$selectApartment -> address}} <br>
         city: {{$selectApartment -> city}} <br>
         {{-- <img class="img img-fluid" src="/storage/apartments_images/{{$selectApartment -> image}}" alt=""> --}}
-        <img class="img img-fluid" src="{{$selectApartment -> image}}" alt="">
+        <img class="img img-fluid" src="{{$selectApartment -> image}}" alt=""><br>
+        <br>Optionals:<br>
+        @foreach ($selectApartment -> optionals as $optional)
+            {{$optional->name}}<br>
+        @endforeach
     </div>
     @if ($selectApartment -> user_id == Auth::user() -> id )
         <div class="row-6">

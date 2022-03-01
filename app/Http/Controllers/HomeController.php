@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use App\Apartment;
+use App\Optional;
 
 use Illuminate\Http\Request;
 
@@ -43,7 +44,8 @@ class HomeController extends Controller
         return redirect() -> route('dashboard');
     }
     public function create(){
-        return view('pages.create');
+        $optionals = Optional::all();
+        return view('pages.create', compact('optionals'));
     }
     public function store(Request $request) {
         $data = $request->validate([
@@ -54,7 +56,8 @@ class HomeController extends Controller
             'square_meters' => 'required|integer|min:10',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:60',
-            'image' => 'required'
+            'image' => 'required',
+            'optionals' => 'nullable'
         ]);
         // $data['image'] = 'https://a0.muscache.com/im/pictures/1e87d9ab-159b-41a1-8553-89f14876f92a.jpg?im_w=1200';
         $data['latitude'] = 45.4855254;
@@ -73,6 +76,12 @@ class HomeController extends Controller
         $apartment = Apartment::make($data);
         $user = Auth::user($data);
         $apartment -> user() -> associate($user);
+        $apartment -> save();
+
+        if (array_key_exists('optionals', $data)) {
+            $optionals = Optional::findOrFail($request -> get('optionals'));
+            $apartment -> optionals() -> attach($optionals);
+        }
         $apartment -> save();
 
         return redirect() -> route('dashboard');
