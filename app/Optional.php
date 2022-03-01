@@ -10,4 +10,9 @@ class Optional extends Model
 
         'name',
     ];
+
+    public function apartments()
+    {
+        return $this-> belongsToMany(Apartment::class);
+    }
 }

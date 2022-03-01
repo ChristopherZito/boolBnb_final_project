@@ -12,4 +12,9 @@ class Message extends Model
         'text',
 
     ];
+
+    public function apartment()
+    {
+        return $this->belongsTo(Apartment::class);
+    }
 }

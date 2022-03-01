@@ -10,4 +10,9 @@ class View extends Model
         'data_views',
 
     ];
+
+    public function apartment()
+    {
+        return $this->belongsTo(Apartment::class);
+    }
 }

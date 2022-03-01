@@ -13,4 +13,9 @@ class Sponsorship extends Model
         'description',
 
     ];
+
+    public function apartments()
+    {
+        return $this-> belongsToMany(Apartment::class);
+    }
 }
