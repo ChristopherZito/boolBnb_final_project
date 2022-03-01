@@ -13,6 +13,7 @@
         square_meters: {{$selectApartment -> square_meters}} <br>
         address: {{$selectApartment -> address}} <br>
         city: {{$selectApartment -> city}} <br>
+        {{-- <img class="img img-fluid" src="/storage/apartments_images/{{$selectApartment -> image}}" alt=""> --}}
         <img class="img img-fluid" src="{{$selectApartment -> image}}" alt="">
     </div>
     @if ($selectApartment -> user_id == Auth::user() -> id )

@@ -54,11 +54,21 @@ class HomeController extends Controller
             'square_meters' => 'required|integer|min:10',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:60',
+            'image' => 'required'
         ]);
-        $data['image'] = 'https://a0.muscache.com/im/pictures/1e87d9ab-159b-41a1-8553-89f14876f92a.jpg?im_w=1200';
+        // $data['image'] = 'https://a0.muscache.com/im/pictures/1e87d9ab-159b-41a1-8553-89f14876f92a.jpg?im_w=1200';
         $data['latitude'] = 45.4855254;
         $data['longitude'] = 9.4855254;
         $data['visibility'] = 1; 
+
+        $imageFile = $data['image'];
+
+        $imageName = rand(100000, 999999) . '_' . time() 
+                    . '.' . $imageFile -> getClientOriginalExtension();
+
+        $imageFile -> storeAs('/apartments_images/', $imageName , 'public');
+        $data['image'] = '/storage/apartments_images/'.$imageName;
+
         // $data['user_id'] = Auth::user() -> id;
         $apartment = Apartment::make($data);
         $user = Auth::user($data);
@@ -66,11 +76,6 @@ class HomeController extends Controller
         $apartment -> save();
 
         return redirect() -> route('dashboard');
-        
-        
-
-
-        
 
     }
 
