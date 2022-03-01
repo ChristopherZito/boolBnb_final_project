@@ -85,7 +85,59 @@ class HomeController extends Controller
         $apartment -> save();
 
         return redirect() -> route('dashboard');
+    }
 
+    public function edit($id){
+        $apartment = Apartment::findOrFail($id);
+        $optionals = Optional::all();
+        return view('pages.edit', compact('apartment', 'optionals'));
+    }
+
+    public function update(Request $request, $id) {
+        $data = $request->validate([
+            'description' => 'required|string|max:1000',
+            'rooms' => 'required|integer|min:1',
+            'beds' => 'required|integer|min:1',
+            'bathrooms' => 'required|integer|min:1',
+            'square_meters' => 'required|integer|min:10',
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|max:60',
+            'image' => 'nullable',
+            'optionals' => 'nullable'
+        ]);
+
+        if($request->file('image')) {
+            $imageFile = $data['image'];
+    
+            $imageName = rand(100000, 999999) . '_' . time() 
+                        . '.' . $imageFile -> getClientOriginalExtension();
+    
+            $imageFile -> storeAs('/apartments_images/', $imageName , 'public');
+            $data['image'] = '/storage/apartments_images/'.$imageName;
+        }
+
+        // $data['user_id'] = Auth::user() -> id;
+
+        $apartment = Apartment::findOrFail($id);
+        $apartment -> update($data);
+
+        if($request->get('user_id')) {
+
+            $user = User::findOrFail($request->get('user_id'));
+            $apartment->user()->associate($user);
+            $apartment->save();
+        }
+
+        if($request->get('optionals')) {
+
+            $optionals = Optional::findOrFail($request->get('optionals'));
+        } else {
+            $optionals = [];
+        }
+        $apartment->optionals()->sync($optionals);
+        $apartment->save();
+
+        return redirect() -> route('show', $apartment->id);
     }
 
 }

@@ -26,9 +26,13 @@ Route::get('/dashboard', 'HomeController@dashboard') -> name('dashboard');
 
 Route::get('/show/{id}', 'HomeController@show') -> name('show');
 
-//remove elements 
+//remove apartments 
 Route::get('/delete/{id}', 'HomeController@delete') -> name('delete');
 
-//add elements
+//add apartments
 Route::get('/create', 'HomeController@create' ) -> name('create');
 Route::post('/store', 'HomeController@store') -> name('store');
+
+//edit apartments
+Route::get('/edit/{id}', 'HomeController@edit' ) -> name('edit');
+Route::post('/update/{id}', 'HomeController@update') -> name('update');
