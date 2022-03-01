@@ -1,4 +1,14 @@
 <header>
+    <form action="{{route('search')}}" method="post">
+
+        @method("POST")
+        @csrf
+
+        <input type="text" name="city" placeholder="Inserisci città">
+        <input type="submit" value="Cerca">
+        
+    </form>
+    <search-component></search-component>
     @auth
         Benvenuto {{Auth::user() -> email}}
         <br>

@@ -36,3 +36,9 @@ Route::post('/store', 'HomeController@store') -> name('store');
 //edit apartments
 Route::get('/edit/{id}', 'HomeController@edit' ) -> name('edit');
 Route::post('/update/{id}', 'HomeController@update') -> name('update');
+
+//search
+Route::post('/search', 'GuestController@search') -> name('search');
+
+//call axios
+Route::get('/apartment/get', 'GuestController@getApiApartments') -> name('get.api.apartments');

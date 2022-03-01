@@ -26,7 +26,7 @@
             <a class="btn btn-primary" href="{{route('edit', $selectApartment -> id)}}">Edit</a> <br>
             <a class="btn btn-primary" href="">Sponsorship</a> <br>
         </div>
-    @endif
+    @endif 
 </div>
 
 @endsection
