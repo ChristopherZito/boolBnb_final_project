@@ -1937,6 +1937,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    apartmentList: Array
+  },
   data: function data() {
     return {
       apartments: [],
@@ -1944,11 +1947,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    axios.get('/apartment/get').then(function (r) {
-      return console.log(r.data);
-    })["catch"](function (e) {
-      return console.log(e);
-    });
+    console.log(this.apartments = apartmentList);
+  },
+  methods: {
+    getItem: function getItem() {
+      return this.apartmentList;
+    },
+    setItem: function setItem(apartmentList) {
+      this.apartments = apartmentList;
+    }
   }
 });
 

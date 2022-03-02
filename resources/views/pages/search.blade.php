@@ -8,5 +8,5 @@
         {{$item -> id}} <br>
         {{$item -> city}} <br>
     @endforeach
-    <search-component></search-component
+    <search-component></search-component>
 @endsection

@@ -7,7 +7,9 @@
 
 <script>
     export default {
-
+        props:{
+            apartmentList: Array,
+        },
         data() {
             return {
                 apartments: [],
@@ -16,9 +18,16 @@
         },
 
         mounted() {
-            axios.get('/apartment/get')
-            .then( r => console.log(r.data))
-            .catch( e => console.log(e))
+            
+            console.log(this.apartments = apartmentList);
         },
+        methods: {
+            getItem() {
+                return this.apartmentList;
+            },
+            setItem(apartmentList){
+                this.apartments = apartmentList;
+            },
+        }
     }
 </script>

@@ -25,7 +25,7 @@ class GuestController extends Controller
 
         $apartments = DB::table('apartments')->where('city', $city)->get(); //array di appartamenti trovati nella città cercata
 
-
+        
         return view('pages.search', compact('apartments'));
     }
     
