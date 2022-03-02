@@ -8,9 +8,9 @@
     <div class="row gx-5 p-4">
 
         <div class="col-xl col-sm-0 col-laterali">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col text-center">
+            <div class="container-fluid ">
+                <div class="row box-opt-cont">
+                    <div class="col text-center align-items">
                         <h2>
                             Optionals
                         </h2>
@@ -20,9 +20,13 @@
 
                 <div class="row">
                     <div class="col">
-                        @foreach ($selectApartment -> optionals as $optional)
-                            {{$optional->name}}<br>
-                        @endforeach
+
+                        <div class=" container-fluid optionals-box">
+                            @foreach ($selectApartment -> optionals as $optional)
+                                {{$optional->name}}<br>
+                            @endforeach
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -39,18 +43,26 @@
                 {{$selectApartment -> square_meters}} metri quadri<br>
             </div>
 
+            <div class="separator">
+
+            </div>
+
             <div class="apart-info">
                 description: {{$selectApartment -> description}} <br>
                 address: {{$selectApartment -> address}} <br>
                 city: {{$selectApartment -> city}} <br>
             </div>
             
+            <div class="separator">
+                
+            </div>
+
             <div class="user-command">
                 @if ($selectApartment -> user_id == Auth::user() -> id )
                     <div class="row-6">
-                        <a class="btn btn-primary" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
-                        <a class="btn btn-primary" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
-                        <a class="btn btn-primary" href="">Sponsorship</a> 
+                        <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
+                        <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
+                        <a class="btn btn-primary btn-user-command" href="">Sponsorship</a> 
                     </div>
                 @endif
             </div>
@@ -59,7 +71,25 @@
         
 
         <div class="col-xl col-sm-0 col-laterali">
-            contatta:<br>
+
+            <div class="container-fluid ">
+                <div class="row box-opt-cont">
+                    <div class="col text-center align-items">
+                        <h2>
+                            Contatta
+                        </h2>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="box-area-sett container">
+                            <textarea placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
