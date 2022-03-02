@@ -6,7 +6,7 @@
         <input type="text" name="city" placeholder="Inserisci città">
         <input type="submit" value="Cerca">
     </form>
-
+    
     @auth
         Benvenuto {{Auth::user() -> email}}
         <br>
