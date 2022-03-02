@@ -1953,21 +1953,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    propsApartments: Array
-  },
-
-  /* props:['propsApartments'], */
-  data: function data() {
-    return {
-      apartments: []
-    };
-  },
-  mounted: function mounted() {
-    // console.log(this.propsApartments);
-    this.apartments = this.propsApartments;
-    console.log(this.apartments);
-  },
-  methods: {}
+    Apartments: Array
+  }
 });
 
 /***/ }),
@@ -37586,16 +37573,18 @@ var render = function () {
     _c(
       "section",
       { staticClass: "bg-success p-5 d-flex flex-wrap" },
-      _vm._l(_vm.apartments, function (apartment) {
+      _vm._l(_vm.Apartments, function (apartment) {
         return _c(
           "div",
           { key: apartment.id, staticClass: "col-6 py-2 border border-dark" },
           [
             _c("div", { staticClass: "img-container" }, [
-              _c("img", {
-                staticClass: "img img-fluid",
-                attrs: { src: apartment.image, alt: "" },
-              }),
+              _c("a", { attrs: { href: "show/" + apartment.id } }, [
+                _c("img", {
+                  staticClass: "img img-fluid",
+                  attrs: { src: apartment.image, alt: "" },
+                }),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", [

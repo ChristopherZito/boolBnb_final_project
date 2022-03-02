@@ -3,7 +3,6 @@
     Show
 @endsection
 @section('content')
-
 <div class="d-flex justify-content-between">
     <div class="row-6">
         description: {{$selectApartment -> description}} <br>
@@ -29,7 +28,5 @@
             </div>
         @endif         
     @endauth
-
 </div>
-
 @endsection

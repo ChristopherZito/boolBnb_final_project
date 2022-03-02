@@ -3,7 +3,7 @@
     Ricerca avanzata
 @endsection
 @section('content')
-<section class="bg-success p-5 d-flex flex-wrap">
+{{-- <section class="bg-success p-5 d-flex flex-wrap">
     @foreach ($apartments as $apartment)
         <div class="col-6 py-2 border border-dark">
             <div class="img-container">
@@ -19,6 +19,6 @@
             </div>
         </div>
     @endforeach
-</section>
-{{-- <search-component props-apartments="{{ $apartments }}"></search-component> --}}
+</section> --}}
+<search-component :Apartments="{{ $apartments }}"></search-component>
 @endsection
