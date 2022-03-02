@@ -24,7 +24,7 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 ///////////////////////////////////////////////////////////////////////////////
 Route::get('/dashboard', 'HomeController@dashboard') -> name('dashboard');
 
-Route::get('/show/{id}', 'HomeController@show') -> name('show');
+Route::get('/show/{id}', 'GuestController@show') -> name('show');
 
 //remove apartments 
 Route::get('/delete/{id}', 'HomeController@delete') -> name('delete');
@@ -36,3 +36,9 @@ Route::post('/store', 'HomeController@store') -> name('store');
 //edit apartments
 Route::get('/edit/{id}', 'HomeController@edit' ) -> name('edit');
 Route::post('/update/{id}', 'HomeController@update') -> name('update');
+
+//search
+Route::post('/search', 'GuestController@search') -> name('search');
+
+//call axios
+//Route::get('/apartment/get', 'GuestController@getApiApartments') -> name('get.api.apartments');

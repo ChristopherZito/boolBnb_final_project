@@ -21,6 +21,8 @@
             <input type="number" name="square_meters" placeholder="metri quadri"><br>
             <label for="address">Indirizzo:</label><br>
             <input type="text" name="address" placeholder="Aggiungi Indirizzo"><br>
+            <label for="streetNumber">Civico:</label><br>
+            <input type="text" name="streetNumber" placeholder="Aggiungi civico"><br>
             <label for="city">Città:</label><br>
             <input type="text" name="city" placeholder="Aggiungi Città"><br><br>
             <label for="image">Immagine:</label>

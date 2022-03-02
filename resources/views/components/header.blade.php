@@ -1,4 +1,12 @@
 <header>
+    <form action="{{route('search')}}" method="post">
+        @method("POST")
+        @csrf
+
+        <input type="text" name="city" placeholder="Inserisci città">
+        <input type="submit" value="Cerca">
+    </form>
+
     @auth
         Benvenuto {{Auth::user() -> email}}
         <br>
@@ -8,6 +16,8 @@
         <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
     @endauth
         @guest
+        <section class="d-flex justify-content-around my-5 bg-secondary ">
+            {{-- register --}}
             <div>
                 <h1> Register: </h1>
                 <form action="{{route('register')}}" method="POST">
@@ -43,5 +53,6 @@
                     <input class="btn btn-primary m-4" type="submit" value="Login">
                 </form>
             </div>
+        </section>
         @endguest
 </header>

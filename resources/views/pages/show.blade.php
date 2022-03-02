@@ -20,13 +20,16 @@
             {{$optional->name}}<br>
         @endforeach
     </div>
-    @if ($selectApartment -> user_id == Auth::user() -> id )
-        <div class="row-6">
-            <a class="btn btn-primary" href="{{route('delete', $selectApartment -> id)}}">Remove</a> <br>
-            <a class="btn btn-primary" href="{{route('edit', $selectApartment -> id)}}">Edit</a> <br>
-            <a class="btn btn-primary" href="">Sponsorship</a> <br>
-        </div>
-    @endif
+    @auth
+        @if ($selectApartment -> user_id == Auth::user() -> id )
+            <div class="row-6">
+                <a class="btn btn-primary" href="{{route('delete', $selectApartment -> id)}}">Remove</a> <br>
+                <a class="btn btn-primary" href="{{route('edit', $selectApartment -> id)}}">Edit</a> <br>
+                <a class="btn btn-primary" href="">Sponsorship</a> <br>
+            </div>
+        @endif         
+    @endauth
+
 </div>
 
 @endsection

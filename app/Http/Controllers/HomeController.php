@@ -29,12 +29,6 @@ class HomeController extends Controller
         return view('pages.dashboard', compact('apartments'));
     }
 
-    public function show($id){
-
-        $selectApartment = Apartment::findOrFail($id);
-        return view('pages.show', compact('selectApartment'));
-    }
-
     public function delete($id){
         $apartment = Apartment::findOrFail($id);
 
@@ -48,6 +42,7 @@ class HomeController extends Controller
         return view('pages.create', compact('optionals'));
     }
     public function store(Request $request) {
+
         $data = $request->validate([
             'description' => 'required|string|max:1000',
             'rooms' => 'required|integer|min:1',
@@ -55,14 +50,51 @@ class HomeController extends Controller
             'bathrooms' => 'required|integer|min:1',
             'square_meters' => 'required|integer|min:10',
             'address' => 'required|string|max:255',
+            'streetNumber' => 'nullable',
             'city' => 'required|string|max:60',
             'image' => 'required',
             'optionals' => 'nullable'
         ]);
-        // $data['image'] = 'https://a0.muscache.com/im/pictures/1e87d9ab-159b-41a1-8553-89f14876f92a.jpg?im_w=1200';
-        $data['latitude'] = 45.4855254;
-        $data['longitude'] = 9.4855254;
-        $data['visibility'] = 1; 
+        ////////////////////////////////////////////////////////////////////////////////////////
+
+        define('API_KEY', 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI');
+        define('API_URL', 'https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT');
+        
+        $address = $data['address'];//via da trovare
+        $city = $data['city'];//città da trovare
+
+        $url = API_URL .'&streetNumber='. $data['streetNumber'] . '&streetName=' . urlencode($address) .'&municipality=' .  urlencode($city) . '&language=it-IT&view=Unified&key=' . API_KEY;
+
+        //dd($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $response = curl_exec($ch);
+        if(curl_error($ch)) {
+            return null;
+        }
+        $dataCord = json_decode($response, true);
+        $results = $dataCord['results'];
+
+        foreach ($results as $result) {
+            $foundcity = $result['address']['municipality'];
+            
+            if (strtolower($foundcity)  === strtolower($city) ) {
+                // dd($result['position']);
+                $cordinate = $result['position'];
+
+                $lat = $cordinate['lat'];
+                $lng = $cordinate['lon'];
+
+                $data['latitude'] = $lat;
+                $data['longitude'] = $lng;
+                return true;
+            }
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////
 
         $imageFile = $data['image'];
 
@@ -72,7 +104,12 @@ class HomeController extends Controller
         $imageFile -> storeAs('/apartments_images/', $imageName , 'public');
         $data['image'] = '/storage/apartments_images/'.$imageName;
 
-        // $data['user_id'] = Auth::user() -> id;
+
+        if ($data['streetNumber']) {
+            $data['address'] = $data['address'] . ' ' . $data['streetNumber'];
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////
+
         $apartment = Apartment::make($data);
         $user = Auth::user($data);
         $apartment -> user() -> associate($user);
@@ -105,7 +142,7 @@ class HomeController extends Controller
             'image' => 'nullable',
             'optionals' => 'nullable'
         ]);
-
+        ////////////////////////////////////////////////////////////////////////////////////////
         if($request->file('image')) {
             $imageFile = $data['image'];
     
@@ -115,9 +152,7 @@ class HomeController extends Controller
             $imageFile -> storeAs('/apartments_images/', $imageName , 'public');
             $data['image'] = '/storage/apartments_images/'.$imageName;
         }
-
-        // $data['user_id'] = Auth::user() -> id;
-
+        ////////////////////////////////////////////////////////////////////////////////////////
         $apartment = Apartment::findOrFail($id);
         $apartment -> update($data);
 

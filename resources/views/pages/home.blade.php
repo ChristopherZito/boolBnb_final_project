@@ -3,8 +3,9 @@
     Home
 @endsection
 @section('content')
-
-    <h4>
+<section class="bg-danger p-5">
+    <h4 class="text-dark">
         Contenuto
     </h4>
+</section>
 @endsection
