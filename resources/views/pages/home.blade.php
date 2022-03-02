@@ -5,7 +5,7 @@
 @section('content')
 <section class="bg-danger p-5">
     <h4 class="text-dark">
-        Contenuto
+        Body
     </h4>
 </section>
 @endsection
