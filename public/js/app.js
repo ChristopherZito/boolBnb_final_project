@@ -1936,27 +1936,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    apartmentList: Array
+    propsApartments: Array
   },
+
+  /* props:['propsApartments'], */
   data: function data() {
     return {
-      apartments: [],
-      city: ""
+      apartments: []
     };
   },
   mounted: function mounted() {
-    console.log(this.apartments = apartmentList);
+    // console.log(this.propsApartments);
+    this.apartments = this.propsApartments;
+    console.log(this.apartments);
   },
-  methods: {
-    getItem: function getItem() {
-      return this.apartmentList;
-    },
-    setItem: function setItem(apartmentList) {
-      this.apartments = apartmentList;
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -37571,7 +37582,57 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c(
+      "section",
+      { staticClass: "bg-success p-5 d-flex flex-wrap" },
+      _vm._l(_vm.apartments, function (apartment) {
+        return _c(
+          "div",
+          { key: apartment.id, staticClass: "col-6 py-2 border border-dark" },
+          [
+            _c("div", { staticClass: "img-container" }, [
+              _c("img", {
+                staticClass: "img img-fluid",
+                attrs: { src: apartment.image, alt: "" },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c("span", { staticClass: "text-dark" }, [
+                _vm._v(" Descrizione: "),
+              ]),
+              _vm._v(_vm._s(apartment.description) + " "),
+              _c("br"),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [_vm._v(" Città: ")]),
+              _vm._v(_vm._s(apartment.city) + " "),
+              _c("br"),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [_vm._v(" Stanze: ")]),
+              _vm._v(_vm._s(apartment.rooms) + " "),
+              _c("br"),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [_vm._v(" Letti: ")]),
+              _vm._v(_vm._s(apartment.beds) + " "),
+              _c("br"),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [_vm._v(" Bagni: ")]),
+              _vm._v(_vm._s(apartment.bathrooms) + " "),
+              _c("br"),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [
+                _vm._v(" Indirizzo: "),
+              ]),
+              _vm._v(_vm._s(apartment.address) + " "),
+              _c("br"),
+            ]),
+          ]
+        )
+      }),
+      0
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

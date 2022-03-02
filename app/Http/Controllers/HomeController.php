@@ -29,12 +29,6 @@ class HomeController extends Controller
         return view('pages.dashboard', compact('apartments'));
     }
 
-    public function show($id){
-
-        $selectApartment = Apartment::findOrFail($id);
-        return view('pages.show', compact('selectApartment'));
-    }
-
     public function delete($id){
         $apartment = Apartment::findOrFail($id);
 
@@ -97,6 +91,7 @@ class HomeController extends Controller
 
                 $data['latitude'] = $lat;
                 $data['longitude'] = $lng;
+                return true;
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////
@@ -109,13 +104,12 @@ class HomeController extends Controller
         $imageFile -> storeAs('/apartments_images/', $imageName , 'public');
         $data['image'] = '/storage/apartments_images/'.$imageName;
 
-        //dd($data);
 
-        // $data['address'] = $data['address'] . ' ' . $data['streetNumber'];
-
+        if ($data['streetNumber']) {
+            $data['address'] = $data['address'] . ' ' . $data['streetNumber'];
+        }
         ////////////////////////////////////////////////////////////////////////////////////////
 
-        // $data['user_id'] = Auth::user() -> id;
         $apartment = Apartment::make($data);
         $user = Auth::user($data);
         $apartment -> user() -> associate($user);
@@ -148,7 +142,7 @@ class HomeController extends Controller
             'image' => 'nullable',
             'optionals' => 'nullable'
         ]);
-
+        ////////////////////////////////////////////////////////////////////////////////////////
         if($request->file('image')) {
             $imageFile = $data['image'];
     
@@ -158,9 +152,7 @@ class HomeController extends Controller
             $imageFile -> storeAs('/apartments_images/', $imageName , 'public');
             $data['image'] = '/storage/apartments_images/'.$imageName;
         }
-
-        // $data['user_id'] = Auth::user() -> id;
-
+        ////////////////////////////////////////////////////////////////////////////////////////
         $apartment = Apartment::findOrFail($id);
         $apartment -> update($data);
 

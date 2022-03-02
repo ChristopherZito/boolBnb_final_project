@@ -24,7 +24,7 @@ Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 ///////////////////////////////////////////////////////////////////////////////
 Route::get('/dashboard', 'HomeController@dashboard') -> name('dashboard');
 
-Route::get('/show/{id}', 'HomeController@show') -> name('show');
+Route::get('/show/{id}', 'GuestController@show') -> name('show');
 
 //remove apartments 
 Route::get('/delete/{id}', 'HomeController@delete') -> name('delete');
