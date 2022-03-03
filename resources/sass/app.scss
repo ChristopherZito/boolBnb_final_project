@@ -1,3 +1,6 @@
+//FontAwesome
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -6,3 +9,133 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+
+body{
+    background-color: white;
+}
+
+// buttons
+.btn-user-command{
+    background-color: cornflowerblue;
+    border-color: burlywood;
+}
+.prova-display{
+    display: flex;
+    .login-estetic{
+        font-size: 30px;
+        margin-left: 15px;
+    }
+}
+
+
+#main_header{
+    height: 100px;
+    background-color: burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .container_header{
+        
+        display: flex;
+        justify-content: space-around; 
+        width: 100%; 
+        
+        .link{
+            width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .user{
+            display: flex;
+            align-items: center;
+            h6 {
+                color: white;
+            }
+        }
+    }
+}
+
+.separator{
+    border: .5px solid burlywood;
+    // margin: 20px 0 20px 0;
+    margin: 0 auto;
+}
+// .col-laterali{
+//     background-color: blue;
+// }
+
+// .col-centrale{
+//     background-color: red;
+//     // margin: 0 50px 0 50px;
+// }
+
+
+.apart-stats{
+    margin-bottom: 20px;
+}
+.apart-info{
+    margin: 20px 0 20px 0;
+}
+.user-command{
+    margin: 20px 0 20px 0;
+}
+
+.optionals-box{
+    margin-top: 10px;
+    padding: 20px;
+}
+.box-area-sett{
+    margin-top: 10px;
+    padding: 20px;
+}
+.box-text-area{
+    height: 100px;
+    margin-top: 50px;
+    width: 100%;
+    border-color: burlywood;
+}
+
+.box-opt-cont{
+    background-color: burlywood;
+    border-radius: 10px;
+    .align-items{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    h2{
+        color: white;
+    }
+}
+
+
+.container-show-content{
+    display: flex;
+}
+
+#back-footer{
+    background-color: rgba(247,247,247,255);
+    .colonne-footer{
+        margin-top: 30px;
+        ul{
+            .bold-li{
+                font-weight: bold;
+            }
+            li{
+                list-style: none;
+                a{
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+
+    
+
+

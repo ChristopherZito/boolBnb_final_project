@@ -12,8 +12,8 @@
    </div>
     @foreach ($apartments as $apartment)
         @if ($apartment -> visibility == 1)
-            <a class="text-light" href="{{route('show', $apartment -> id )}}">{{$apartment -> description }}</a> 
-            <hr class="bg-light">
+            <a href="{{route('show', $apartment -> id )}}">{{$apartment -> description }}</a> 
+            <hr>
         @endif
     @endforeach
 @endsection

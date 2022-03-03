@@ -3,23 +3,120 @@
     Show
 @endsection
 @section('content')
-<div class="d-flex justify-content-between">
-    <div class="row-6">
-        description: {{$selectApartment -> description}} <br>
-        rooms: {{$selectApartment -> rooms}} <br>
-        beds: {{$selectApartment -> beds}} <br>
-        bathrooms: {{$selectApartment -> bathrooms}} <br>
-        square_meters: {{$selectApartment -> square_meters}} <br>
-        address: {{$selectApartment -> address}} <br>
-        city: {{$selectApartment -> city}} <br>
-        {{-- <img class="img img-fluid" src="/storage/apartments_images/{{$selectApartment -> image}}" alt=""> --}}
-        <img class="img img-fluid" src="{{$selectApartment -> image}}" alt=""><br>
-        <br>Optionals:<br>
+
+<div class="container-fluid">
+    <div class="row gx-5 p-4">
+
+        <div class="col-xl col-sm-0 col-laterali">
+            <div class="container-fluid ">
+                <div class="row box-opt-cont">
+                    <div class="col text-center align-items">
+                        <h2>
+                            Optionals
+                        </h2>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <div class=" container-fluid optionals-box">
+                            @foreach ($selectApartment -> optionals as $optional)
+                                {{$optional->name}}<br>
+                            @endforeach
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-xl-6  col-sm-12 col-centrale">
+            <img class="img img-fluid rounded mx-auto d-block" src="{{$selectApartment -> image}}" alt=""><br>
+            
+            <div class="apart-stats">
+                {{$selectApartment -> rooms}} camere .
+                {{$selectApartment -> beds}} letti .
+                {{$selectApartment -> bathrooms}} bagni .
+                {{$selectApartment -> square_meters}} metri quadri<br>
+            </div>
+
+            <div class="separator">
+
+            </div>
+
+            <div class="apart-info">
+                description: {{$selectApartment -> description}} <br>
+                address: {{$selectApartment -> address}} <br>
+                city: {{$selectApartment -> city}} <br>
+            </div>
+            
+            <div class="separator">
+                
+            </div>
+
+            <div class="user-command">
+                @auth
+                        @if ($selectApartment -> user_id == Auth::user() -> id )
+                            <div class="row-6">
+                                <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
+                                <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
+                                <a class="btn btn-primary btn-user-command" href="">Sponsorship</a> 
+                            </div>
+                    @endif   
+                @endauth
+                
+            </div>
+            
+        </div>
+        
+
+        <div class="col-xl col-sm-0 col-laterali">
+
+            <div class="container-fluid ">
+                <div class="row box-opt-cont">
+                    <div class="col text-center align-items">
+                        <h2>
+                            Contatta
+                        </h2>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="box-area-sett container">
+                            <textarea placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- <div class="container-show-content">
+    <div class="container p-4">
+        Optionals:<br>
         @foreach ($selectApartment -> optionals as $optional)
             {{$optional->name}}<br>
         @endforeach
     </div>
-    @auth
+    <div class="container  p-4">
+        <div class="row-6">
+            <img class="img img-fluid" src="{{$selectApartment -> image}}" alt=""><br>
+            description: {{$selectApartment -> description}} <br>
+            rooms: {{$selectApartment -> rooms}} <br>
+            beds: {{$selectApartment -> beds}} <br>
+            bathrooms: {{$selectApartment -> bathrooms}} <br>
+            square_meters: {{$selectApartment -> square_meters}} <br>
+            address: {{$selectApartment -> address}} <br>
+            city: {{$selectApartment -> city}} <br>
+            
+            
+            
+        </div>
         @if ($selectApartment -> user_id == Auth::user() -> id )
             <div class="row-6">
                 <a class="btn btn-primary" href="{{route('delete', $selectApartment -> id)}}">Remove</a> <br>
