@@ -37,9 +37,9 @@
             <img class="img img-fluid rounded mx-auto d-block" src="{{$selectApartment -> image}}" alt=""><br>
             
             <div class="apart-stats">
-                {{$selectApartment -> rooms}} camere .
-                {{$selectApartment -> beds}} letti .
-                {{$selectApartment -> bathrooms}} bagni .
+                {{$selectApartment -> rooms}} camere.
+                {{$selectApartment -> beds}} letti.
+                {{$selectApartment -> bathrooms}} bagni.
                 {{$selectApartment -> square_meters}} metri quadri<br>
             </div>
 
@@ -53,10 +53,9 @@
                 city: {{$selectApartment -> city}} <br>
             </div>
             
-            <div class="separator">
+            <div class="separator">  </div>
                 
-            </div>
-
+           
             <div class="user-command">
                 @auth
                         @if ($selectApartment -> user_id == Auth::user() -> id )
@@ -78,6 +77,7 @@
             <div class="container-fluid ">
                 <div class="row box-opt-cont">
                     <div class="col text-center align-items">
+                        
                         <h2>
                             Contatta
                         </h2>
@@ -88,7 +88,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="box-area-sett container">
-                            <textarea placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
+                            <form action="{{route('messageStore', $selectApartment-> id)}}" method="post">
+                                @method('POST')
+                                @csrf
+
+                                <input type="email" name="email_sender" placeholder="Inserisci la tua mail">
+                                <textarea name='text' placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
+                                <input type="submit" value="Invia">
+                            </form>
                         </div>
                     </div>
                 </div>

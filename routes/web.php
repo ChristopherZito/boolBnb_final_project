@@ -46,4 +46,6 @@ Route::post('/search', 'GuestController@search') -> name('search');
 Route::get('/optionals/get', 'GuestController@getApiOptionals') -> name('get.api.optionals');
 // Route::get('/apartment/optionals', 'GuestController@getApiApartmentOptionals') -> name('get.api.apartment.optionals');
 
+//send message 
+Route::post('/message/store/{id}', 'GuestController@messageStore') ->name('messageStore');
 

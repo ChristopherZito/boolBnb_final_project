@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Apartment;
 use App\Optional;
+use App\Message;
 
 use Illuminate\Http\Request;
 
@@ -52,9 +53,22 @@ class GuestController extends Controller
         return view('pages.register');
     }
 
-    // public function getApiApartmentOptionals(){
+    public function messageStore(Request $request, $apartmentId){
+        $data = $request->validate([
+            'email_sender' => 'required|email|max:100',
+            'text' => 'required|string|max:5000',
+            
+        ]);
+        // dd($apartmentId,$data);
+        $message = Message::make($data);
+        $apartment = Apartment::findOrFail($apartmentId);
+        $message->apartment()->associate($apartment);
+        $message->save();
         
-    // }
+        return redirect() -> route('home');
+    }
+
+    
     
 
     

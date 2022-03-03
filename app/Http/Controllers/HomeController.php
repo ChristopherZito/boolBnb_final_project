@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Apartment;
 use App\Optional;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -79,6 +80,11 @@ class HomeController extends Controller
         $dataCord = json_decode($response, true);
         $results = $dataCord['results'];
         
+        if(!$results){
+            return 'Non abbiamo trovato la tua via';
+        }
+        
+        
         foreach ($results as $result) {
             $foundcity = $result['address']['municipality'];
             
@@ -91,7 +97,10 @@ class HomeController extends Controller
 
                 $data['latitude'] = $lat;
                 $data['longitude'] = $lng;
-                // dd($data);
+                break;
+                
+            } else {
+                return 'Non abbiamo trovato la tua città';
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////
