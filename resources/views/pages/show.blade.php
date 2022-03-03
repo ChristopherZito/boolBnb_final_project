@@ -96,7 +96,7 @@
         </div>
     </div>
 </div>
-{{-- <div class="container-show-content">
+ {{-- <div class="container-show-content">
     <div class="container p-4">
         Optionals:<br>
         @foreach ($selectApartment -> optionals as $optional)
@@ -125,5 +125,5 @@
             </div>
         @endif         
     @endauth
-</div>
+</div> --}}
 @endsection

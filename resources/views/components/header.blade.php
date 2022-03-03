@@ -90,7 +90,7 @@
                     
                   
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{route('login')}}">Accedi</a></li>
+                                {{-- <li><a class="dropdown-item" href="{{route('login')}}">Accedi</a></li> --}}
                                 <li><a class="dropdown-item" href="{{route('register')}}">Registrati</a></li>
                                 <li><a class="dropdown-item" href="{{route('home')}}">Home</a></li>
                             </ul>
@@ -123,21 +123,21 @@
             <input type="text" name="city" placeholder="Inserisci città">
             <input type="submit" value="Cerca">
         </form>
-    @auth
+        {{-- @auth
         @if (Auth::user() -> name)
             Benvenuto {{Auth::user() -> name}}
         @else
             Benvenuto {{Auth::user() -> email}}
         @endif
-        <br>
+        <br> --}}
         
 
     </div>
     
     
-        @guest
+        {{-- @guest
         <section class="d-flex justify-content-around my-5 bg-secondary ">
-            {{-- register --}}
+            
             <div>
                 <h1> Register: </h1>
                 <form action="{{route('register')}}" method="POST">
@@ -159,7 +159,7 @@
                     <input class="btn btn-primary m-4" type="submit" value="Register">
                 </form>
             </div>
-            {{-- login --}}
+            
             <div>
                 <h1> Login: </h1>
                 <form action="{{route('login')}}" method="POST">
@@ -174,5 +174,67 @@
                 </form>
             </div>
         </section>
-        @endguest
+        @endguest --}}
+
+
+        {{-- <form action="{{route('search')}}" method="post">
+            @method("POST")
+            @csrf
+    
+            <input type="text" name="city" placeholder="Inserisci città">
+            <input type="submit" value="Cerca">
+        </form> --}}
+        
+        {{-- @auth
+            @if (Auth::user() -> name)
+                Benvenuto {{Auth::user() -> name}}
+            @else
+                Benvenuto {{Auth::user() -> email}}
+            @endif
+            <br>
+            
+            <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
+            <a class="btn btn-danger" href="{{route('home')}}">Home</a>
+            <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
+        @endauth --}}
+            @guest
+            <section class="d-flex justify-content-around my-5 bg-secondary ">
+                {{-- register --}}
+                <div>
+                    <h1> Register: </h1>
+                    <form action="{{route('register')}}" method="POST">
+                        @method("POST")
+                        @csrf
+    
+                        <label for="name">Nome:</label><br>
+                        <input type="text" name="name" placeholder="Nome"><br>
+                        <label for="surname">Cognome</label><br>
+                        <input type="text" name="surname" placeholder="Cognome"><br>
+                        <label for="date_of_birth">Data di nascita</label><br>
+                        <input type="date" name="date_of_birth" placeholder="Data di nascita"><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" name="email" placeholder="Email" ><br>
+                        <label for="password">Password:</label><br>
+                        <input type="password" name="password" placeholder="Password di almeno 8 caratteri"><br>
+                        <label for="password_confirmation">Conferma Password:</label><br>
+                        <input type="password" name="password_confirmation" placeholder="conferma password"><br>
+                        <input class="btn btn-primary m-4" type="submit" value="Register">
+                    </form>
+                </div>
+                {{-- login --}}
+                <div>
+                    <h1> Login: </h1>
+                    <form action="{{route('login')}}" method="POST">
+                        @method("POST")
+                        @csrf
+    
+                        <label for="email">Email:</label><br>
+                        <input type="email" name="email" ><br>
+                        <label for="password">Password:</label><br>
+                        <input type="password" name="password" ><br>
+                        <input class="btn btn-primary m-4" type="submit" value="Login">
+                    </form>
+                </div>
+            </section>
+            @endguest
 </header>

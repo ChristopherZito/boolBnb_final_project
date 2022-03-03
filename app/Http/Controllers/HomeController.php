@@ -91,7 +91,7 @@ class HomeController extends Controller
 
                 $data['latitude'] = $lat;
                 $data['longitude'] = $lng;
-                break;
+                // dd($data);
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////
