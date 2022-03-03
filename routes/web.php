@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'GuestController@home') -> name('home');
 
 //autenticazione
+Route::get('/login/form', 'GuestController@login') -> name('loginForm');
 Route::post('/login', 'Auth\LoginController@login') -> name('login');
+Route::get('/register/form', 'GuestController@register') -> name('registerForm');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
@@ -43,3 +45,5 @@ Route::post('/search', 'GuestController@search') -> name('search');
 //call axios
 Route::get('/optionals/get', 'GuestController@getApiOptionals') -> name('get.api.optionals');
 // Route::get('/apartment/optionals', 'GuestController@getApiApartmentOptionals') -> name('get.api.apartment.optionals');
+
+

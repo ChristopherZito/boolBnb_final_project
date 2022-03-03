@@ -44,6 +44,14 @@ class GuestController extends Controller
         return json_encode($optionals);
     }
 
+    public function login(){
+        return view('pages.login');
+    }
+
+    public function register(){
+        return view('pages.register');
+    }
+
     // public function getApiApartmentOptionals(){
         
     // }
