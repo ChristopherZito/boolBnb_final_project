@@ -19132,6 +19132,10 @@ body {
   background-color: white;
 }
 
+.height-body {
+  height: calc(100vh - 300px);
+}
+
 .btn-user-command {
   background-color: cornflowerblue;
   border-color: burlywood;
@@ -19144,6 +19148,24 @@ body {
 .prova-display .login-estetic {
   font-size: 30px;
   margin-left: 15px;
+}
+
+.color-header {
+  height: 80px;
+  background-color: burlywood;
+}
+
+.search-center {
+  width: 100%;
+}
+
+.d-flex {
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control {
+  width: 25%;
 }
 
 #main_header {

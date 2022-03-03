@@ -1,10 +1,88 @@
 <header>
-    <div id="main_header">
+
+    <nav class="navbar navbar-expand-sm navbar-light color-header ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Logo</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('dashboard')}}">Profile</a>
+              </li>
+            </ul>
+            <div class="search-center">
+                <form class="d-flex" action="{{route('search')}}" method="post" >
+                    @method("POST")
+                    @csrf
+                  <input class="form-control me-2" type="search" name="city" placeholder="Inserisci città" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Cerca</button>
+                </form>
+            </div>
+            
+
+
+            <div class="account">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Account
+                        </a>
+                        @auth
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{route('home')}}">Home</a></li>
+                            <li><a class="dropdown-item" href="{{route('dashboard')}}">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
+                          </ul>
+                        @endauth
+                        @guest
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
+                            <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                        @endguest
+                        
+                      </li>
+                </ul>
+            </div>
+            
+          </div>
+        </div>
+      </nav>
+
+      <div class="search-box">
+        
+      </div>
+
+
+
+
+
+
+    {{-- <div id="main_header">
 
         <div class="container_header">
 
 
-            {{-- logo --}}
+            
+    
+            <form action="{{route('search')}}" method="post">
+                @method("POST")
+                @csrf
+        
+                <input type="text" name="city" placeholder="Inserisci città">
+                <input type="submit" value="Cerca">
+            </form>
+
+
+            
             <div class="logo">
                 <h1>
                     LOGO
@@ -12,15 +90,7 @@
             </div>
     
             @auth
-    
-            {{-- navigazione --}}
-            <div class="link">
-                <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
-                <a class="btn btn-danger" href="{{route('home')}}">Home</a>
-                <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
-            </div>
             
-            {{-- account --}}
             <div class="user">
                 <h6>
                     <div class="dropdown">
@@ -46,19 +116,7 @@
                           <li><a class="dropdown-item" href="{{route('home')}}">Home</a></li>
                           <li><a class="dropdown-item" href="{{route('dashboard')}}">Profilo</a></li>
                         </ul>
-                      </div>
-
-                      {{-- <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown button
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </div> --}}
-                    
+                      </div>  
                     
                 </h6>
                 
@@ -67,12 +125,8 @@
             @endauth
             
             @guest
-                <div class="link">
-                    <a class="btn btn-primary" href="{{route('login')}}">Accedi</a>
-                    <a class="btn btn-danger" href="{{route('home')}}">Home</a>
-                </div>
         
-                {{-- account --}}
+                
                 <div class="user">
                     <h6>
                         <div class="dropdown">
@@ -80,33 +134,18 @@
                                 <a class="btn btn-secondary dropdown-toggle prova-display" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Accedi o <br>
                                     Registrati
-                            
-                                    <div class="login-estetic">
-                                        <i class="fa-solid fa-user-astronaut"></i>
-                                    </div>
                                 </a>
                         
                     
                     
                   
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                {{-- <li><a class="dropdown-item" href="{{route('login')}}">Accedi</a></li> --}}
-                                <li><a class="dropdown-item" href="{{route('register')}}">Registrati</a></li>
-                                <li><a class="dropdown-item" href="{{route('home')}}">Home</a></li>
+                                <li><a class="dropdown-item" href="{{route('loginForm')}}">Accedi</a></li>
+                                <li><a class="dropdown-item" href="{{route('registerForm')}}">Registrati</a></li>
+                                
                             </ul>
                         </div>
 
-                        {{-- <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div> --}}
-                
                 
                     </h6>
             
@@ -115,126 +154,10 @@
 
 
         </div>
+     
 
-        <form action="{{route('search')}}" method="post">
-            @method("POST")
-            @csrf
+    </div> --}}
     
-            <input type="text" name="city" placeholder="Inserisci città">
-            <input type="submit" value="Cerca">
-        </form>
-        {{-- @auth
-        @if (Auth::user() -> name)
-            Benvenuto {{Auth::user() -> name}}
-        @else
-            Benvenuto {{Auth::user() -> email}}
-        @endif
-        <br> --}}
+    
         
-
-    </div>
-    
-    
-        {{-- @guest
-        <section class="d-flex justify-content-around my-5 bg-secondary ">
-            
-            <div>
-                <h1> Register: </h1>
-                <form action="{{route('register')}}" method="POST">
-                    @method("POST")
-                    @csrf
-
-                    <label for="name">Nome:</label><br>
-                    <input type="text" name="name" placeholder="Nome"><br>
-                    <label for="surname">Cognome</label><br>
-                    <input type="text" name="surname" placeholder="Cognome"><br>
-                    <label for="date_of_birth">Data di nascita</label><br>
-                    <input type="date" name="date_of_birth" placeholder="Data di nascita"><br>
-                    <label for="email">Email:</label><br>
-                    <input type="email" name="email" placeholder="Email" ><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" name="password" placeholder="Password di almeno 8 caratteri"><br>
-                    <label for="password_confirmation">Conferma Password:</label><br>
-                    <input type="password" name="password_confirmation" placeholder="conferma password"><br>
-                    <input class="btn btn-primary m-4" type="submit" value="Register">
-                </form>
-            </div>
-            
-            <div>
-                <h1> Login: </h1>
-                <form action="{{route('login')}}" method="POST">
-                    @method("POST")
-                    @csrf
-
-                    <label for="email">Email:</label><br>
-                    <input type="email" name="email" ><br>
-                    <label for="password">Password:</label><br>
-                    <input type="password" name="password" ><br>
-                    <input class="btn btn-primary m-4" type="submit" value="Login">
-                </form>
-            </div>
-        </section>
-        @endguest --}}
-
-
-        {{-- <form action="{{route('search')}}" method="post">
-            @method("POST")
-            @csrf
-    
-            <input type="text" name="city" placeholder="Inserisci città">
-            <input type="submit" value="Cerca">
-        </form> --}}
-        
-        {{-- @auth
-            @if (Auth::user() -> name)
-                Benvenuto {{Auth::user() -> name}}
-            @else
-                Benvenuto {{Auth::user() -> email}}
-            @endif
-            <br>
-            
-            <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
-            <a class="btn btn-danger" href="{{route('home')}}">Home</a>
-            <a class="btn btn-primary" href="{{route('dashboard')}}">Profilo</a>
-        @endauth --}}
-            @guest
-            <section class="d-flex justify-content-around my-5 bg-secondary ">
-                {{-- register --}}
-                <div>
-                    <h1> Register: </h1>
-                    <form action="{{route('register')}}" method="POST">
-                        @method("POST")
-                        @csrf
-    
-                        <label for="name">Nome:</label><br>
-                        <input type="text" name="name" placeholder="Nome"><br>
-                        <label for="surname">Cognome</label><br>
-                        <input type="text" name="surname" placeholder="Cognome"><br>
-                        <label for="date_of_birth">Data di nascita</label><br>
-                        <input type="date" name="date_of_birth" placeholder="Data di nascita"><br>
-                        <label for="email">Email:</label><br>
-                        <input type="email" name="email" placeholder="Email" ><br>
-                        <label for="password">Password:</label><br>
-                        <input type="password" name="password" placeholder="Password di almeno 8 caratteri"><br>
-                        <label for="password_confirmation">Conferma Password:</label><br>
-                        <input type="password" name="password_confirmation" placeholder="conferma password"><br>
-                        <input class="btn btn-primary m-4" type="submit" value="Register">
-                    </form>
-                </div>
-                {{-- login --}}
-                <div>
-                    <h1> Login: </h1>
-                    <form action="{{route('login')}}" method="POST">
-                        @method("POST")
-                        @csrf
-    
-                        <label for="email">Email:</label><br>
-                        <input type="email" name="email" ><br>
-                        <label for="password">Password:</label><br>
-                        <input type="password" name="password" ><br>
-                        <input class="btn btn-primary m-4" type="submit" value="Login">
-                    </form>
-                </div>
-            </section>
-            @endguest
 </header>

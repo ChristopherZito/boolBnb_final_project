@@ -1,7 +1,7 @@
 <footer id="back-footer">
     <div class="container ">
         <div class="row text-center">
-          <div class="col  colonne-footer">
+          <div class="col-lg-3 col-sm-6  colonne-footer">
             <nav>
                 <ul>
                     <li>
@@ -36,7 +36,7 @@
               </nav>
           </div>
 
-          <div class="col colonne-footer">
+          <div class="col-lg-3 col-sm-6 colonne-footer">
             <nav>
               <ul>
                 <li>
@@ -60,7 +60,7 @@
             </nav>
           </div>
 
-          <div class="col  colonne-footer">
+          <div class="col-lg-3 col-sm-6 colonne-footer">
             <nav>
               <ul>
                 <li>
@@ -88,7 +88,7 @@
             </nav>
           </div>
 
-          <div class="col  colonne-footer">
+          <div class="col-lg-3 col-sm-6 colonne-footer">
             <nav>
               <ul>
 
