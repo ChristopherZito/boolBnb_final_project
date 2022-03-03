@@ -21,7 +21,13 @@ body{
     background-color: cornflowerblue;
     border-color: burlywood;
 }
-
+.prova-display{
+    display: flex;
+    .login-estetic{
+        font-size: 30px;
+        margin-left: 15px;
+    }
+}
 
 
 #main_header{
