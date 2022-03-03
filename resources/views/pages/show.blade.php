@@ -58,12 +58,12 @@
            
             <div class="user-command">
                 @auth
-                        @if ($selectApartment -> user_id == Auth::user() -> id )
-                            <div class="row-6">
-                                <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
-                                <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
-                                <a class="btn btn-primary btn-user-command" href="">Sponsorship</a> 
-                            </div>
+                    @if ($selectApartment -> user_id == Auth::user() -> id )
+                        <div class="row-6">
+                            <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
+                            <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
+                            <a class="btn btn-primary btn-user-command" href="">Sponsorship</a> 
+                        </div>
                     @endif   
                 @endauth
                 
@@ -73,34 +73,103 @@
         
 
         <div class="col-xl col-sm-0 col-laterali">
+            @auth
+                @if (!($selectApartment -> user_id == Auth::user() -> id) )
 
-            <div class="container-fluid ">
-                <div class="row box-opt-cont">
-                    <div class="col text-center align-items">
-                        
-                        <h2>
-                            Contatta
-                        </h2>
-                    </div>
+                    <div class="container-fluid ">
+                        <div class="row box-opt-cont">
+                            <div class="col text-center align-items">
+                                
+                                <h2>
+                                    Contatta
+                                </h2>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="box-area-sett container">
+                                    <form action="{{route('messageStore', $selectApartment-> id)}}" method="post">
+                                        @method('POST')
+                                        @csrf
+                                        @auth
+                                            <input type="email" name="email_sender" value="{{Auth::user() -> email}}">
+        
+                                        @else  
+                                            <input type="email" name="email_sender" placeholder="Inserisci la tua mail">
+                                        @endauth
                     
-                </div>
 
-                <div class="row">
-                    <div class="col">
-                        <div class="box-area-sett container">
-                            <form action="{{route('messageStore', $selectApartment-> id)}}" method="post">
-                                @method('POST')
-                                @csrf
-
-                                <input type="email" name="email_sender" placeholder="Inserisci la tua mail">
-                                <textarea name='text' placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
-                                <input type="submit" value="Invia">
-                            </form>
+                                        <textarea name='text' placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
+                                        <input type="submit" value="Invia">
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                @else
+                    <div class="row box-opt-cont">
+                        <div class="col text-center align-items">
+                            
+                            <h2>
+                                Messaggi Ricevuti
+                            </h2>
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <ul>
+                            @foreach ($messages as $message)
+                            <li class="border my-2 p-1">
+                                <h5>{{$message->email_sender}}</h5>
+                                <p>{{$message->text}}</p>
+                            </li>
+                            
+                        @endforeach
+
+                        </ul>
+                        
+
+
+                    </div> 
+
+                @endif
+            @else
+                <div class="container-fluid ">
+                    <div class="row box-opt-cont">
+                        <div class="col text-center align-items">
+                            
+                            <h2>
+                                Contatta
+                            </h2>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="box-area-sett container">
+                                <form action="{{route('messageStore', $selectApartment-> id)}}" method="post">
+                                    @method('POST')
+                                    @csrf
+                                    @auth
+                                        <input type="email" name="email_sender" value="{{Auth::user() -> email}}">
+
+                                    @else  
+                                        <input type="email" name="email_sender" placeholder="Inserisci la tua mail">
+                                    @endauth
+                
+
+                                    <textarea name='text' placeholder="Contatta il venditore per maggiori informazioni" class="col text-center box-text-area"> </textarea>
+                                    <input type="submit" value="Invia">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>       
+            @endauth    
         </div>
+             
     </div>
 </div>
  {{-- <div class="container-show-content">

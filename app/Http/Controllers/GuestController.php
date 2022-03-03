@@ -18,7 +18,8 @@ class GuestController extends Controller
     public function show($id){
 
         $selectApartment = Apartment::findOrFail($id);
-        return view('pages.show', compact('selectApartment'));
+        $messages = DB::table('messages')->where('apartment_id', $selectApartment ->id)->get();
+        return view('pages.show', compact('selectApartment', 'messages'));
     }
 
     public function search(Request $request){
