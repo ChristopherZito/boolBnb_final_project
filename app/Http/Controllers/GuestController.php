@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 use App\Apartment;
+use App\Optional;
 
 use Illuminate\Http\Request;
 
@@ -31,6 +32,11 @@ class GuestController extends Controller
         $apartments = DB::table('apartments')->where('city', $city)->get();
         // dd($apartments);
         return view('pages.search', compact('apartments'));
+    }
+
+    public function getApiOptionals(){
+        $optionals = Optional::all();
+        return json_encode($optionals);
     }
     
 

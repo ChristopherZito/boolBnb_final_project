@@ -1951,9 +1951,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     Apartments: Array
+  },
+  data: function data() {
+    return {
+      optionals: []
+    };
+  },
+  mounted: function mounted() {
+    this.getOptionalsApi();
+  },
+  methods: {
+    getOptionalsApi: function getOptionalsApi() {
+      var _this = this;
+
+      axios.get('/optionals/get').then(function (r) {
+        // console.log(r.data);
+        _this.optionals = r.data;
+      })["catch"](function (e) {
+        return console.log(e);
+      });
+    }
   }
 });
 
@@ -37571,6 +37598,21 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
+      "div",
+      { staticClass: "text-light" },
+      _vm._l(_vm.optionals, function (optional) {
+        return _c("span", { key: optional.id }, [
+          _c(
+            "span",
+            { staticClass: "d-inline-block rounded bg-info m-1 p-2" },
+            [_vm._v(" " + _vm._s(optional.name) + " ")]
+          ),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
       "section",
       { staticClass: "bg-success p-5 d-flex flex-wrap" },
       _vm._l(_vm.Apartments, function (apartment) {
@@ -37579,12 +37621,16 @@ var render = function () {
           { key: apartment.id, staticClass: "col-6 py-2 border border-dark" },
           [
             _c("div", { staticClass: "img-container" }, [
-              _c("a", { attrs: { href: "show/" + apartment.id } }, [
-                _c("img", {
-                  staticClass: "img img-fluid",
-                  attrs: { src: apartment.image, alt: "" },
-                }),
-              ]),
+              _c(
+                "a",
+                { attrs: { target: "_blank", href: "show/" + apartment.id } },
+                [
+                  _c("img", {
+                    staticClass: "img img-fluid",
+                    attrs: { src: apartment.image, alt: "" },
+                  }),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c("div", [

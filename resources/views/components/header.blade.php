@@ -8,7 +8,11 @@
     </form>
     
     @auth
-        Benvenuto {{Auth::user() -> email}}
+        @if (Auth::user() -> name)
+            Benvenuto {{Auth::user() -> name}}
+        @else
+            Benvenuto {{Auth::user() -> email}}
+        @endif
         <br>
         
         <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>

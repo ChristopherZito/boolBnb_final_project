@@ -41,4 +41,4 @@ Route::post('/update/{id}', 'HomeController@update') -> name('update');
 Route::post('/search', 'GuestController@search') -> name('search');
 
 //call axios
-//Route::get('/apartment/get', 'GuestController@getApiApartments') -> name('get.api.apartments');
+Route::get('/optionals/get', 'GuestController@getApiOptionals') -> name('get.api.optionals');
