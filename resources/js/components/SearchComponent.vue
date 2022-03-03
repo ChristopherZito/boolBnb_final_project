@@ -3,7 +3,10 @@
         <!-- show all the optionals for the advance search -->
         <div class="text-light">
             <span  v-for="optional in optionals" :key="optional.id">
-                <span class="d-inline-block rounded bg-info m-1 p-2"> {{optional.name}} </span> 
+                <span class="d-inline-block rounded bg-info m-1 p-2 btn"
+                @click="selectedOptional(optional.id)">
+                     {{optional.name}}
+                </span> 
             </span> 
         </div>
         <!-- show apartments from the searched city -->
@@ -30,26 +33,44 @@
 <script>
     export default {
         props:{
-            Apartments: Array
+            Apartments: Array,
+            ApartmentsOptionals: Array,
         },
         data() {
             return {
                 optionals: [],
+                selectedOptionals:[],
             }
         },
         mounted(){
             this.getOptionalsApi()
+            // console.log(this.ApartmentsOptionals);
         },
         methods: {
             getOptionalsApi(){
                 axios.get('/optionals/get')
                 .then(r => {
                     // console.log(r.data);
-                    this.optionals = r.data;
-                    
+                    this.optionals = r.data;   
                 })
                 .catch(e => console.log(e))
-            }
+            },
+            selectedOptional(id){
+                // console.log(id); 
+                let index =  this.selectedOptionals.indexOf(id);
+                if(index === -1){
+                    this.selectedOptionals.push(id);
+                }else{
+                    this.selectedOptionals.splice(index,1); 
+                }
+                // console.log(this.selectedOptionals);
+            },
+            // apartmentsOptionals(){
+            //     for (let x = 0; x < this.selectedOptionals.length; x++) {
+            //         const element = this.selectedOptionals[x];
+            //         console.log(element);
+            //     }
+            // }
         },
     }
 </script>

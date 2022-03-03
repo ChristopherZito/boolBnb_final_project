@@ -42,3 +42,4 @@ Route::post('/search', 'GuestController@search') -> name('search');
 
 //call axios
 Route::get('/optionals/get', 'GuestController@getApiOptionals') -> name('get.api.optionals');
+// Route::get('/apartment/optionals', 'GuestController@getApiApartmentOptionals') -> name('get.api.apartment.optionals');

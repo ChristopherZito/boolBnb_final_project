@@ -20,5 +20,5 @@
         </div>
     @endforeach
 </section> --}}
-<search-component :Apartments="{{ $apartments }}"></search-component>
+<search-component :Apartments="{{ $apartments }}" :Apartments-Optionals="{{ $apartmentsOptionals}}"></search-component>
 @endsection

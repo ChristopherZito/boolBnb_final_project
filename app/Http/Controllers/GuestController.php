@@ -30,14 +30,23 @@ class GuestController extends Controller
 
         //array di appartamenti trovati nella città cercata
         $apartments = DB::table('apartments')->where('city', $city)->get();
+
+
+        $apartmentsOptionals = DB::table('apartment_optional')->get();
+
+        // dd($apartmentsOptionals);
         // dd($apartments);
-        return view('pages.search', compact('apartments'));
+        return view('pages.search', compact('apartments','apartmentsOptionals'));
     }
 
     public function getApiOptionals(){
         $optionals = Optional::all();
         return json_encode($optionals);
     }
+
+    // public function getApiApartmentOptionals(){
+        
+    // }
     
 
     

@@ -1958,17 +1958,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    Apartments: Array
+    Apartments: Array,
+    ApartmentsOptionals: Array
   },
   data: function data() {
     return {
-      optionals: []
+      optionals: [],
+      selectedOptionals: []
     };
   },
   mounted: function mounted() {
-    this.getOptionalsApi();
+    this.getOptionalsApi(); // console.log(this.ApartmentsOptionals);
   },
   methods: {
     getOptionalsApi: function getOptionalsApi() {
@@ -1980,7 +1985,24 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         return console.log(e);
       });
-    }
+    },
+    selectedOptional: function selectedOptional(id) {
+      // console.log(id); 
+      var index = this.selectedOptionals.indexOf(id);
+
+      if (index === -1) {
+        this.selectedOptionals.push(id);
+      } else {
+        this.selectedOptionals.splice(index, 1);
+      } // console.log(this.selectedOptionals);
+
+    } // apartmentsOptionals(){
+    //     for (let x = 0; x < this.selectedOptionals.length; x++) {
+    //         const element = this.selectedOptionals[x];
+    //         console.log(element);
+    //     }
+    // }
+
   }
 });
 
@@ -37604,8 +37626,19 @@ var render = function () {
         return _c("span", { key: optional.id }, [
           _c(
             "span",
-            { staticClass: "d-inline-block rounded bg-info m-1 p-2" },
-            [_vm._v(" " + _vm._s(optional.name) + " ")]
+            {
+              staticClass: "d-inline-block rounded bg-info m-1 p-2 btn",
+              on: {
+                click: function ($event) {
+                  return _vm.selectedOptional(optional.id)
+                },
+              },
+            },
+            [
+              _vm._v(
+                "\n                 " + _vm._s(optional.name) + "\n            "
+              ),
+            ]
           ),
         ])
       }),
