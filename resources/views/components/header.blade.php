@@ -120,9 +120,19 @@
             @method("POST")
             @csrf
     
+<<<<<<< HEAD
             <input type="text" name="city" placeholder="Inserisci città">
             <input type="submit" value="Cerca">
         </form>
+=======
+    @auth
+        @if (Auth::user() -> name)
+            Benvenuto {{Auth::user() -> name}}
+        @else
+            Benvenuto {{Auth::user() -> email}}
+        @endif
+        <br>
+>>>>>>> e0faf2ceb290aaa4432c533984092f937acd09b9
         
 
     </div>

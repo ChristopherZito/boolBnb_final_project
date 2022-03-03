@@ -78,7 +78,7 @@ class HomeController extends Controller
         }
         $dataCord = json_decode($response, true);
         $results = $dataCord['results'];
-
+        
         foreach ($results as $result) {
             $foundcity = $result['address']['municipality'];
             
@@ -91,7 +91,7 @@ class HomeController extends Controller
 
                 $data['latitude'] = $lat;
                 $data['longitude'] = $lng;
-                return true;
+                break;
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +109,7 @@ class HomeController extends Controller
             $data['address'] = $data['address'] . ' ' . $data['streetNumber'];
         }
         ////////////////////////////////////////////////////////////////////////////////////////
-
+        
         $apartment = Apartment::make($data);
         $user = Auth::user($data);
         $apartment -> user() -> associate($user);
