@@ -1951,9 +1951,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    Apartments: Array
+    Apartments: Array,
+    ApartmentsOptionals: Array
+  },
+  data: function data() {
+    return {
+      optionals: [],
+      selectedOptionals: []
+    };
+  },
+  mounted: function mounted() {
+    this.getOptionalsApi(); // console.log(this.ApartmentsOptionals);
+  },
+  methods: {
+    getOptionalsApi: function getOptionalsApi() {
+      var _this = this;
+
+      axios.get('/optionals/get').then(function (r) {
+        // console.log(r.data);
+        _this.optionals = r.data;
+      })["catch"](function (e) {
+        return console.log(e);
+      });
+    },
+    selectedOptional: function selectedOptional(id) {
+      // console.log(id); 
+      var index = this.selectedOptionals.indexOf(id);
+
+      if (index === -1) {
+        this.selectedOptionals.push(id);
+      } else {
+        this.selectedOptionals.splice(index, 1);
+      } // console.log(this.selectedOptionals);
+
+    } // apartmentsOptionals(){
+    //     for (let x = 0; x < this.selectedOptionals.length; x++) {
+    //         const element = this.selectedOptionals[x];
+    //         console.log(element);
+    //     }
+    // }
+
   }
 });
 
@@ -37571,6 +37620,32 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
+      "div",
+      { staticClass: "text-light" },
+      _vm._l(_vm.optionals, function (optional) {
+        return _c("span", { key: optional.id }, [
+          _c(
+            "span",
+            {
+              staticClass: "d-inline-block rounded bg-info m-1 p-2 btn",
+              on: {
+                click: function ($event) {
+                  return _vm.selectedOptional(optional.id)
+                },
+              },
+            },
+            [
+              _vm._v(
+                "\n                 " + _vm._s(optional.name) + "\n            "
+              ),
+            ]
+          ),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
       "section",
       { staticClass: "bg-success p-5 d-flex flex-wrap" },
       _vm._l(_vm.Apartments, function (apartment) {
@@ -37579,12 +37654,16 @@ var render = function () {
           { key: apartment.id, staticClass: "col-6 py-2 border border-dark" },
           [
             _c("div", { staticClass: "img-container" }, [
-              _c("a", { attrs: { href: "show/" + apartment.id } }, [
-                _c("img", {
-                  staticClass: "img img-fluid",
-                  attrs: { src: apartment.image, alt: "" },
-                }),
-              ]),
+              _c(
+                "a",
+                { attrs: { target: "_blank", href: "show/" + apartment.id } },
+                [
+                  _c("img", {
+                    staticClass: "img img-fluid",
+                    attrs: { src: apartment.image, alt: "" },
+                  }),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c("div", [
