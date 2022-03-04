@@ -23,22 +23,31 @@ class GuestController extends Controller
     }
 
     public function search(Request $request){
-
+        //verifica città cercata
         $data = $request->validate([
             'city' => 'required|string'
         ]);
-
         $city = $data['city'];
-
         //array di appartamenti trovati nella città cercata
         $apartments = DB::table('apartments')->where('city', $city)->get();
 
-
-        $apartmentsOptionals = DB::table('apartment_optional')->get();
-
-        // dd($apartmentsOptionals);
-        // dd($apartments);
-        return view('pages.search', compact('apartments','apartmentsOptionals'));
+        $apartmentArr = [];
+        foreach ($apartments as $apartment){
+            //ricerca optionals di ogni appartamento attraveso l' apartment_id
+            $optionals_id = DB::table('apartment_optional')->where('apartment_id', $apartment -> id)->get();
+            $optionalArr = [];
+            // creazione array degli id degli optionals dell'appartamento
+            foreach ($optionals_id as $optional_id){
+                $optionalArr[] =  $optional_id -> optional_id;
+            }
+            //popolamento array con associazione dell' appartamento con i suoi optionals
+            $apartmentArr[] = 
+            [
+                'apartment' => $apartment,
+                'optionals_id' => $optionalArr,
+            ];
+        }
+        return view('pages.search', compact('apartmentArr'));
     }
 
     public function getApiOptionals(){

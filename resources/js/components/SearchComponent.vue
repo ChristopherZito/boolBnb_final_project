@@ -33,19 +33,20 @@
 <script>
     export default {
         props:{
-            Apartments: Array,
-            ApartmentsOptionals: Array,
+            Apartments: Array,//appartamenti ricercati attraverso la città
+            ApartmentsOptionals: Array,//tabella ponte appartment_optional
         },
         data() {
             return {
-                optionals: [],
-                selectedOptionals:[],
+                optionals: [],//optional che stampiamo in pagina
+                selectedOptionals:[],//array di optional selezionati dall' utente
+                searchedApartments: [],
             }
         },
         mounted(){
             this.getOptionalsApi()
-            ///////////////////////////////77
-            this.apartmentsOptionals();
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            console.log();
         },
         methods: {
             getOptionalsApi(){
@@ -61,22 +62,28 @@
                 let index =  this.selectedOptionals.indexOf(id);
                 if(index === -1){
                     this.selectedOptionals.push(id);
+                    this.apartmentsOptionals()
                 }else{
                     this.selectedOptionals.splice(index,1); 
                 }
-                
-                // console.log(this.selectedOptionals);
             },
             apartmentsOptionals(){
-                for (let x = 0; x < this.ApartmentsOptionals.length; x++) {
-                    console.log(this.ApartmentsOptionals['apartment_id']);
-                    // const element = this.Apartments[x];
-                    // // console.log(element);
-                    // console.log("up");
-                    // if(this.ApartmentsOptionals.includes(this.selectedOptionals)){
-                    //     console.log(element);
-                    // }
+                for (let x = 0; x < this.selectedOptionals.length; x++) {
+
+                    const optional = this.selectedOptionals[x];
+                    
+                    for (let y = 0; y < this.ApartmentsOptionals.length; y++) {
+                        const optionalApartment = this.ApartmentsOptionals[y];
+                        
+                        if(optional === optionalApartment['optional_id']){
+                            // console.log("aparment_id", optionalApartment['apartment_id']);
+                            if(!this.searchedApartments.includes(optionalApartment['apartment_id'])){
+                                this.searchedApartments.push(optionalApartment['apartment_id']);
+                            }
+                        }
+                    }
                 }
+                // console.log('appartment:',this.searchedApartments);
             }
         },
     }

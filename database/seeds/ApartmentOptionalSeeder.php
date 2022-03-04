@@ -28,16 +28,40 @@ class ApartmentOptionalSeeder extends Seeder
             'optional_id' => 3,
         ]);
         DB::table('apartment_optional')->insert([
-            'apartment_id' => 1,
+            'apartment_id' => 3,
             'optional_id' => 4,
         ]);
         DB::table('apartment_optional')->insert([
-            'apartment_id' => 1,
+            'apartment_id' => 3,
             'optional_id' => 5,
         ]);
         DB::table('apartment_optional')->insert([
-            'apartment_id' => 1,
+            'apartment_id' => 3,
             'optional_id' => 6,
+        ]);
+        DB::table('apartment_optional')->insert([
+            'apartment_id' => 2,
+            'optional_id' => 6,
+        ]);
+        DB::table('apartment_optional')->insert([
+            'apartment_id' => 2,
+            'optional_id' => 2,
+        ]);
+        DB::table('apartment_optional')->insert([
+            'apartment_id' => 2,
+            'optional_id' => 3,
+        ]);
+        DB::table('apartment_optional')->insert([
+            'apartment_id' => 4,
+            'optional_id' => 1,
+        ]);
+        DB::table('apartment_optional')->insert([
+            'apartment_id' => 4,
+            'optional_id' => 9,
+        ]);
+        DB::table('apartment_optional')->insert([
+            'apartment_id' => 4,
+            'optional_id' => 5,
         ]);
     }
 }

@@ -5154,18 +5154,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     Apartments: Array,
-    ApartmentsOptionals: Array
+    //appartamenti ricercati attraverso la città
+    ApartmentsOptionals: Array //tabella ponte appartment_optional
+
   },
   data: function data() {
     return {
       optionals: [],
-      selectedOptionals: []
+      //optional che stampiamo in pagina
+      selectedOptionals: [],
+      //array di optional selezionati dall' utente
+      searchedApartments: []
     };
   },
   mounted: function mounted() {
-    this.getOptionalsApi(); ///////////////////////////////77
+    this.getOptionalsApi(); ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    this.apartmentsOptionals();
+    console.log();
   },
   methods: {
     getOptionalsApi: function getOptionalsApi() {
@@ -5184,20 +5189,27 @@ __webpack_require__.r(__webpack_exports__);
 
       if (index === -1) {
         this.selectedOptionals.push(id);
+        this.apartmentsOptionals();
       } else {
         this.selectedOptionals.splice(index, 1);
-      } // console.log(this.selectedOptionals);
-
+      }
     },
     apartmentsOptionals: function apartmentsOptionals() {
-      for (var x = 0; x < this.ApartmentsOptionals.length; x++) {
-        console.log(this.ApartmentsOptionals['apartment_id']); // const element = this.Apartments[x];
-        // // console.log(element);
-        // console.log("up");
-        // if(this.ApartmentsOptionals.includes(this.selectedOptionals)){
-        //     console.log(element);
-        // }
-      }
+      for (var x = 0; x < this.selectedOptionals.length; x++) {
+        var optional = this.selectedOptionals[x];
+
+        for (var y = 0; y < this.ApartmentsOptionals.length; y++) {
+          var optionalApartment = this.ApartmentsOptionals[y];
+
+          if (optional === optionalApartment['optional_id']) {
+            // console.log("aparment_id", optionalApartment['apartment_id']);
+            if (!this.searchedApartments.includes(optionalApartment['apartment_id'])) {
+              this.searchedApartments.push(optionalApartment['apartment_id']);
+            }
+          }
+        }
+      } // console.log('appartment:',this.searchedApartments);
+
     }
   }
 });
