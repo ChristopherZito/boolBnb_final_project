@@ -3,9 +3,9 @@
     Accedi
 @endsection
 @section('content')
-<section class="d-flex justify-content-around my-5 height-body">
+<section class="d-flex justify-content-around content-login margin-login">
     <div>
-        <h1> Login: </h1>
+        <h1> Accedi: </h1>
         <form action="{{route('login')}}" method="POST">
             @method("POST")
             @csrf

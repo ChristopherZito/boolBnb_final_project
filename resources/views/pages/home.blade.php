@@ -3,7 +3,7 @@
     Home
 @endsection
 @section('content')
-<section class="height-body">
+<section class="style-home">
     <h4 class="text-dark">
         Body
     </h4>

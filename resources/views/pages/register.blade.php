@@ -3,9 +3,9 @@
     Crea Account
 @endsection
 @section('content')
-<section class="d-flex justify-content-around my-5 height-body">
+<section class="d-flex justify-content-around content-register">
     <div>
-        <h1> Register: </h1>
+        <h1> Registrati: </h1>
         <form action="{{route('register')}}" method="POST">
             @method("POST")
             @csrf

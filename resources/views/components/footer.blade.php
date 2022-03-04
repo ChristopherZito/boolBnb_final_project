@@ -123,32 +123,8 @@
           </div>
         </div>
 
-        <div class="separator">
-
-        </div>
+        
 
       </div>
 
-    
-
-      <div class="container text-center">
-        <div class="row">
-
-          <div class="col">
-            {{-- <div class="sie-logo">
-              <img src="img/sie-logo.svg" alt="">
-              
-            </div> --}}
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <p class="sie-article">
-              
-            </p>
-          </div>
-        </div>
-      </div>
 </footer>

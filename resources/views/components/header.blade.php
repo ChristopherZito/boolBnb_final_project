@@ -12,7 +12,7 @@
                 <a class="nav-link hover-link" aria-current="page" href="{{route('home')}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link hover-link" href="{{route('dashboard')}}">Profile</a>
+                <a class="nav-link hover-link" href="{{route('dashboard')}}">Profilo</a>
               </li>
             </ul>
 
@@ -21,8 +21,8 @@
                 <form class="d-flex" action="{{route('search')}}" method="post" >
                     @method("POST")
                     @csrf
-                  <input class="form-control me-2" type="search" name="city" placeholder="Inserisci città" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Cerca</button>
+                  <input id="phone-style" class="form-control me-2" type="search" name="city" placeholder="Inserisci città" aria-label="Search">
+                  <button class="btn btn-outline-success phone-style" type="submit">Cerca</button>
                 </form>
             </div>
             
@@ -37,17 +37,15 @@
                         @auth
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{route('home')}}">Home</a></li>
-                            <li><a class="dropdown-item" href="{{route('dashboard')}}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{route('dashboard')}}">Profilo</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
+                            <li><a class="dropdown-item" href="{{route('logout')}}">Disconetti</a></li>
                           </ul>
                         @endauth
                         @guest
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
-                            <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="{{route('login')}}">Accedi</a></li>
+                            <li><a class="dropdown-item" href="{{route('register')}}">Registrati</a></li>          
                           </ul>
                         @endguest
 
@@ -78,104 +76,4 @@
         </form>
       </div>
     
-
-
-
-
-
-
-    {{-- <div id="main_header">
-
-        <div class="container_header">
-
-
-            
-    
-            <form action="{{route('search')}}" method="post">
-                @method("POST")
-                @csrf
-        
-                <input type="text" name="city" placeholder="Inserisci città">
-                <input type="submit" value="Cerca">
-            </form>
-
-
-            
-            <div class="logo">
-                <h1>
-                    LOGO
-                </h1>
-            </div>
-    
-            @auth
-            
-            <div class="user">
-                <h6>
-                    <div class="dropdown">
-                        
-                            <a class="btn btn-secondary dropdown-toggle prova-display" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                Benvenuto <br>
-                                @if (Auth::user() -> name)
-                                    {{Auth::user() -> name}}
-                                @else
-                                    {{Auth::user() -> email}}
-                                @endif
-                                
-                                <div class="login-estetic">
-                                    <i class="fa-solid fa-user-astronaut"></i>
-                                </div>
-                            </a>
-                            
-                        
-                        
-                      
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <li><a class="dropdown-item" href="{{route('logout')}}">Logout</a></li>
-                          <li><a class="dropdown-item" href="{{route('home')}}">Home</a></li>
-                          <li><a class="dropdown-item" href="{{route('dashboard')}}">Profilo</a></li>
-                        </ul>
-                      </div>  
-                    
-                </h6>
-                
-            </div>
-            
-            @endauth
-            
-            @guest
-        
-                
-                <div class="user">
-                    <h6>
-                        <div class="dropdown">
-                    
-                                <a class="btn btn-secondary dropdown-toggle prova-display" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Accedi o <br>
-                                    Registrati
-                                </a>
-                        
-                    
-                    
-                  
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{route('loginForm')}}">Accedi</a></li>
-                                <li><a class="dropdown-item" href="{{route('registerForm')}}">Registrati</a></li>
-                                
-                            </ul>
-                        </div>
-
-                
-                    </h6>
-            
-                </div>
-            @endguest
-
-
-        </div>
-     
-
-    </div> --}}
-    
-    
-        
 </header>
