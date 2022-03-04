@@ -15,7 +15,7 @@
             v-for="apartment in Apartments" :key="apartment.id"
             class="col-6 py-2 border border-dark">
                 <div class="img-container">
-                    <a target="_blank" :href="'show/'+ apartment.id"><img class="img img-fluid" :src="apartment.image" alt=""></a>
+                    <a :href="'show/'+ apartment.id"><img class="img img-fluid" :src="apartment.image" alt=""></a>
                 </div>
                 <div>
                     <span class="text-dark"> Descrizione: </span>{{apartment.description}} <br>
@@ -44,7 +44,8 @@
         },
         mounted(){
             this.getOptionalsApi()
-            // console.log(this.ApartmentsOptionals);
+            ///////////////////////////////77
+            this.apartmentsOptionals();
         },
         methods: {
             getOptionalsApi(){
@@ -63,14 +64,20 @@
                 }else{
                     this.selectedOptionals.splice(index,1); 
                 }
+                
                 // console.log(this.selectedOptionals);
             },
-            // apartmentsOptionals(){
-            //     for (let x = 0; x < this.selectedOptionals.length; x++) {
-            //         const element = this.selectedOptionals[x];
-            //         console.log(element);
-            //     }
-            // }
+            apartmentsOptionals(){
+                for (let x = 0; x < this.ApartmentsOptionals.length; x++) {
+                    console.log(this.ApartmentsOptionals['apartment_id']);
+                    // const element = this.Apartments[x];
+                    // // console.log(element);
+                    // console.log("up");
+                    // if(this.ApartmentsOptionals.includes(this.selectedOptionals)){
+                    //     console.log(element);
+                    // }
+                }
+            }
         },
     }
 </script>

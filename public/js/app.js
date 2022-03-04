@@ -5163,7 +5163,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getOptionalsApi(); // console.log(this.ApartmentsOptionals);
+    this.getOptionalsApi(); ///////////////////////////////77
+
+    this.apartmentsOptionals();
   },
   methods: {
     getOptionalsApi: function getOptionalsApi() {
@@ -5186,13 +5188,17 @@ __webpack_require__.r(__webpack_exports__);
         this.selectedOptionals.splice(index, 1);
       } // console.log(this.selectedOptionals);
 
-    } // apartmentsOptionals(){
-    //     for (let x = 0; x < this.selectedOptionals.length; x++) {
-    //         const element = this.selectedOptionals[x];
-    //         console.log(element);
-    //     }
-    // }
-
+    },
+    apartmentsOptionals: function apartmentsOptionals() {
+      for (var x = 0; x < this.ApartmentsOptionals.length; x++) {
+        console.log(this.ApartmentsOptionals['apartment_id']); // const element = this.Apartments[x];
+        // // console.log(element);
+        // console.log("up");
+        // if(this.ApartmentsOptionals.includes(this.selectedOptionals)){
+        //     console.log(element);
+        // }
+      }
+    }
   }
 });
 
@@ -41502,16 +41508,12 @@ var render = function () {
           { key: apartment.id, staticClass: "col-6 py-2 border border-dark" },
           [
             _c("div", { staticClass: "img-container" }, [
-              _c(
-                "a",
-                { attrs: { target: "_blank", href: "show/" + apartment.id } },
-                [
-                  _c("img", {
-                    staticClass: "img img-fluid",
-                    attrs: { src: apartment.image, alt: "" },
-                  }),
-                ]
-              ),
+              _c("a", { attrs: { href: "show/" + apartment.id } }, [
+                _c("img", {
+                  staticClass: "img img-fluid",
+                  attrs: { src: apartment.image, alt: "" },
+                }),
+              ]),
             ]),
             _vm._v(" "),
             _c("div", [
@@ -54025,8 +54027,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jacopo/Desktop/Laravel/boolBnb_final_project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/jacopo/Desktop/Laravel/boolBnb_final_project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
