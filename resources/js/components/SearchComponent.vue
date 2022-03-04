@@ -9,8 +9,11 @@
                 </span> 
             </span> 
         </div>
+        <div v-if="city">
+            {{city}}
+        </div>
         <!-- show apartments from the searched city -->
-        <section class="bg-success p-5 d-flex flex-wrap">
+        <!-- <section class="bg-success p-5 d-flex flex-wrap">
             <div 
             v-for="apartment in Apartments" :key="apartment.id"
             class="col-6 py-2 border border-dark">
@@ -26,15 +29,15 @@
                     <span class="text-dark"> Indirizzo: </span>{{apartment.address}} <br>
                 </div>
             </div>
-        </section>
+        </section> -->
     </div>
 </template>
 
 <script>
     export default {
         props:{
-            Apartments: Array,//appartamenti ricercati attraverso la città
-            ApartmentsOptionals: Array,//tabella ponte appartment_optional
+            city: String,//appartamenti ricercati attraverso la città
+            // ApartmentsOptionals: Array,//tabella ponte appartment_optional
         },
         data() {
             return {
@@ -47,6 +50,13 @@
             this.getOptionalsApi()
             ////////////////////////////////////////////////////////////////////////////////////////////////
             console.log();
+            
+            axios.get(`/${this.city}/apartment/optionals`)
+            .then(r => {
+                console.log(r.data);
+            })
+            .catch(e => console.log(e));
+            
         },
         methods: {
             getOptionalsApi(){
