@@ -33,9 +33,18 @@ body{
 }
 
 .color-header{
-    height: 80px;
+    min-height: 80px;
     background-color: burlywood;
 }
+.nav-link:hover{
+    background-color: rgb(226, 163, 80);
+    padding: 5px;
+    border-radius: 15px;
+}
+.nav-link{
+    transition: none;
+}
+
 .search-center{
     width: 100%;
 }
@@ -48,38 +57,72 @@ body{
     width: 25%;
 }
 
-#main_header{
-    height: 100px;
-    background-color: burlywood;
+.account{
+    width: 15%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    .container_header{
-        
-        display: flex;
-        justify-content: space-around; 
-        width: 100%; 
-        
-        .link{
-            width: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
-
-        .user{
-            display: flex;
-            align-items: center;
-            h6 {
-                color: white;
-            }
-        }
-    }
 }
+@include media-breakpoint-only(xs) { 
+    .account{
+        display: block;
+    }
+ }
+
+@include media-breakpoint-only(xs) { 
+    .form-control{
+        width: 100%;
+    }
+ }
+
+ @include media-breakpoint-only(xxl) { 
+     #smart-phone{
+         display: none;
+     }
+     .smart-phone{
+         display: none;
+     }
+  }
+
+  @include media-breakpoint-only(xs) { 
+    #smart-phone{
+        display: block;
+        width: 100%;
+    }
+    .smart-phone{
+        display: block;
+    }
+ }
+// #main_header{
+//     height: 100px;
+//     background-color: burlywood;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-around;
+//     .container_header{
+        
+//         display: flex;
+//         justify-content: space-around; 
+//         width: 100%; 
+        
+//         .link{
+//             width: 400px;
+//             display: flex;
+//             align-items: center;
+//             justify-content: space-around;
+//         }
+
+//         .user{
+//             display: flex;
+//             align-items: center;
+//             h6 {
+//                 color: white;
+//             }
+//         }
+//     }
+// }
 
 .separator{
     border: .5px solid burlywood;
-    // margin: 20px 0 20px 0;
     margin: 0 auto;
 }
 // .col-laterali{

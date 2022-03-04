@@ -9,13 +9,15 @@
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+                <a class="nav-link hover-link" aria-current="page" href="{{route('home')}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('dashboard')}}">Profile</a>
+                <a class="nav-link hover-link" href="{{route('dashboard')}}">Profile</a>
               </li>
             </ul>
-            <div class="search-center">
+
+
+            <div class="search-center ">
                 <form class="d-flex" action="{{route('search')}}" method="post" >
                     @method("POST")
                     @csrf
@@ -48,18 +50,34 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                           </ul>
                         @endguest
-                        
+
                       </li>
                 </ul>
+
+                @auth
+                  Benvenuto
+                    @if (Auth::user() -> name)
+                      {{Auth::user() -> name}}
+                    @else
+                      {{Auth::user() -> email}}
+                    @endif
+                  @endauth
             </div>
             
           </div>
         </div>
       </nav>
 
-      <div class="search-box">
-        
+      
+      <div class="search-phone ">
+        <form class="d-flex" action="{{route('search')}}" method="post" >
+            @method("POST")
+            @csrf
+          <input id="smart-phone" class="form-control me-2" type="search" name="city" placeholder="Inserisci città" aria-label="Search">
+          <button class="btn btn-outline-success smart-phone" type="submit">Cerca</button>
+        </form>
       </div>
+    
 
 
 
