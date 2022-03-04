@@ -9,27 +9,26 @@
                 </span> 
             </span> 
         </div>
-        <div v-if="city">
-            {{city}}
-        </div>
+       
+       
         <!-- show apartments from the searched city -->
-        <!-- <section class="bg-success p-5 d-flex flex-wrap">
+        <section class="bg-success p-5 d-flex flex-wrap">
             <div 
-            v-for="apartment in Apartments" :key="apartment.id"
+            v-for="result in apartmentsWithOptionals" :key="result.apartment.id"
             class="col-6 py-2 border border-dark">
                 <div class="img-container">
-                    <a :href="'show/'+ apartment.id"><img class="img img-fluid" :src="apartment.image" alt=""></a>
+                    <a :href="'show/'+ result.apartment.id"><img class="img img-fluid" :src="result.apartment.image" alt=""></a>
                 </div>
                 <div>
-                    <span class="text-dark"> Descrizione: </span>{{apartment.description}} <br>
-                    <span class="text-dark"> Città: </span>{{apartment.city}} <br>
-                    <span class="text-dark"> Stanze: </span>{{apartment.rooms}} <br>
-                    <span class="text-dark"> Letti: </span>{{apartment.beds}} <br>
-                    <span class="text-dark"> Bagni: </span>{{apartment.bathrooms}} <br>
-                    <span class="text-dark"> Indirizzo: </span>{{apartment.address}} <br>
+                    <span class="text-dark"> Descrizione: </span>{{result.apartment.description}} <br>
+                    <span class="text-dark"> Città: </span>{{result.apartment.city}} <br>
+                    <span class="text-dark"> Stanze: </span>{{result.apartment.rooms}} <br>
+                    <span class="text-dark"> Letti: </span>{{result.apartment.beds}} <br>
+                    <span class="text-dark"> Bagni: </span>{{result.apartment.bathrooms}} <br>
+                    <span class="text-dark"> Indirizzo: </span>{{result.apartment.address}} <br>
                 </div>
             </div>
-        </section> -->
+        </section>
     </div>
 </template>
 
@@ -44,6 +43,7 @@
                 optionals: [],//optional che stampiamo in pagina
                 selectedOptionals:[],//array di optional selezionati dall' utente
                 searchedApartments: [],
+                apartmentsWithOptionals: [],
             }
         },
         mounted(){
@@ -53,7 +53,8 @@
             
             axios.get(`/${this.city}/apartment/optionals`)
             .then(r => {
-                console.log(r.data);
+                this.apartmentsWithOptionals=r.data;
+                console.log(this.apartmentsWithOptionals);
             })
             .catch(e => console.log(e));
             
