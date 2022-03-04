@@ -1,7 +1,7 @@
 <footer id="back-footer">
     <div class="container ">
         <div class="row text-center">
-          <div class="col  colonne-footer">
+          <div class="col-lg-3 col-sm-6  colonne-footer">
             <nav>
                 <ul>
                     <li>
@@ -36,7 +36,7 @@
               </nav>
           </div>
 
-          <div class="col colonne-footer">
+          <div class="col-lg-3 col-sm-6 colonne-footer">
             <nav>
               <ul>
                 <li>
@@ -60,7 +60,7 @@
             </nav>
           </div>
 
-          <div class="col  colonne-footer">
+          <div class="col-lg-3 col-sm-6 colonne-footer">
             <nav>
               <ul>
                 <li>
@@ -88,7 +88,7 @@
             </nav>
           </div>
 
-          <div class="col  colonne-footer">
+          <div class="col-lg-3 col-sm-6 colonne-footer">
             <nav>
               <ul>
 
@@ -123,32 +123,8 @@
           </div>
         </div>
 
-        <div class="separator">
-
-        </div>
+        
 
       </div>
 
-    
-
-      <div class="container text-center">
-        <div class="row">
-
-          <div class="col">
-            {{-- <div class="sie-logo">
-              <img src="img/sie-logo.svg" alt="">
-              
-            </div> --}}
-          </div>
-
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <p class="sie-article">
-              
-            </p>
-          </div>
-        </div>
-      </div>
 </footer>

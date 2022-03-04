@@ -15,6 +15,9 @@
 body{
     background-color: white;
 }
+.height-body{
+    height: calc(100vh - 300px);
+}
 
 // buttons
 .btn-user-command{
@@ -29,51 +32,118 @@ body{
     }
 }
 
-
-#main_header{
-    height: 100px;
+// header
+@include media-breakpoint-only(xs) { 
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        
+    }
+ }
+.color-header{
+    min-height: 80px;
     background-color: burlywood;
+}
+.nav-link:hover{
+    background-color: rgb(226, 163, 80);
+    padding: 5px;
+    border-radius: 15px;
+}
+.nav-link{
+    transition: none;
+}
+
+.search-center{
+    width: 100%;
+}
+
+.d-flex{
+    justify-content: center;
+    align-items: center;
+}
+.form-control{
+    width: 25%;
+}
+
+.account{
+    width: 15%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    .container_header{
-        
-        display: flex;
-        justify-content: space-around; 
-        width: 100%; 
-        
-        .link{
-            width: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
-
-        .user{
-            display: flex;
-            align-items: center;
-            h6 {
-                color: white;
-            }
-        }
-    }
 }
+@include media-breakpoint-only(xs) { 
+    .account{
+        display: block;
+    }
+ }
+
+@include media-breakpoint-only(xs) { 
+    .form-control{
+        width: 100%;
+    }
+    #phone-style{
+        display: none;
+    }
+    .phone-style{
+        display: none;
+    }
+ }
+
+ @include media-breakpoint-only(xxl) { 
+     #smart-phone{
+         display: none;
+     }
+     .smart-phone{
+         display: none;
+     }
+  }
+
+  @include media-breakpoint-only(xs) { 
+    #smart-phone{
+        display: block;
+        width: 100%;
+    }
+    .smart-phone{
+        display: block;
+    }
+ }
+ .search-phone{
+     background-color: burlywood;
+     padding-bottom: 3px;
+ }
+ .btn-outline-success:hover{
+     color: black;
+     background-color: white;
+     border-color: white;
+ }
+ .btn-outline-success{
+    color: white;
+    border-color: white;
+    
+ }
+
+ .btn-outline-success:active:focus{
+     box-shadow: none;
+ }
+
+
+
+
+
 
 .separator{
     border: .5px solid burlywood;
-    // margin: 20px 0 20px 0;
     margin: 0 auto;
 }
-// .col-laterali{
-//     background-color: blue;
-// }
-
-// .col-centrale{
-//     background-color: red;
-//     // margin: 0 50px 0 50px;
-// }
 
 
+//apartment 
+@include media-breakpoint-only(xs) { 
+    .style-show{
+        margin-top: 150px ;
+    }
+ }
 .apart-stats{
     margin-bottom: 20px;
 }
@@ -113,10 +183,218 @@ body{
 }
 
 
-.container-show-content{
+//dashboard/profilo
+
+.style-title{
+    margin: 20px 0 20px 20px;
+    width: 10%;
+    background-color: burlywood;
+    padding: 10px;
+    border-radius: 10px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    h3{
+        color: white;
+    }
+}
+@include media-breakpoint-only(xs) { 
+    .style-title{
+        width: 52%;
+        margin: 20px auto;
+        background-color: burlywood;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h3{
+            color: white;
+        }
+    }
+ }
+
+ .style-add-title{
+    margin: 20px 0 20px 20px;
+    width: 16%;
+    background-color: burlywood;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h3{
+        color: white;
+    }
+}
+@include media-breakpoint-only(xs) { 
+    .style-add-title{
+        width: 81%;
+        margin: 20px auto;
+        background-color: burlywood;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h3{
+            color: white;
+        }
+    }
+ }
+
+ .content-login{
+    height: calc(100vh - 420px);
+    margin-top: 3rem;
+    margin-bottom: 3rem !important;
+}
+.content-register{
+    height: calc(100vh - 325px);
 }
 
+@include media-breakpoint-only(xs) { 
+    .content-dashboard {
+        margin-top: 150px;
+    }
+    .content-login{
+        height: 250px;
+        margin-top: 150px;
+    }
+    .content-register{
+        height: 400px;
+        margin-top: 150px;
+    }
+ }
+
+ 
+
+
+
+.img-container{
+    width: 400px;
+    height: 300px;
+    margin: 20px 0 20px 0;
+
+    .img-preview{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+}
+@include media-breakpoint-only(xs) { 
+    .img-container{
+        width: 200px;
+        height: 100px;
+        margin: 20px 0 20px 0;
+        display: block;
+        margin: 20px auto;
+        .img-preview{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+    }
+ }
+
+.container-dashboard{
+    display: flex;
+    align-items: center;
+    
+    
+    a{
+        text-decoration: none;
+        color: black;
+        .align-row{
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .container-info{
+            margin-left: 20px;
+            font-size: 25px;
+        }
+    }
+}
+
+@include media-breakpoint-only(xs) { 
+    .container-dashboard{
+        display: block;
+        a{
+            text-decoration: none;
+            color: black;
+            .align-row{
+                display: inline-block;
+                align-items: center;
+                margin-left: 0;
+            }
+            .container-info{
+                margin-left: 20px;
+                font-size: 10px;
+            }
+        }
+    }
+ }
+
+ //pulsante add
+.style-add{
+    margin-left: 30px;
+}
+
+
+//edit
+.style-edit{
+    margin-left: 20px;
+}
+@include media-breakpoint-only(xs) { 
+    .style-edit{
+        margin: 150px auto 0 auto;
+    }
+ }
+
+
+ .style-title-edit{
+    margin: 20px 0 20px 0px;
+    width: 25%;
+    background-color: burlywood;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1{
+        color: white;
+    }
+}
+@include media-breakpoint-only(xs) { 
+    .style-title-edit{
+        width: 97%;
+        margin: 20px auto;
+        background-color: burlywood;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h3{
+            color: white;
+        }
+    }
+ }
+
+
+ //home
+
+ @include media-breakpoint-only(xs) { 
+    .style-home{
+        margin-top: 150px ;
+    }
+ }
+
+
+
+//footer
 #back-footer{
     background-color: rgba(247,247,247,255);
     .colonne-footer{

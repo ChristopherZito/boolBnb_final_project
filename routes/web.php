@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'GuestController@home') -> name('home');
 
 //autenticazione
-Route::get('/login/form', 'GuestController@login') -> name('loginForm');
+Route::get('/login', 'GuestController@login') -> name('loginForm');
 Route::post('/login', 'Auth\LoginController@login') -> name('login');
-Route::get('/register/form', 'GuestController@register') -> name('registerForm');
+Route::get('/register', 'GuestController@register') -> name('registerForm');
 Route::post('/register', 'Auth\RegisterController@register') -> name('register');
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
 
@@ -50,3 +50,4 @@ Route::get('/{city}/apartment/optionals', 'GuestController@getApiApartmentOption
 //send message 
 Route::post('/message/store/{id}', 'GuestController@messageStore') ->name('messageStore');
 
+// Route::get('/apartment/optionals', 'GuestController@getApiApartmentOptionals') -> name('get.api.apartment.optionals');

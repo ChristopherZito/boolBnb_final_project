@@ -3,7 +3,7 @@
     Home
 @endsection
 @section('content')
-<section class="bg-danger p-5">
+<section class="style-home">
     <h4 class="text-dark">
         Body
     </h4>
