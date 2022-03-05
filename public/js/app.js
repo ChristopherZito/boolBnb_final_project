@@ -5153,6 +5153,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: String //appartamenti ricercati attraverso la città
@@ -5198,11 +5200,27 @@ __webpack_require__.r(__webpack_exports__);
       var index = this.selectedOptionals.indexOf(id);
 
       if (index === -1) {
-        this.selectedOptionals.push(id);
-        this.apartmentsOptionals();
+        this.selectedOptionals.push(id); // this.apartmentsOptionals()
       } else {
         this.selectedOptionals.splice(index, 1);
       }
+
+      console.log(this.selectedOptionals);
+      this.compareSelectedOptionals();
+    },
+    compareSelectedOptionals: function compareSelectedOptionals() {
+      var _this3 = this;
+
+      console.log("optionals del primo appartamento:", this.apartmentsWithOptionals[0].optionals_id);
+      this.selectedOptionals.forEach(function (selectedOptional) {
+        _this3.apartmentsWithOptionals.forEach(function (apartmentOptionals) {
+          var optionalsOfThisApartment = apartmentOptionals.optionals_id;
+
+          if (optionalsOfThisApartment.includes(selectedOptional)) {
+            console.log(apartmentOptionals.apartment, "ha questo optional:", optionalsOfThisApartment);
+          }
+        });
+      });
     },
     apartmentsOptionals: function apartmentsOptionals() {
       for (var x = 0; x < this.selectedOptionals.length; x++) {
@@ -41532,44 +41550,60 @@ var render = function () {
             staticClass: "col-6 py-2 border border-dark",
           },
           [
-            _c("div", { staticClass: "img-container" }, [
-              _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
-                _c("img", {
-                  staticClass: "img img-fluid",
-                  attrs: { src: result.apartment.image, alt: "" },
-                }),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", [
-              _c("span", { staticClass: "text-dark" }, [
-                _vm._v(" Descrizione: "),
-              ]),
-              _vm._v(_vm._s(result.apartment.description) + " "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-dark" }, [_vm._v(" Città: ")]),
-              _vm._v(_vm._s(result.apartment.city) + " "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-dark" }, [_vm._v(" Stanze: ")]),
-              _vm._v(_vm._s(result.apartment.rooms) + " "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-dark" }, [_vm._v(" Letti: ")]),
-              _vm._v(_vm._s(result.apartment.beds) + " "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-dark" }, [_vm._v(" Bagni: ")]),
-              _vm._v(_vm._s(result.apartment.bathrooms) + " "),
-              _c("br"),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-dark" }, [
-                _vm._v(" Indirizzo: "),
-              ]),
-              _vm._v(_vm._s(result.apartment.address) + " "),
-              _c("br"),
-            ]),
+            true
+              ? _c("div", { staticClass: "item" }, [
+                  _c("div", { staticClass: "img-container" }, [
+                    _c(
+                      "a",
+                      { attrs: { href: "show/" + result.apartment.id } },
+                      [
+                        _c("img", {
+                          staticClass: "img img-fluid",
+                          attrs: { src: result.apartment.image, alt: "" },
+                        }),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("span", { staticClass: "text-dark" }, [
+                      _vm._v(" Descrizione: "),
+                    ]),
+                    _vm._v(_vm._s(result.apartment.description) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-dark" }, [
+                      _vm._v(" Città: "),
+                    ]),
+                    _vm._v(_vm._s(result.apartment.city) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-dark" }, [
+                      _vm._v(" Stanze: "),
+                    ]),
+                    _vm._v(_vm._s(result.apartment.rooms) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-dark" }, [
+                      _vm._v(" Letti: "),
+                    ]),
+                    _vm._v(_vm._s(result.apartment.beds) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-dark" }, [
+                      _vm._v(" Bagni: "),
+                    ]),
+                    _vm._v(_vm._s(result.apartment.bathrooms) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "text-dark" }, [
+                      _vm._v(" Indirizzo: "),
+                    ]),
+                    _vm._v(_vm._s(result.apartment.address) + " "),
+                    _c("br"),
+                  ]),
+                ])
+              : undefined,
           ]
         )
       }),
@@ -54052,8 +54086,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/albertodragoni/Documents/BOOLEAN2/laravel/boolBnb_final_project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/albertodragoni/Documents/BOOLEAN2/laravel/boolBnb_final_project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Francesco Santi\Documents\Santi Francesco\Corsi\Boolean\Esercitazioni pomeridiane\progetto-finale\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Francesco Santi\Documents\Santi Francesco\Corsi\Boolean\Esercitazioni pomeridiane\progetto-finale\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
