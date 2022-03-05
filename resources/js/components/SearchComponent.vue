@@ -56,12 +56,30 @@
             axios.get(`/${this.city}/apartment/optionals`)
             .then(r => {
                 this.apartmentsWithOptionals=r.data;
-                console.log(this.apartmentsWithOptionals);
+
+                // this.apartmentsWithOptionals.forEach(item => {
+                //     item.apartment.show = true;
+                // })
             })
             .catch(e => console.log(e));
             
         },
+        // computed: {
+        //     toShow() {
+        //         return this.apartmentsWithOptionals.apartment.show;
+        //     }
+        // },
         methods: {
+            toShow(id, bool) {
+                let toShow;
+                this.apartmentsWithOptionals.forEach(item => {
+                    if(item.apartment.id === id) {
+                        toShow = bool;
+                    }
+                });
+                console.log("l'appartamento", id, "è da mostrare?", toShow);
+                return toShow;
+            },
             getOptionalsApi(){
                 axios.get('/optionals/get')
                 .then(r => {
@@ -83,7 +101,7 @@
                 this.compareSelectedOptionals();
             },
             compareSelectedOptionals() {
-                console.log("optionals del primo appartamento:", this.apartmentsWithOptionals[0].optionals_id);
+
                 this.selectedOptionals.forEach(selectedOptional => {
 
                     this.apartmentsWithOptionals.forEach(apartmentOptionals => {
@@ -91,29 +109,16 @@
                         let optionalsOfThisApartment = apartmentOptionals.optionals_id;
 
                         if(optionalsOfThisApartment.includes(selectedOptional)) {
-                            console.log(apartmentOptionals.apartment, "ha questo optional:", optionalsOfThisApartment);
+                            // apartmentOptionals.apartment.show = true;
+                            // this.$set(apartmentOptionals.apartment, 'show', true);
+                            this.toShow(apartmentOptionals.apartment.id, true);
+                        } else {
+                            // apartmentOptionals.apartment.show = false;
+                            // this.$set(apartmentOptionals.apartment, 'show', false);
+                            this.toShow(apartmentOptionals.apartment.id, false);
                         }
-
                     });
                 });
-            },
-            apartmentsOptionals(){
-                for (let x = 0; x < this.selectedOptionals.length; x++) {
-
-                    const optional = this.selectedOptionals[x];
-                    
-                    for (let y = 0; y < this.ApartmentsOptionals.length; y++) {
-                        const optionalApartment = this.ApartmentsOptionals[y];
-                        
-                        if(optional === optionalApartment['optional_id']){
-                            // console.log("aparment_id", optionalApartment['apartment_id']);
-                            if(!this.searchedApartments.includes(optionalApartment['apartment_id'])){
-                                this.searchedApartments.push(optionalApartment['apartment_id']);
-                            }
-                        }
-                    }
-                }
-                // console.log('appartment:',this.searchedApartments);
             }
         },
     }
