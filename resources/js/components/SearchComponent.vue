@@ -1,34 +1,53 @@
 <template>
     <div>
+        <!-- filtri stanze, letti, raggio distanza -->
+        <div class="d-flex my-3">
+            <div>
+                <!-- <label for="rooms">Numero minimo di stanze</label>
+                <input type="number" name="rooms" id="rooms" step="1" v-model.number="rooms"> -->
+                <h6>Minimo {{rooms}} <span v-if="rooms === 1">stanza</span> <span v-if="rooms > 1">stanze</span></h6>
+                <span class="p-1 bg-info" @click="rooms > 1 ? rooms-- : rooms">-</span>
+                <span class="p-1 bg-info" @click="incrementRooms()">+</span>
+            </div>
+            <div>
+                <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
+                <span class="p-1 bg-info" @click="beds > 1 ? beds-- : beds">-</span>
+                <span class="p-1 bg-info" @click="beds++">+</span>
+            </div>
+        </div>
+
         <!-- show all the optionals for the advance search -->
         <div class="text-light">
             <span  v-for="optional in optionals" :key="optional.id">
-                <span class="d-inline-block rounded bg-info m-1 p-2 btn"
+                <span class="d-inline-block rounded m-1 p-2 btn" :class="selectedOptionals.includes(optional.id) ? 'btn-success' : 'bg-info'"
                 @click="selectedOptional(optional.id)">
                      {{optional.name}}
                 </span> 
             </span> 
         </div>
-       
+       <!-- <div>{{apartmentsToShow}}</div>
+       <div>{{filteredListofApartments}}</div> -->
        
         <!-- show apartments from the searched city -->
         <section class="bg-success p-5 d-flex flex-wrap">
             <div 
-            v-for="result in apartmentsWithOptionals" :key="result.apartment.id"
+            v-for="result in filteredListofApartments" :key="result.apartment.id"
             class="col-6 py-2 border border-dark">
-                <div class="item" v-if="true">
-                    <div class="img-container">
-                        <a :href="'show/'+ result.apartment.id"><img class="img img-fluid" :src="result.apartment.image" alt=""></a>
-                    </div>
-                    <div>
-                        <span class="text-dark"> Descrizione: </span>{{result.apartment.description}} <br>
-                        <span class="text-dark"> Città: </span>{{result.apartment.city}} <br>
-                        <span class="text-dark"> Stanze: </span>{{result.apartment.rooms}} <br>
-                        <span class="text-dark"> Letti: </span>{{result.apartment.beds}} <br>
-                        <span class="text-dark"> Bagni: </span>{{result.apartment.bathrooms}} <br>
-                        <span class="text-dark"> Indirizzo: </span>{{result.apartment.address}} <br>
-                    </div>
+                <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
+                <div class="img-container">
+                    <a :href="'show/'+ result.apartment.id"><img class="img img-fluid" :src="result.apartment.image" alt=""></a>
                 </div>
+                <div>
+                    <span class="text-dark"> Descrizione: </span>{{result.apartment.description}} <br>
+                    <span class="text-dark"> Città: </span>{{result.apartment.city}} <br>
+                    <span class="text-dark"> Stanze: </span>{{result.apartment.rooms}} <br>
+                    <span class="text-dark"> Letti: </span>{{result.apartment.beds}} <br>
+                    <span class="text-dark"> Bagni: </span>{{result.apartment.bathrooms}} <br>
+                    <span class="text-dark"> Indirizzo: </span>{{result.apartment.address}} <br>
+                </div>
+            </div>
+            <div v-if="filteredListofApartments.length === 0">
+                <h4>Ci dispiace, ma non ci sono appartamenti che soddisfano i requisiti richiesti.</h4>
             </div>
         </section>
     </div>
@@ -43,9 +62,11 @@
         data() {
             return {
                 optionals: [],//optional che stampiamo in pagina
-                selectedOptionals:[],//array di optional selezionati dall' utente
+                selectedOptionals: [],//array di optional selezionati dall' utente
                 searchedApartments: [],
                 apartmentsWithOptionals: [],
+                rooms: 1,
+                beds: 1
             }
         },
         mounted(){
@@ -64,21 +85,51 @@
             .catch(e => console.log(e));
             
         },
-        // computed: {
-        //     toShow() {
-        //         return this.apartmentsWithOptionals.apartment.show;
-        //     }
-        // },
-        methods: {
-            toShow(id, bool) {
-                let toShow;
-                this.apartmentsWithOptionals.forEach(item => {
-                    if(item.apartment.id === id) {
-                        toShow = bool;
+        computed: {
+            apartmentsToShow() {
+                let apartmentsToShow = [];
+
+                this.apartmentsWithOptionals.forEach(apartmentOptionals => {
+
+                    let optionalsOfThisApartment = apartmentOptionals.optionals_id;
+
+                    let thisApartmentHasAllOptionals = this.selectedOptionals.every(selectedOptional => {
+                        return optionalsOfThisApartment.includes(selectedOptional);
+                    });
+
+                    console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
+                        
+                    if(thisApartmentHasAllOptionals && apartmentOptionals.apartment.rooms >= this.rooms) {
+                        apartmentsToShow.push(apartmentOptionals.apartment.id);
                     }
                 });
-                console.log("l'appartamento", id, "è da mostrare?", toShow);
-                return toShow;
+                console.log("id degli appartamenti da mostrare:", apartmentsToShow);
+
+                console.log(this.rooms);
+
+                return apartmentsToShow;
+            },
+            filteredListofApartments() {
+                let filteredListofApartments = [];
+
+                if(this.selectedOptionals.length === 0) {
+                    filteredListofApartments = this.apartmentsWithOptionals;
+                } else {
+                    this.apartmentsToShow.forEach(apartment_id => {
+                        this.apartmentsWithOptionals.forEach(item => {
+                            if(apartment_id === item.apartment.id) {
+                                filteredListofApartments.push(item);
+                            }
+                        });
+                    });
+                }
+                console.log("lista degli appartamenti da mostrare", filteredListofApartments);
+                return filteredListofApartments;
+            }
+        },
+        methods: {
+            incrementRooms() {
+                this.rooms++;
             },
             getOptionalsApi(){
                 axios.get('/optionals/get')
@@ -97,29 +148,9 @@
                 }else{
                     this.selectedOptionals.splice(index,1); 
                 }
-                console.log(this.selectedOptionals);
-                this.compareSelectedOptionals();
+                console.log("id degli optional selezionati dall'utente", this.selectedOptionals);
+                // this.compareSelectedOptionals();
             },
-            compareSelectedOptionals() {
-
-                this.selectedOptionals.forEach(selectedOptional => {
-
-                    this.apartmentsWithOptionals.forEach(apartmentOptionals => {
-
-                        let optionalsOfThisApartment = apartmentOptionals.optionals_id;
-
-                        if(optionalsOfThisApartment.includes(selectedOptional)) {
-                            // apartmentOptionals.apartment.show = true;
-                            // this.$set(apartmentOptionals.apartment, 'show', true);
-                            this.toShow(apartmentOptionals.apartment.id, true);
-                        } else {
-                            // apartmentOptionals.apartment.show = false;
-                            // this.$set(apartmentOptionals.apartment, 'show', false);
-                            this.toShow(apartmentOptionals.apartment.id, false);
-                        }
-                    });
-                });
-            }
         },
     }
 </script>

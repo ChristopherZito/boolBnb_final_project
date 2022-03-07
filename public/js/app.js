@@ -5155,6 +5155,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: String //appartamenti ricercati attraverso la città
@@ -5168,7 +5187,9 @@ __webpack_require__.r(__webpack_exports__);
       selectedOptionals: [],
       //array di optional selezionati dall' utente
       searchedApartments: [],
-      apartmentsWithOptionals: []
+      apartmentsWithOptionals: [],
+      rooms: 1,
+      beds: 1
     };
   },
   mounted: function mounted() {
@@ -5185,28 +5206,59 @@ __webpack_require__.r(__webpack_exports__);
       return console.log(e);
     });
   },
-  // computed: {
-  //     toShow() {
-  //         return this.apartmentsWithOptionals.apartment.show;
-  //     }
-  // },
-  methods: {
-    toShow: function toShow(id, bool) {
-      var toShow;
-      this.apartmentsWithOptionals.forEach(function (item) {
-        if (item.apartment.id === id) {
-          toShow = bool;
+  computed: {
+    apartmentsToShow: function apartmentsToShow() {
+      var _this2 = this;
+
+      var apartmentsToShow = [];
+      this.apartmentsWithOptionals.forEach(function (apartmentOptionals) {
+        var optionalsOfThisApartment = apartmentOptionals.optionals_id;
+
+        var thisApartmentHasAllOptionals = _this2.selectedOptionals.every(function (selectedOptional) {
+          return optionalsOfThisApartment.includes(selectedOptional);
+        });
+
+        console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
+
+        if (thisApartmentHasAllOptionals && apartmentOptionals.apartment.rooms >= _this2.rooms) {
+          apartmentsToShow.push(apartmentOptionals.apartment.id);
         }
       });
-      console.log("l'appartamento", id, "è da mostrare?", toShow);
-      return toShow;
+      console.log("id degli appartamenti da mostrare:", apartmentsToShow);
+      console.log(this.rooms);
+      return apartmentsToShow;
+    },
+    filteredListofApartments: function filteredListofApartments() {
+      var _this3 = this;
+
+      var filteredListofApartments = [];
+
+      if (this.selectedOptionals.length === 0) {
+        filteredListofApartments = this.apartmentsWithOptionals;
+      } else {
+        this.apartmentsToShow.forEach(function (apartment_id) {
+          _this3.apartmentsWithOptionals.forEach(function (item) {
+            if (apartment_id === item.apartment.id) {
+              filteredListofApartments.push(item);
+            }
+          });
+        });
+      }
+
+      console.log("lista degli appartamenti da mostrare", filteredListofApartments);
+      return filteredListofApartments;
+    }
+  },
+  methods: {
+    incrementRooms: function incrementRooms() {
+      this.rooms++;
     },
     getOptionalsApi: function getOptionalsApi() {
-      var _this2 = this;
+      var _this4 = this;
 
       axios.get('/optionals/get').then(function (r) {
         // console.log(r.data);
-        _this2.optionals = r.data;
+        _this4.optionals = r.data;
       })["catch"](function (e) {
         return console.log(e);
       });
@@ -5221,27 +5273,7 @@ __webpack_require__.r(__webpack_exports__);
         this.selectedOptionals.splice(index, 1);
       }
 
-      console.log(this.selectedOptionals);
-      this.compareSelectedOptionals();
-    },
-    compareSelectedOptionals: function compareSelectedOptionals() {
-      var _this3 = this;
-
-      this.selectedOptionals.forEach(function (selectedOptional) {
-        _this3.apartmentsWithOptionals.forEach(function (apartmentOptionals) {
-          var optionalsOfThisApartment = apartmentOptionals.optionals_id;
-
-          if (optionalsOfThisApartment.includes(selectedOptional)) {
-            // apartmentOptionals.apartment.show = true;
-            // this.$set(apartmentOptionals.apartment, 'show', true);
-            _this3.toShow(apartmentOptionals.apartment.id, true);
-          } else {
-            // apartmentOptionals.apartment.show = false;
-            // this.$set(apartmentOptionals.apartment, 'show', false);
-            _this3.toShow(apartmentOptionals.apartment.id, false);
-          }
-        });
-      });
+      console.log("id degli optional selezionati dall'utente", this.selectedOptionals); // this.compareSelectedOptionals();
     }
   }
 });
@@ -41517,6 +41549,78 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "d-flex my-3" }, [
+      _c("div", [
+        _c("h6", [
+          _vm._v("Minimo " + _vm._s(_vm.rooms) + " "),
+          _vm.rooms === 1 ? _c("span", [_vm._v("stanza")]) : _vm._e(),
+          _vm._v(" "),
+          _vm.rooms > 1 ? _c("span", [_vm._v("stanze")]) : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "p-1 bg-info",
+            on: {
+              click: function ($event) {
+                _vm.rooms > 1 ? _vm.rooms-- : _vm.rooms
+              },
+            },
+          },
+          [_vm._v("-")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "p-1 bg-info",
+            on: {
+              click: function ($event) {
+                return _vm.incrementRooms()
+              },
+            },
+          },
+          [_vm._v("+")]
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("h6", [
+          _vm._v("Minimo " + _vm._s(_vm.beds) + " "),
+          _vm.beds === 1 ? _c("span", [_vm._v("letto")]) : _vm._e(),
+          _vm._v(" "),
+          _vm.beds > 1 ? _c("span", [_vm._v("letti")]) : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "p-1 bg-info",
+            on: {
+              click: function ($event) {
+                _vm.beds > 1 ? _vm.beds-- : _vm.beds
+              },
+            },
+          },
+          [_vm._v("-")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "p-1 bg-info",
+            on: {
+              click: function ($event) {
+                _vm.beds++
+              },
+            },
+          },
+          [_vm._v("+")]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "text-light" },
@@ -41525,7 +41629,10 @@ var render = function () {
           _c(
             "span",
             {
-              staticClass: "d-inline-block rounded bg-info m-1 p-2 btn",
+              staticClass: "d-inline-block rounded m-1 p-2 btn",
+              class: _vm.selectedOptionals.includes(optional.id)
+                ? "btn-success"
+                : "bg-info",
               on: {
                 click: function ($event) {
                   return _vm.selectedOptional(optional.id)
@@ -41546,72 +41653,68 @@ var render = function () {
     _c(
       "section",
       { staticClass: "bg-success p-5 d-flex flex-wrap" },
-      _vm._l(_vm.apartmentsWithOptionals, function (result) {
-        return _c(
-          "div",
-          {
-            key: result.apartment.id,
-            staticClass: "col-6 py-2 border border-dark",
-          },
-          [
-            true
-              ? _c("div", { staticClass: "item" }, [
-                  _c("div", { staticClass: "img-container" }, [
-                    _c(
-                      "a",
-                      { attrs: { href: "show/" + result.apartment.id } },
-                      [
-                        _c("img", {
-                          staticClass: "img img-fluid",
-                          attrs: { src: result.apartment.image, alt: "" },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("span", { staticClass: "text-dark" }, [
-                      _vm._v(" Descrizione: "),
-                    ]),
-                    _vm._v(_vm._s(result.apartment.description) + " "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-dark" }, [
-                      _vm._v(" Città: "),
-                    ]),
-                    _vm._v(_vm._s(result.apartment.city) + " "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-dark" }, [
-                      _vm._v(" Stanze: "),
-                    ]),
-                    _vm._v(_vm._s(result.apartment.rooms) + " "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-dark" }, [
-                      _vm._v(" Letti: "),
-                    ]),
-                    _vm._v(_vm._s(result.apartment.beds) + " "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-dark" }, [
-                      _vm._v(" Bagni: "),
-                    ]),
-                    _vm._v(_vm._s(result.apartment.bathrooms) + " "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "text-dark" }, [
-                      _vm._v(" Indirizzo: "),
-                    ]),
-                    _vm._v(_vm._s(result.apartment.address) + " "),
-                    _c("br"),
-                  ]),
-                ])
-              : undefined,
-          ]
-        )
-      }),
-      0
+      [
+        _vm._l(_vm.filteredListofApartments, function (result) {
+          return _c(
+            "div",
+            {
+              key: result.apartment.id,
+              staticClass: "col-6 py-2 border border-dark",
+            },
+            [
+              _c("div", { staticClass: "img-container" }, [
+                _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
+                  _c("img", {
+                    staticClass: "img img-fluid",
+                    attrs: { src: result.apartment.image, alt: "" },
+                  }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", { staticClass: "text-dark" }, [
+                  _vm._v(" Descrizione: "),
+                ]),
+                _vm._v(_vm._s(result.apartment.description) + " "),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-dark" }, [_vm._v(" Città: ")]),
+                _vm._v(_vm._s(result.apartment.city) + " "),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-dark" }, [_vm._v(" Stanze: ")]),
+                _vm._v(_vm._s(result.apartment.rooms) + " "),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-dark" }, [_vm._v(" Letti: ")]),
+                _vm._v(_vm._s(result.apartment.beds) + " "),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-dark" }, [_vm._v(" Bagni: ")]),
+                _vm._v(_vm._s(result.apartment.bathrooms) + " "),
+                _c("br"),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-dark" }, [
+                  _vm._v(" Indirizzo: "),
+                ]),
+                _vm._v(_vm._s(result.apartment.address) + " "),
+                _c("br"),
+              ]),
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm.filteredListofApartments.length === 0
+          ? _c("div", [
+              _c("h4", [
+                _vm._v(
+                  "Ci dispiace, ma non ci sono appartamenti che soddisfano i requisiti richiesti."
+                ),
+              ]),
+            ])
+          : _vm._e(),
+      ],
+      2
     ),
   ])
 }
