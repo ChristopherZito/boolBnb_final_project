@@ -5202,6 +5202,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var apartmentsToShow = [];
+      console.log("room:", this.rooms);
       this.apartmentsWithOptionals.forEach(function (apartmentOptionals) {
         var optionalsOfThisApartment = apartmentOptionals.optionals_id;
 
@@ -5210,7 +5211,7 @@ __webpack_require__.r(__webpack_exports__);
         }); // console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
 
 
-        if (thisApartmentHasAllOptionals && apartmentOptionals.apartment.rooms >= _this2.rooms) {
+        if (thisApartmentHasAllOptionals && apartmentOptionals.apartment.rooms >= _this2.rooms && apartmentOptionals.apartment.beds >= _this2.beds) {
           apartmentsToShow.push(apartmentOptionals.apartment.id);
         }
       }); // console.log("id degli appartamenti da mostrare:", apartmentsToShow);
@@ -5223,7 +5224,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var filteredListofApartments = [];
 
-      if (this.selectedOptionals.length === 0) {
+      if (this.selectedOptionals.length === 0 && this.rooms === 1 && this.beds === 1) {
         filteredListofApartments = this.apartmentsWithOptionals;
       } else {
         this.apartmentsToShow.forEach(function (apartment_id) {
@@ -5242,6 +5243,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     incrementRooms: function incrementRooms() {
       this.rooms++;
+    },
+    incrementBeds: function incrementBeds() {
+      this.beds++;
     },
     getOptionalsApi: function getOptionalsApi() {
       var _this4 = this;
@@ -41599,7 +41603,7 @@ var render = function () {
             staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
-                _vm.beds++
+                return _vm.incrementBeds()
               },
             },
           },

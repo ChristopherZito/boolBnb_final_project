@@ -12,7 +12,7 @@
             <div  class="mx-3">
                 <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
                 <span class="py-2 px-3 rounded-circle bg-info" @click="beds > 1 ? beds-- : beds">-</span>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="beds++">+</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="incrementBeds()">+</span>
             </div>
         </div>
         <!-- show all the optionals for the advance search -->
@@ -75,14 +75,15 @@
         computed: {
             apartmentsToShow() {
                 let apartmentsToShow = [];
-                
+                console.log("room:" , this.rooms);
                 this.apartmentsWithOptionals.forEach(apartmentOptionals => {
                     let optionalsOfThisApartment = apartmentOptionals.optionals_id;
+                    
                     let thisApartmentHasAllOptionals = this.selectedOptionals.every(selectedOptional => {
                         return optionalsOfThisApartment.includes(selectedOptional);
                     });
                     // console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
-                    if(thisApartmentHasAllOptionals  && apartmentOptionals.apartment.rooms >= this.rooms) {
+                    if(thisApartmentHasAllOptionals  && apartmentOptionals.apartment.rooms >= this.rooms && apartmentOptionals.apartment.beds >= this.beds) {
                         apartmentsToShow.push(apartmentOptionals.apartment.id);
                     }
                 });
@@ -93,7 +94,7 @@
             filteredListofApartments() {
                 let filteredListofApartments = [];
 
-                if(this.selectedOptionals.length === 0) {
+                if(this.selectedOptionals.length === 0 && this.rooms === 1 && this.beds === 1) {
                     filteredListofApartments = this.apartmentsWithOptionals;
                 } else {
                     this.apartmentsToShow.forEach(apartment_id => {
@@ -111,7 +112,9 @@
         methods: {
             incrementRooms() {
                 this.rooms++;
-                
+            },
+            incrementBeds(){
+                this.beds++;
             },
             getOptionalsApi(){
                 axios.get('/optionals/get')
