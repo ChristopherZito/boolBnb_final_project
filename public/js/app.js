@@ -5170,14 +5170,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    city: String //appartamenti ricercati attraverso la città
-    // ApartmentsOptionals: Array,//tabella ponte appartment_optional
+    city: String //città trovata attraverso l'input
 
   },
   data: function data() {
@@ -5195,13 +5190,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    this.getOptionalsApi(); ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    console.log();
+    this.getOptionalsApi();
     axios.get("/".concat(this.city, "/apartment/optionals")).then(function (r) {
-      _this.apartmentsWithOptionals = r.data; // this.apartmentsWithOptionals.forEach(item => {
-      //     item.apartment.show = true;
-      // })
+      _this.apartmentsWithOptionals = r.data;
     })["catch"](function (e) {
       return console.log(e);
     });
@@ -5216,15 +5207,14 @@ __webpack_require__.r(__webpack_exports__);
 
         var thisApartmentHasAllOptionals = _this2.selectedOptionals.every(function (selectedOptional) {
           return optionalsOfThisApartment.includes(selectedOptional);
-        });
+        }); // console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
 
-        console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
 
         if (thisApartmentHasAllOptionals && apartmentOptionals.apartment.rooms >= _this2.rooms) {
           apartmentsToShow.push(apartmentOptionals.apartment.id);
         }
-      });
-      console.log("id degli appartamenti da mostrare:", apartmentsToShow);
+      }); // console.log("id degli appartamenti da mostrare:", apartmentsToShow);
+
       console.log(this.rooms);
       return apartmentsToShow;
     },
@@ -5243,9 +5233,9 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         });
-      }
+      } // console.log("lista degli appartamenti da mostrare", filteredListofApartments);
 
-      console.log("lista degli appartamenti da mostrare", filteredListofApartments);
+
       return filteredListofApartments;
     }
   },
@@ -5257,23 +5247,20 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get('/optionals/get').then(function (r) {
-        // console.log(r.data);
         _this4.optionals = r.data;
       })["catch"](function (e) {
         return console.log(e);
       });
     },
     selectedOptional: function selectedOptional(id) {
-      // console.log(id); 
       var index = this.selectedOptionals.indexOf(id);
 
       if (index === -1) {
-        this.selectedOptionals.push(id); // this.apartmentsOptionals()
+        this.selectedOptionals.push(id);
       } else {
         this.selectedOptionals.splice(index, 1);
-      }
+      } // console.log("id degli optional selezionati dall'utente", this.selectedOptionals);
 
-      console.log("id degli optional selezionati dall'utente", this.selectedOptionals); // this.compareSelectedOptionals();
     }
   }
 });
@@ -41550,7 +41537,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "d-flex my-3" }, [
-      _c("div", [
+      _c("div", { staticClass: "mx-3" }, [
         _c("h6", [
           _vm._v("Minimo " + _vm._s(_vm.rooms) + " "),
           _vm.rooms === 1 ? _c("span", [_vm._v("stanza")]) : _vm._e(),
@@ -41561,7 +41548,7 @@ var render = function () {
         _c(
           "span",
           {
-            staticClass: "p-1 bg-info",
+            staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
                 _vm.rooms > 1 ? _vm.rooms-- : _vm.rooms
@@ -41574,7 +41561,7 @@ var render = function () {
         _c(
           "span",
           {
-            staticClass: "p-1 bg-info",
+            staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
                 return _vm.incrementRooms()
@@ -41585,7 +41572,7 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "mx-3" }, [
         _c("h6", [
           _vm._v("Minimo " + _vm._s(_vm.beds) + " "),
           _vm.beds === 1 ? _c("span", [_vm._v("letto")]) : _vm._e(),
@@ -41596,7 +41583,7 @@ var render = function () {
         _c(
           "span",
           {
-            staticClass: "p-1 bg-info",
+            staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
                 _vm.beds > 1 ? _vm.beds-- : _vm.beds
@@ -41609,7 +41596,7 @@ var render = function () {
         _c(
           "span",
           {
-            staticClass: "p-1 bg-info",
+            staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
                 _vm.beds++
@@ -54193,8 +54180,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Francesco Santi\Documents\Santi Francesco\Corsi\Boolean\Esercitazioni pomeridiane\progetto-finale\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Francesco Santi\Documents\Santi Francesco\Corsi\Boolean\Esercitazioni pomeridiane\progetto-finale\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

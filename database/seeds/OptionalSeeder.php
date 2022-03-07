@@ -40,7 +40,7 @@ class OptionalSeeder extends Seeder
         ]);
 
         DB::table('optionals')->insert([
-            'name' => 'Aciugatrice',
+            'name' => 'Asciugatrice',
         ]);
 
         DB::table('optionals')->insert([
@@ -76,7 +76,7 @@ class OptionalSeeder extends Seeder
         ]);
 
         DB::table('optionals')->insert([
-            'name' => 'Aciugacapelli',
+            'name' => 'Asciugacapelli',
         ]);
 
         DB::table('optionals')->insert([

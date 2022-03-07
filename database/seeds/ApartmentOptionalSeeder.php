@@ -15,53 +15,14 @@ class ApartmentOptionalSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 1,
-            'optional_id' => 1,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 1,
-            'optional_id' => 2,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 1,
-            'optional_id' => 3,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 3,
-            'optional_id' => 4,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 3,
-            'optional_id' => 5,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 3,
-            'optional_id' => 6,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 2,
-            'optional_id' => 6,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 2,
-            'optional_id' => 2,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 2,
-            'optional_id' => 3,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 4,
-            'optional_id' => 1,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 4,
-            'optional_id' => 9,
-        ]);
-        DB::table('apartment_optional')->insert([
-            'apartment_id' => 4,
-            'optional_id' => 5,
-        ]);
+        for ($i=1; $i < 100; $i++) { 
+
+            $a = rand(1,20);
+            $apartment = rand(1,23);
+            DB::table('apartment_optional')->insert([
+                'apartment_id' => $apartment,
+                'optional_id' =>  $a,
+            ]);
+        }
     }
 }

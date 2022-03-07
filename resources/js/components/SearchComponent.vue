@@ -2,20 +2,19 @@
     <div>
         <!-- filtri stanze, letti, raggio distanza -->
         <div class="d-flex my-3">
-            <div>
-                <!-- <label for="rooms">Numero minimo di stanze</label>
-                <input type="number" name="rooms" id="rooms" step="1" v-model.number="rooms"> -->
+            <!-- filtro stanze -->
+            <div class="mx-3">
                 <h6>Minimo {{rooms}} <span v-if="rooms === 1">stanza</span> <span v-if="rooms > 1">stanze</span></h6>
-                <span class="p-1 bg-info" @click="rooms > 1 ? rooms-- : rooms">-</span>
-                <span class="p-1 bg-info" @click="incrementRooms()">+</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="rooms > 1 ? rooms-- : rooms">-</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="incrementRooms()">+</span>
             </div>
-            <div>
+            <!-- filtro letti -->
+            <div  class="mx-3">
                 <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
-                <span class="p-1 bg-info" @click="beds > 1 ? beds-- : beds">-</span>
-                <span class="p-1 bg-info" @click="beds++">+</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="beds > 1 ? beds-- : beds">-</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="beds++">+</span>
             </div>
         </div>
-
         <!-- show all the optionals for the advance search -->
         <div class="text-light">
             <span  v-for="optional in optionals" :key="optional.id">
@@ -25,9 +24,6 @@
                 </span> 
             </span> 
         </div>
-       <!-- <div>{{apartmentsToShow}}</div>
-       <div>{{filteredListofApartments}}</div> -->
-       
         <!-- show apartments from the searched city -->
         <section class="bg-success p-5 d-flex flex-wrap">
             <div 
@@ -56,8 +52,7 @@
 <script>
     export default {
         props:{
-            city: String,//appartamenti ricercati attraverso la città
-            // ApartmentsOptionals: Array,//tabella ponte appartment_optional
+            city: String,//città trovata attraverso l'input
         },
         data() {
             return {
@@ -71,42 +66,28 @@
         },
         mounted(){
             this.getOptionalsApi()
-            ////////////////////////////////////////////////////////////////////////////////////////////////
-            console.log();
-            
             axios.get(`/${this.city}/apartment/optionals`)
             .then(r => {
                 this.apartmentsWithOptionals=r.data;
-
-                // this.apartmentsWithOptionals.forEach(item => {
-                //     item.apartment.show = true;
-                // })
             })
             .catch(e => console.log(e));
-            
         },
         computed: {
             apartmentsToShow() {
                 let apartmentsToShow = [];
-
+                
                 this.apartmentsWithOptionals.forEach(apartmentOptionals => {
-
                     let optionalsOfThisApartment = apartmentOptionals.optionals_id;
-
                     let thisApartmentHasAllOptionals = this.selectedOptionals.every(selectedOptional => {
                         return optionalsOfThisApartment.includes(selectedOptional);
                     });
-
-                    console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
-                        
-                    if(thisApartmentHasAllOptionals && apartmentOptionals.apartment.rooms >= this.rooms) {
+                    // console.log("l'appartamento ha tutti gli optional?", thisApartmentHasAllOptionals);
+                    if(thisApartmentHasAllOptionals  && apartmentOptionals.apartment.rooms >= this.rooms) {
                         apartmentsToShow.push(apartmentOptionals.apartment.id);
                     }
                 });
-                console.log("id degli appartamenti da mostrare:", apartmentsToShow);
-
+                // console.log("id degli appartamenti da mostrare:", apartmentsToShow);
                 console.log(this.rooms);
-
                 return apartmentsToShow;
             },
             filteredListofApartments() {
@@ -123,33 +104,30 @@
                         });
                     });
                 }
-                console.log("lista degli appartamenti da mostrare", filteredListofApartments);
+                // console.log("lista degli appartamenti da mostrare", filteredListofApartments);
                 return filteredListofApartments;
             }
         },
         methods: {
             incrementRooms() {
                 this.rooms++;
+                
             },
             getOptionalsApi(){
                 axios.get('/optionals/get')
                 .then(r => {
-                    // console.log(r.data);
                     this.optionals = r.data;   
                 })
                 .catch(e => console.log(e))
             },
             selectedOptional(id){
-                // console.log(id); 
                 let index =  this.selectedOptionals.indexOf(id);
                 if(index === -1){
                     this.selectedOptionals.push(id);
-                    // this.apartmentsOptionals()
                 }else{
                     this.selectedOptionals.splice(index,1); 
                 }
-                console.log("id degli optional selezionati dall'utente", this.selectedOptionals);
-                // this.compareSelectedOptionals();
+                // console.log("id degli optional selezionati dall'utente", this.selectedOptionals);
             },
         },
     }
