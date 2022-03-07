@@ -5201,8 +5201,8 @@ __webpack_require__.r(__webpack_exports__);
     apartmentsToShow: function apartmentsToShow() {
       var _this2 = this;
 
-      var apartmentsToShow = [];
-      console.log("room:", this.rooms);
+      var apartmentsToShow = []; // console.log("room:" , this.rooms);
+
       this.apartmentsWithOptionals.forEach(function (apartmentOptionals) {
         var optionalsOfThisApartment = apartmentOptionals.optionals_id;
 
@@ -5216,7 +5216,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }); // console.log("id degli appartamenti da mostrare:", apartmentsToShow);
 
-      console.log(this.rooms);
       return apartmentsToShow;
     },
     filteredListofApartments: function filteredListofApartments() {
@@ -5241,12 +5240,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    incrementRooms: function incrementRooms() {
-      this.rooms++;
-    },
-    incrementBeds: function incrementBeds() {
-      this.beds++;
-    },
     getOptionalsApi: function getOptionalsApi() {
       var _this4 = this;
 
@@ -41568,7 +41561,7 @@ var render = function () {
             staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
-                return _vm.incrementRooms()
+                _vm.rooms++
               },
             },
           },
@@ -41603,7 +41596,7 @@ var render = function () {
             staticClass: "py-2 px-3 rounded-circle bg-info",
             on: {
               click: function ($event) {
-                return _vm.incrementBeds()
+                _vm.beds++
               },
             },
           },

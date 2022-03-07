@@ -6,13 +6,13 @@
             <div class="mx-3">
                 <h6>Minimo {{rooms}} <span v-if="rooms === 1">stanza</span> <span v-if="rooms > 1">stanze</span></h6>
                 <span class="py-2 px-3 rounded-circle bg-info" @click="rooms > 1 ? rooms-- : rooms">-</span>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="incrementRooms()">+</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="rooms++">+</span>
             </div>
             <!-- filtro letti -->
             <div  class="mx-3">
                 <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
                 <span class="py-2 px-3 rounded-circle bg-info" @click="beds > 1 ? beds-- : beds">-</span>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="incrementBeds()">+</span>
+                <span class="py-2 px-3 rounded-circle bg-info" @click="beds++">+</span>
             </div>
         </div>
         <!-- show all the optionals for the advance search -->
@@ -75,7 +75,7 @@
         computed: {
             apartmentsToShow() {
                 let apartmentsToShow = [];
-                console.log("room:" , this.rooms);
+                // console.log("room:" , this.rooms);
                 this.apartmentsWithOptionals.forEach(apartmentOptionals => {
                     let optionalsOfThisApartment = apartmentOptionals.optionals_id;
                     
@@ -88,7 +88,6 @@
                     }
                 });
                 // console.log("id degli appartamenti da mostrare:", apartmentsToShow);
-                console.log(this.rooms);
                 return apartmentsToShow;
             },
             filteredListofApartments() {
@@ -110,12 +109,6 @@
             }
         },
         methods: {
-            incrementRooms() {
-                this.rooms++;
-            },
-            incrementBeds(){
-                this.beds++;
-            },
             getOptionalsApi(){
                 axios.get('/optionals/get')
                 .then(r => {
