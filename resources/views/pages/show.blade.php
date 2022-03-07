@@ -68,7 +68,10 @@
                 @endauth
                 
             </div>
-            
+            {{-- mappa --}}
+            <div>
+                <maps-component :apartment="{{$selectApartment}}"></maps-component>
+            </div>
         </div>
         
 
