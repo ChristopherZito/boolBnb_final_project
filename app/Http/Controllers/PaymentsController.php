@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -10,20 +11,21 @@ use App\Sponsorship;
 
 class PaymentsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function sponsorship($id){
         $apartment = Apartment::findOrFail($id);
         $sponsorships = Sponsorship::all();
-
-        /* $gateway = new Braintree\Gateway([
-            'environment' => getenv('BT_ENVIRONMENT'),
-            'merchantId' => getenv('BT_MERCHANT_ID'),
-            'publicKey' => getenv('BT_PUBLIC_KEY'),
-            'privateKey' => getenv('BT_PRIVATE_KEY')
-        ]);
-        dd($gateway); */
         return view('pages.sponsorship', compact('apartment', 'sponsorships'));
     }
     public function payment(Request $request){
-       
+        $data = $request->validate([
+            'price' => 'required',
+            'card_number' => 'required|min:16',
+            'expiring_date' => 'required|min:5'
+        ]);
+        dd($data);
     }
 }
