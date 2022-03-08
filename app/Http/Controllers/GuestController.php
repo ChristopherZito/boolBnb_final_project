@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class GuestController extends Controller
 {
     public function home(){
-        $apartments = Apartment::inRandomOrder()->limit(10)->get();
+        $apartments = Apartment::inRandomOrder()->limit(6)->get();
         return view('pages.home', compact('apartments'));
     }
 

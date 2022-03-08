@@ -5219,6 +5219,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: String //città trovata attraverso l'input
@@ -42253,154 +42287,179 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "d-flex my-3" }, [
-      _c("div", { staticClass: "mx-3" }, [
-        _c("h6", [
-          _vm._v("Minimo " + _vm._s(_vm.rooms) + " "),
-          _vm.rooms === 1 ? _c("span", [_vm._v("stanza")]) : _vm._e(),
-          _vm._v(" "),
-          _vm.rooms > 1 ? _c("span", [_vm._v("stanze")]) : _vm._e(),
-        ]),
-        _vm._v(" "),
+    _c("div", { staticClass: "option-search" }, [
+      _c("div", { staticClass: "dropdown" }, [
         _c(
-          "span",
+          "button",
           {
-            staticClass: "py-2 px-3 rounded-circle bg-info",
-            on: {
-              click: function ($event) {
-                _vm.rooms > 1 ? _vm.rooms-- : _vm.rooms
-              },
+            staticClass: "btn btn-secondary dropdown-toggle",
+            attrs: {
+              type: "button",
+              id: "dropdownMenuButton1",
+              "data-bs-toggle": "dropdown",
+              "aria-expanded": "false",
             },
           },
-          [_vm._v("-")]
+          [_vm._v("\n                optionals\n            ")]
         ),
         _vm._v(" "),
         _c(
-          "span",
+          "ul",
           {
-            staticClass: "py-2 px-3 rounded-circle bg-info",
-            on: {
-              click: function ($event) {
-                _vm.rooms++
-              },
-            },
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "dropdownMenuButton1" },
           },
-          [_vm._v("+")]
+          _vm._l(_vm.optionals, function (optional) {
+            return _c(
+              "li",
+              { key: optional.id, staticClass: " dropdown-item-text" },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    class: _vm.selectedOptionals.includes(optional.id)
+                      ? "btn-success"
+                      : "opt-not-sel",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.selectedOptional(optional.id)
+                      },
+                    },
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(optional.name) +
+                        "\n                    "
+                    ),
+                  ]
+                ),
+              ]
+            )
+          }),
+          0
         ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "mx-3" }, [
-        _c("h6", [
-          _vm._v("Minimo " + _vm._s(_vm.beds) + " "),
-          _vm.beds === 1 ? _c("span", [_vm._v("letto")]) : _vm._e(),
+      _c("div", { staticClass: "my-3 d-flex" }, [
+        _c("div", { staticClass: "mx-3  style-button-search" }, [
+          _c("h6", [
+            _vm._v("Minimo " + _vm._s(_vm.rooms) + " "),
+            _vm.rooms === 1 ? _c("span", [_vm._v("stanza")]) : _vm._e(),
+            _vm._v(" "),
+            _vm.rooms > 1 ? _c("span", [_vm._v("stanze")]) : _vm._e(),
+          ]),
           _vm._v(" "),
-          _vm.beds > 1 ? _c("span", [_vm._v("letti")]) : _vm._e(),
+          _c("div", { staticClass: "style-box-plus-min" }, [
+            _c(
+              "span",
+              {
+                staticClass: "py-2 px-3 style-button-beds-rooms",
+                on: {
+                  click: function ($event) {
+                    _vm.rooms > 1 ? _vm.rooms-- : _vm.rooms
+                  },
+                },
+              },
+              [_vm._v("-")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "py-2 px-3 style-button-beds-rooms",
+                on: {
+                  click: function ($event) {
+                    return _vm.incrementRooms()
+                  },
+                },
+              },
+              [_vm._v("+")]
+            ),
+          ]),
         ]),
         _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "py-2 px-3 rounded-circle bg-info",
-            on: {
-              click: function ($event) {
-                _vm.beds > 1 ? _vm.beds-- : _vm.beds
+        _c("div", { staticClass: "mx-3 style-button-search" }, [
+          _c("h6", [
+            _vm._v("Minimo " + _vm._s(_vm.beds) + " "),
+            _vm.beds === 1 ? _c("span", [_vm._v("letto")]) : _vm._e(),
+            _vm._v(" "),
+            _vm.beds > 1 ? _c("span", [_vm._v("letti")]) : _vm._e(),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "style-box-plus-min" }, [
+            _c(
+              "span",
+              {
+                staticClass: "py-2 px-3 style-button-beds-rooms",
+                on: {
+                  click: function ($event) {
+                    _vm.beds > 1 ? _vm.beds-- : _vm.beds
+                  },
+                },
               },
-            },
-          },
-          [_vm._v("-")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "py-2 px-3 rounded-circle bg-info",
-            on: {
-              click: function ($event) {
-                _vm.beds++
+              [_vm._v("-")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "py-2 px-3 style-button-beds-rooms",
+                on: {
+                  click: function ($event) {
+                    return _vm.incrementBeds()
+                  },
+                },
               },
-            },
-          },
-          [_vm._v("+")]
-        ),
+              [_vm._v("+")]
+            ),
+          ]),
+        ]),
       ]),
     ]),
     _vm._v(" "),
     _c(
-      "div",
-      { staticClass: "text-light" },
-      _vm._l(_vm.optionals, function (optional) {
-        return _c("span", { key: optional.id }, [
-          _c(
-            "span",
-            {
-              staticClass: "d-inline-block rounded m-1 p-2 btn",
-              class: _vm.selectedOptionals.includes(optional.id)
-                ? "btn-success"
-                : "bg-info",
-              on: {
-                click: function ($event) {
-                  return _vm.selectedOptional(optional.id)
-                },
-              },
-            },
-            [
-              _vm._v(
-                "\n                 " + _vm._s(optional.name) + "\n            "
-              ),
-            ]
-          ),
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
       "section",
-      { staticClass: "bg-success p-5 d-flex flex-wrap" },
+      { staticClass: "p-5 style-list-home flex-wrap" },
       [
         _vm._l(_vm.filteredListofApartments, function (result) {
           return _c(
             "div",
-            {
-              key: result.apartment.id,
-              staticClass: "col-6 py-2 border border-dark",
-            },
+            { key: result.apartment.id, staticClass: "col-6 py-2" },
             [
-              _c("div", { staticClass: "img-container" }, [
-                _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
+              _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
+                _c("div", { staticClass: "img-container-search" }, [
                   _c("img", {
-                    staticClass: "img img-fluid",
+                    staticClass: "img img-fluid img-search",
                     attrs: { src: result.apartment.image, alt: "" },
                   }),
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", [
-                _c("span", { staticClass: "text-dark" }, [
-                  _vm._v(" Descrizione: "),
-                ]),
+              _c("div", { staticClass: "style-info-search" }, [
+                _vm._m(0, true),
                 _vm._v(_vm._s(result.apartment.description) + " "),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-dark" }, [_vm._v(" Città: ")]),
+                _vm._m(1, true),
                 _vm._v(_vm._s(result.apartment.city) + " "),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-dark" }, [_vm._v(" Stanze: ")]),
+                _vm._m(2, true),
                 _vm._v(_vm._s(result.apartment.rooms) + " "),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-dark" }, [_vm._v(" Letti: ")]),
+                _vm._m(3, true),
                 _vm._v(_vm._s(result.apartment.beds) + " "),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-dark" }, [_vm._v(" Bagni: ")]),
+                _vm._m(4, true),
                 _vm._v(_vm._s(result.apartment.bathrooms) + " "),
                 _c("br"),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-dark" }, [
-                  _vm._v(" Indirizzo: "),
-                ]),
+                _vm._m(5, true),
                 _vm._v(_vm._s(result.apartment.address) + " "),
                 _c("br"),
               ]),
@@ -42422,7 +42481,44 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Descrizione: ")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Città: ")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Stanze: ")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Letti: ")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Bagni: ")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("strong", [_vm._v("Indirizzo: ")])])
+  },
+]
 render._withStripped = true
 
 

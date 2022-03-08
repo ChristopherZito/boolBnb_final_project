@@ -1,45 +1,79 @@
 <template>
     <div>
-        <!-- filtri stanze, letti, raggio distanza -->
-        <div class="d-flex my-3">
-            <!-- filtro stanze -->
-            <div class="mx-3">
-                <h6>Minimo {{rooms}} <span v-if="rooms === 1">stanza</span> <span v-if="rooms > 1">stanze</span></h6>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="rooms > 1 ? rooms-- : rooms">-</span>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="rooms++">+</span>
+        <div class="option-search">
+            
+        <!-- show all the optionals for the advance search -->
+
+        <!-- ----------------------------------------- -->
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    optionals
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li class=" dropdown-item-text" v-for="optional in optionals" :key="optional.id">
+                        <a class="dropdown-item" href="#" :class="selectedOptionals.includes(optional.id) ? 'btn-success' : 'opt-not-sel'"
+                        @click="selectedOptional(optional.id)">
+                            {{optional.name}}
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <!-- filtro letti -->
-            <div  class="mx-3">
-                <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="beds > 1 ? beds-- : beds">-</span>
-                <span class="py-2 px-3 rounded-circle bg-info" @click="beds++">+</span>
+
+
+            <div class="my-3 d-flex">
+                <!-- filtro stanze -->
+                <div class="mx-3  style-button-search">
+                    <h6>Minimo {{rooms}} <span v-if="rooms === 1">stanza</span> <span v-if="rooms > 1">stanze</span></h6>
+                    <div class="style-box-plus-min">
+                        <span class="py-2 px-3 style-button-beds-rooms" @click="rooms > 1 ? rooms-- : rooms">-</span>
+                        <span class="py-2 px-3 style-button-beds-rooms" @click="incrementRooms()">+</span>
+                    </div>
+                    
+                </div>
+                <!-- filtro letti -->
+                <div  class="mx-3 style-button-search">
+                    <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
+                    <div class="style-box-plus-min">
+                        <span class="py-2 px-3 style-button-beds-rooms" @click="beds > 1 ? beds-- : beds">-</span>
+                        <span class="py-2 px-3 style-button-beds-rooms" @click="incrementBeds()">+</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- show all the optionals for the advance search -->
-        <div class="text-light">
+        
+        
+
+        <!-- ----------------------------------------- -->
+        <!-- <div class="text-light">
             <span  v-for="optional in optionals" :key="optional.id">
                 <span class="d-inline-block rounded m-1 p-2 btn" :class="selectedOptionals.includes(optional.id) ? 'btn-success' : 'bg-info'"
                 @click="selectedOptional(optional.id)">
                      {{optional.name}}
                 </span> 
             </span> 
-        </div>
+        </div> -->
+
+
         <!-- show apartments from the searched city -->
-        <section class="bg-success p-5 d-flex flex-wrap">
+        <section class="p-5 style-list-home flex-wrap">
             <div 
             v-for="result in filteredListofApartments" :key="result.apartment.id"
-            class="col-6 py-2 border border-dark">
+            class="col-6 py-2">
                 <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
-                <div class="img-container">
-                    <a :href="'show/'+ result.apartment.id"><img class="img img-fluid" :src="result.apartment.image" alt=""></a>
-                </div>
-                <div>
-                    <span class="text-dark"> Descrizione: </span>{{result.apartment.description}} <br>
-                    <span class="text-dark"> Città: </span>{{result.apartment.city}} <br>
-                    <span class="text-dark"> Stanze: </span>{{result.apartment.rooms}} <br>
-                    <span class="text-dark"> Letti: </span>{{result.apartment.beds}} <br>
-                    <span class="text-dark"> Bagni: </span>{{result.apartment.bathrooms}} <br>
-                    <span class="text-dark"> Indirizzo: </span>{{result.apartment.address}} <br>
+                
+                <a :href="'show/'+ result.apartment.id">
+                    <div class="img-container-search">
+                        <img class="img img-fluid img-search" :src="result.apartment.image" alt="">
+                    </div>
+                </a>
+                
+                <div class="style-info-search">
+                    <span><strong>Descrizione: </strong> </span>{{result.apartment.description}} <br>
+                    <span><strong>Città: </strong></span>{{result.apartment.city}} <br>
+                    <span><strong>Stanze: </strong></span>{{result.apartment.rooms}} <br>
+                    <span><strong>Letti: </strong></span>{{result.apartment.beds}} <br>
+                    <span><strong>Bagni: </strong></span>{{result.apartment.bathrooms}} <br>
+                    <span><strong>Indirizzo: </strong></span>{{result.apartment.address}} <br>
                 </div>
             </div>
             <div v-if="filteredListofApartments.length === 0">

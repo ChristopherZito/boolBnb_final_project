@@ -19150,6 +19150,10 @@ body {
   margin-left: 15px;
 }
 
+#position-header {
+  z-index: 9999;
+}
+
 @media (max-width: 575.98px) {
   header {
     position: fixed;
@@ -19455,6 +19459,7 @@ body {
 .container-dashboard a .container-info {
   margin-left: 20px;
   font-size: 25px;
+  width: 800px;
 }
 
 @media (max-width: 575.98px) {
@@ -19476,6 +19481,7 @@ body {
   .container-dashboard a .container-info {
     margin-left: 20px;
     font-size: 10px;
+    width: 300px;
   }
 }
 
@@ -19533,8 +19539,128 @@ body {
   }
 }
 
+.style-home {
+  position: relative;
+}
+
+.style-carousel {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.style-carousel .style-img-carousel {
+  height: 400px;
+}
+
+.style-carousel .style-img-carousel .w-100 {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 575.98px) {
+  .style-carousel {
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .style-carousel .style-img-carousel {
+    height: 200px;
+  }
+
+  .style-carousel .style-img-carousel .w-100 {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.container-apart-home a {
+  color: black;
+  text-decoration: none;
+}
+
+.style-home-spons {
+  height: 200px;
+}
+
+.style-home-spons .img-home {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.text-home-apart {
+  margin-bottom: 20px;
+}
+
+.img-container-search {
+  width: 700px;
+  height: 400px;
+  margin: 20px 0;
+}
+
+.img-container-search .img-search {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.style-button-search {
+  display: flex;
+  flex-direction: column;
+}
+
+.style-button-search .style-box-plus-min {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.style-button-beds-rooms {
+  background-color: cornflowerblue;
+  border: 1px solid burlywood;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.style-info-search {
+  font-size: 18px;
+}
+
+.option-search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.style-list-home {
+  display: flex;
+}
+
+.btn-success {
+  background-color: #38c172 !important;
+}
+
+.opt-not-sel {
+  background-color: lightgray;
+}
+
 #back-footer {
   background-color: #f7f7f7;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
 }
 
 #back-footer .colonne-footer {

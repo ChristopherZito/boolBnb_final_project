@@ -33,6 +33,9 @@ body{
 }
 
 // header
+#position-header{
+    z-index: 9999;
+}
 @include media-breakpoint-only(xs) { 
     header{
         position: fixed;
@@ -185,6 +188,7 @@ body{
 
 //dashboard/profilo
 
+
 .style-title{
     margin: 20px 0 20px 20px;
     width: 10%;
@@ -314,6 +318,7 @@ body{
         .container-info{
             margin-left: 20px;
             font-size: 25px;
+            width: 800px;
         }
     }
 }
@@ -332,6 +337,7 @@ body{
             .container-info{
                 margin-left: 20px;
                 font-size: 10px;
+                width: 300px;
             }
         }
     }
@@ -391,12 +397,129 @@ body{
         margin-top: 150px ;
     }
  }
+ .style-home{
+     position: relative;
+ }
 
 
+ 
+
+ .style-carousel{
+     width: 70%;
+     margin: 20px auto;
+     .style-img-carousel{
+         height: 400px;
+         .w-100{
+             object-fit: cover;
+             width: 100%;
+             height: 100%;
+         }
+     }
+ }
+
+ @include media-breakpoint-only(xs) { 
+    .style-carousel{
+        width: 100%;
+        margin: 20px auto;
+        .style-img-carousel{
+            height: 200px;
+            .w-100{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+ }
+
+
+.container-apart-home{
+    a {
+        color: black;
+        text-decoration: none;
+    }
+}
+
+
+ .style-home-spons{
+     height: 200px;
+     .img-home{
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+         border-radius: 5px;
+     }
+ }
+ .text-home-apart{
+     margin-bottom: 20px;
+ }
+
+
+
+ //search-page
+ .img-container-search{
+    width: 700px;
+    height: 400px;
+    margin: 20px 0;
+
+    .img-search{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+ }
+
+.style-button-search{
+    display: flex;
+    flex-direction: column;
+    .style-box-plus-min{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.style-button-beds-rooms{
+    background-color: cornflowerblue;
+    border:1px solid burlywood;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+ .style-info-search{
+     font-size: 18px;
+ }
+
+ .option-search{
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+ }
+
+ .style-list-home{
+     display: flex;
+ }
+
+ .btn-success{
+    background-color: #38c172 !important;
+ }
+ .opt-not-sel{
+     background-color: lightgray;
+ }
 
 //footer
 #back-footer{
     background-color: rgba(247,247,247,255);
+    width: 100%;
+    // position: absolute;
+    bottom:0px;
+    left:0px;
     .colonne-footer{
         margin-top: 30px;
         ul{
