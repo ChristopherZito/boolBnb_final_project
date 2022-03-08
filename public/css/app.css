@@ -19598,6 +19598,64 @@ body {
   margin-bottom: 20px;
 }
 
+.img-container-search {
+  width: 700px;
+  height: 400px;
+  margin: 20px 0;
+}
+
+.img-container-search .img-search {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.style-button-search {
+  display: flex;
+  flex-direction: column;
+}
+
+.style-button-search .style-box-plus-min {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.style-button-beds-rooms {
+  background-color: cornflowerblue;
+  border: 1px solid burlywood;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.style-info-search {
+  font-size: 18px;
+}
+
+.option-search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.style-list-home {
+  display: flex;
+}
+
+.btn-success {
+  background-color: #38c172 !important;
+}
+
+.opt-not-sel {
+  background-color: lightgray;
+}
+
 #back-footer {
   background-color: #f7f7f7;
   width: 100%;
