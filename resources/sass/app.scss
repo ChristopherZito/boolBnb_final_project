@@ -33,6 +33,9 @@ body{
 }
 
 // header
+#position-header{
+    z-index: 9999;
+}
 @include media-breakpoint-only(xs) { 
     header{
         position: fixed;
@@ -184,6 +187,7 @@ body{
 
 
 //dashboard/profilo
+
 
 .style-title{
     margin: 20px 0 20px 20px;
@@ -391,12 +395,60 @@ body{
         margin-top: 150px ;
     }
  }
+ .style-home{
+     position: relative;
+ }
+
+
+ 
+
+ .style-carousel{
+     width: 70%;
+     margin: 20px auto;
+     .style-img-carousel{
+         height: 400px;
+         .w-100{
+             object-fit: cover;
+             width: 100%;
+             height: 100%;
+         }
+     }
+ }
+
+ @include media-breakpoint-only(xs) { 
+    .style-carousel{
+        width: 100%;
+        margin: 20px auto;
+        .style-img-carousel{
+            height: 200px;
+            .w-100{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+ }
+
+ .style-home-spons{
+     padding-bottom:20px;
+     height: 200px;
+     img{
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+     }
+ }
 
 
 
 //footer
 #back-footer{
     background-color: rgba(247,247,247,255);
+    width: 100%;
+    // position: absolute;
+    bottom:0px;
+    left:0px;
     .colonne-footer{
         margin-top: 30px;
         ul{

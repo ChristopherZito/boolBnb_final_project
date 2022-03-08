@@ -85,7 +85,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Milano',
             'latitude' => 45.4408963,
             'longitude' => 9.1377814,
-            'image' => 'https://unsplash.it/300/300?image=3',
+            'image' => 'https://st3.idealista.it/news/archivie/styles/news_detail/public/2019-01/ap_prefabbricata_in_legno.jpg?sv=e9w754uH&itok=qNpDKfg8',
             'visibility' => 1,
             'user_id' => 3,
 
@@ -100,7 +100,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Milano',
             'latitude' => 45.4408963,
             'longitude' => 9.1377814,
-            'image' => 'https://unsplash.it/300/300?image=4',
+            'image' => 'https://www.lidimare.com/images/00950/venditacaselidiferraresi_large.jpeg',
             'visibility' => 1,
             'user_id' => 4,
 
@@ -115,7 +115,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Milano',
             'latitude' => 45.4408963,
             'longitude' => 9.1377814,
-            'image' => 'https://unsplash.it/300/300?image=5',
+            'image' => 'https://www.easyservicesolutions.com/wp-content/uploads/2018/07/Case-moderne.jpg',
             'visibility' => 1,
             'user_id' => 5,
 
@@ -132,7 +132,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Roma',
             'latitude' => 41.8838611,
             'longitude' => 12.4765523,
-            'image' => 'https://unsplash.it/300/300?image=1',
+            'image' => 'https://www.barraebarra.com/wp-content/uploads/2020/04/casa-prefabbricata-bioedilizia-1-1000x640-1.jpg',
             'visibility' => 1,
             'user_id' => 1,
 
@@ -147,7 +147,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Roma',
             'latitude' => 41.8858311,
             'longitude' => 12.4865223,
-            'image' => 'https://unsplash.it/300/300?image=1',
+            'image' => 'https://www.wolfhaus.it/cache/media/2021/01/2019-07-25_conti_isera_tn_150179-2017_274_ws_190725_1026_dp_jaist_1777.jpg/0cb18ea34b0bf653d0de8e7c642035f4.jpg',
             'visibility' => 1,
             'user_id' => 2,
 
@@ -162,7 +162,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Roma',
             'latitude' => 41.8383811,
             'longitude' => 12.476923,
-            'image' => 'https://unsplash.it/300/300?image=1',
+            'image' => 'https://blog.etinet.it/wp-content/uploads/2016/07/case-dani.jpg',
             'visibility' => 1,
             'user_id' => 3,
 
@@ -192,7 +192,7 @@ class ApartmentSeeder extends Seeder
             'city' => 'Roma',
             'latitude' => 41.8138315,
             'longitude' => 12.4765523,
-            'image' => 'https://unsplash.it/300/300?image=1',
+            'image' => 'https://www.barraebarra.com/wp-content/uploads/2020/04/casa-prefabbricata-in-legno-1000x640-1.jpg',
             'visibility' => 1,
             'user_id' => 5,
 
