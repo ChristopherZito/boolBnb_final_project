@@ -48,3 +48,4 @@ Route::get('/{city}/apartment/optionals', 'GuestController@getApiApartmentOption
 
 //send message 
 Route::post('/message/store/{id}', 'GuestController@messageStore') ->name('messageStore');
+Route::get('/message/store/success/{id}', 'GuestController@messageStoreSuccess') -> name('messageStoreSuccess'); 

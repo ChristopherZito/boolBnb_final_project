@@ -80,6 +80,11 @@ class GuestController extends Controller
         $message->apartment()->associate($apartment);
         $message->save();
         
-        return redirect() -> route('home');
+        return redirect() -> route('messageStoreSuccess', $apartment -> id);
+    }
+
+    public function messageStoreSuccess($id){
+        $apartment = Apartment::findOrFail($id);
+        return view('pages.messageSaved', compact('apartment'));
     }
 }
