@@ -21,8 +21,10 @@ export default {
         this.initializeMap();
         // console.log(this.lat," & ", this.lon); //45.4855254 ' & ' 9.231835
     },
+    // npm i @tomtom-international/web-sdk-maps
+    // npm i @tomtom-international/web-sdk-services
     methods: {
-        initializeMap() {
+        initializeMap() { 
             this.map = tt.map({
             key: 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI',
             container: this.$refs.mapRef,
