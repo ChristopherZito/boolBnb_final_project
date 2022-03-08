@@ -36,12 +36,40 @@
           
           <div class="row">
             @foreach ($apartments as $apartment)
-            <div class="col-lg-3 col-sm-12 style-home-spons">
-              <img class="img-preview" src="{{$apartment -> image}}" alt="">
+            <div class="col-lg-4 col-sm-12 container-apart-home">
+              
+                <a href="{{route('show', $apartment -> id )}}">
+                  <div class="style-home-spons">
+                    <img class="img-preview img-home" src="{{$apartment -> image}}" alt="">
+                  </div>
+                  <div class="text-home-apart">
+                    Description: {{$apartment -> description }} <br>
+                    City: {{$apartment -> city}} <br>
+                  </div>
+                </a>
+              
+              
+              
             </div>
             @endforeach
           </div>
           
+          {{-- <a href="{{route('show', $apartment -> id )}}">
+            <div class="align-row">
+                <div class="img-container">
+                    <img class="img-preview" src="{{$apartment -> image}}" alt="">
+                </div>
+                <div class="container-info">
+                    
+                    Address: {{$apartment -> address}} <br>
+                    
+                </div>
+                
+            </div>
+            
+        </a> --}}
+
+
         </div>
     
 </section>
