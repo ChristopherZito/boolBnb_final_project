@@ -26,7 +26,7 @@
                     <h6>Minimo {{rooms}} <span v-if="rooms === 1">stanza</span> <span v-if="rooms > 1">stanze</span></h6>
                     <div class="style-box-plus-min">
                         <span class="py-2 px-3 style-button-beds-rooms" @click="rooms > 1 ? rooms-- : rooms">-</span>
-                        <span class="py-2 px-3 style-button-beds-rooms" @click="incrementRooms()">+</span>
+                        <span class="py-2 px-3 style-button-beds-rooms" @click="rooms++">+</span>
                     </div>
                     
                 </div>
@@ -35,7 +35,7 @@
                     <h6>Minimo {{beds}} <span v-if="beds === 1">letto</span> <span v-if="beds > 1">letti</span></h6>
                     <div class="style-box-plus-min">
                         <span class="py-2 px-3 style-button-beds-rooms" @click="beds > 1 ? beds-- : beds">-</span>
-                        <span class="py-2 px-3 style-button-beds-rooms" @click="incrementBeds()">+</span>
+                        <span class="py-2 px-3 style-button-beds-rooms" @click="beds++">+</span>
                     </div>
                 </div>
             </div>

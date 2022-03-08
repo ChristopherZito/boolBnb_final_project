@@ -42387,7 +42387,7 @@ var render = function () {
                 staticClass: "py-2 px-3 style-button-beds-rooms",
                 on: {
                   click: function ($event) {
-                    return _vm.incrementRooms()
+                    _vm.rooms++
                   },
                 },
               },
@@ -42424,7 +42424,7 @@ var render = function () {
                 staticClass: "py-2 px-3 style-button-beds-rooms",
                 on: {
                   click: function ($event) {
-                    return _vm.incrementBeds()
+                    _vm.beds++
                   },
                 },
               },
