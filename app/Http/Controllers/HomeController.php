@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Apartment;
 use App\Optional;
 use App\User;
+use App\Sponsorship;
 
 use Illuminate\Http\Request;
 
@@ -18,8 +19,7 @@ class HomeController extends Controller
     }
 
 
-    public function dashboard()
-    {
+    public function dashboard(){
         $apartments = [];
         $allApartments = Apartment::all();
         foreach ($allApartments as $apartment){

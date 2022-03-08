@@ -62,7 +62,7 @@
                         <div class="row-6">
                             <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
                             <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
-                            <a class="btn btn-primary btn-user-command" href="">Sponsorship</a> 
+                            <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
                         </div>
                     @endif   
                 @endauth
