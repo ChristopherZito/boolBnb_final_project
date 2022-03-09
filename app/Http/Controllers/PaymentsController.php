@@ -91,7 +91,7 @@ class PaymentsController extends Controller
                 $apartment -> update($data);
                 $apartment->save();
             //?--------------------------------------------
-            return redirect() -> route('show', $apartment -> id);
+            return redirect() -> route('paymentSuccess', $apartment -> id);
         }else {
             $errorString = "";
             foreach($result->errors->deepAll() as $error) {
@@ -101,6 +101,10 @@ class PaymentsController extends Controller
             return redirect() -> route('home');
         }
     ////
-        
+    }
+
+    public function paymentSuccess($id){
+        $apartment = Apartment::findOrFail($id);
+        return view('pages.paymentSuccess', compact('apartment'));
     }
 }
