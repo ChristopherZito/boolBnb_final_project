@@ -30,6 +30,22 @@ class GuestController extends Controller
         ]);
         $city = $data['city'];
 
+        return view('pages.search', compact('city'));
+    }
+
+    public function distance($lat1, $lon1, $lat2, $lon2) {
+
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+      
+        return round($miles * 1.609344);
+    }
+
+    public function getApiApartmentOptionals($city){
+
         // richiesta delle coordinate della città inserita nella barra di ricerca
 
         define('API_KEY', 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI');
@@ -54,7 +70,7 @@ class GuestController extends Controller
         if(!$results){
             return 'Non abbiamo trovato la città';
         }
-        
+
         foreach ($results as $result) {
 
             if($result['entityType'] === "Municipality") {
@@ -67,11 +83,13 @@ class GuestController extends Controller
     
                     $lat = $cordinate['lat'];
                     $lon = $cordinate['lon'];
+                    break;
                     
-                } else {
-                    return 'Non abbiamo trovato la tua città';
                 }
             }
+        }
+        if(!$lat) {
+            return 'Non abbiamo trovato la tua città';
         }
 
         // $apartments = DB::table('apartments')->whereBetween('latitude', [$lat-1, $lat+1])->get();
@@ -89,26 +107,6 @@ class GuestController extends Controller
                 $apartments []= $apartment;
             }
         }
-
-        dd($apartments);
-
-        return view('pages.search', compact('city'));
-    }
-
-    public function distance($lat1, $lon1, $lat2, $lon2) {
-
-        $theta = $lon1 - $lon2;
-        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-        $dist = acos($dist);
-        $dist = rad2deg($dist);
-        $miles = $dist * 60 * 1.1515;
-      
-        return round($miles * 1.609344);
-    }
-
-    public function getApiApartmentOptionals($city){
-
-        
 
         // qui inizia la parte già funzionante
 
