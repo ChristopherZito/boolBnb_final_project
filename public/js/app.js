@@ -5289,6 +5289,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: String //città trovata attraverso l'input
@@ -5303,14 +5308,15 @@ __webpack_require__.r(__webpack_exports__);
       searchedApartments: [],
       apartmentsWithOptionals: [],
       rooms: 1,
-      beds: 1
+      beds: 1,
+      userDistance: 20
     };
   },
   mounted: function mounted() {
     var _this = this;
 
     this.getOptionalsApi();
-    axios.get("/".concat(this.city, "/apartment/optionals")).then(function (r) {
+    axios.get("/".concat(this.city, "/").concat(this.userDistance, "/apartment/optionals")).then(function (r) {
       _this.apartmentsWithOptionals = r.data;
     })["catch"](function (e) {
       return console.log(e);
@@ -5377,6 +5383,15 @@ __webpack_require__.r(__webpack_exports__);
         this.selectedOptionals.splice(index, 1);
       } // console.log("id degli optional selezionati dall'utente", this.selectedOptionals);
 
+    },
+    newDistanceValue: function newDistanceValue() {
+      var _this5 = this;
+
+      axios.get("/".concat(this.city, "/").concat(this.userDistance, "/apartment/optionals")).then(function (r) {
+        _this5.apartmentsWithOptionals = r.data;
+      })["catch"](function (e) {
+        return console.log(e);
+      });
     }
   }
 });
@@ -42401,6 +42416,32 @@ var render = function () {
           }),
           0
         ),
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("label", { attrs: { for: "" } }, [_vm._v("Raggio di ricerca (km)")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.userDistance,
+              expression: "userDistance",
+            },
+          ],
+          attrs: { type: "number", name: "userDistance", step: "5", min: "5" },
+          domProps: { value: _vm.userDistance },
+          on: {
+            change: _vm.newDistanceValue,
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.userDistance = $event.target.value
+            },
+          },
+        }),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "my-3 d-flex" }, [

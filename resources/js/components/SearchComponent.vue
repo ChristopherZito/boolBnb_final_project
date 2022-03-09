@@ -19,6 +19,11 @@
                 </ul>
             </div>
 
+            <div>
+                <label for="">Raggio di ricerca (km)</label>
+                <input type="number" name="userDistance" step="5" min="5" v-model="userDistance" @change="newDistanceValue">
+            </div>
+
 
             <div class="my-3 d-flex">
                 <!-- filtro stanze -->
@@ -95,12 +100,13 @@
                 searchedApartments: [],
                 apartmentsWithOptionals: [],
                 rooms: 1,
-                beds: 1
+                beds: 1,
+                userDistance: 20
             }
         },
         mounted(){
             this.getOptionalsApi()
-            axios.get(`/${this.city}/apartment/optionals`)
+            axios.get(`/${this.city}/${this.userDistance}/apartment/optionals`)
             .then(r => {
                 this.apartmentsWithOptionals=r.data;
             })
@@ -159,6 +165,14 @@
                 }
                 // console.log("id degli optional selezionati dall'utente", this.selectedOptionals);
             },
+            newDistanceValue() {
+                axios
+                .get(`/${this.city}/${this.userDistance}/apartment/optionals`)
+                .then(r => {
+                    this.apartmentsWithOptionals = r.data;
+                })
+                .catch(e => console.log(e))
+            }
         },
     }
 </script>

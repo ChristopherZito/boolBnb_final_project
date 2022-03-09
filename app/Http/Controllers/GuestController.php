@@ -44,7 +44,7 @@ class GuestController extends Controller
         return round($miles * 1.609344);
     }
 
-    public function getApiApartmentOptionals($city){
+    public function getApiApartmentOptionals($city, $userDistance){
 
         // richiesta delle coordinate della città inserita nella barra di ricerca
 
@@ -103,7 +103,7 @@ class GuestController extends Controller
 
             $distance = $this->distance($lat, $lon, $lat2, $lon2);
             
-            if($distance <= 20) {
+            if($distance <= $userDistance) {
                 $apartments []= $apartment;
             }
         }
