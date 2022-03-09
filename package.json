@@ -29,6 +29,7 @@
         "@tomtom-international/web-sdk-maps": "^6.18.0",
         "@tomtom-international/web-sdk-services": "^6.18.0",
         "braintree": "^3.10.0",
+        "braintree-web-drop-in": "^1.33.0",
         "font-awesome": "^4.7.0"
     }
 }

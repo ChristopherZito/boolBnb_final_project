@@ -38,14 +38,8 @@
             @endif
         @endforeach
 
-
         <div class="style-add-title">
-            <h3 >
-                Aggiungi Appartamento
-            </h3>
-        </div>
-        <div class="style-add">
-            <a class="btn btn-primary btn-user-command"href="{{route('create')}}">ADD</a>
+            <h3 ><a class="link-light" href="{{route('create')}}">Aggiungi Appartamento</a></h3>
         </div>
     </section>
     
