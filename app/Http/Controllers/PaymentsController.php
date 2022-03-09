@@ -34,31 +34,7 @@ class PaymentsController extends Controller
         return view('pages.sponsorship', compact('apartment', 'sponsorships', 'gateway'));
     }
     public function payment(Request $request, $id){
-        //?--------------------------------------------
-        $dateTime = date('y-m-d h:i:s');
-        $dateTimeEnd = new DateTime($dateTime);
-        //--------------------------------------
-        $data['payment_dateTime'] = $dateTime;
-        $data['start_sponsorship'] = $dateTime;
-
-        // creazione data in base al costo
-        if($amount = '2.99'){
-            $dateTimeEnd->modify("+1 day");//lo "sposto" di 24 ore in avanti
-            $data['end_sponsorship'] = $dateTimeEnd;
-        }else if($amount = '5.99'){
-            $dateTimeEnd->modify("+3 day");//lo "sposto" 72 ore in avanti
-            $data['end_sponsorship'] = $dateTimeEnd;
-        }else if($amount = '9.99'){
-            $dateTimeEnd->modify("+6 day");//lo "sposto" 144 ore in avanti
-            $data['end_sponsorship'] = $dateTimeEnd;
-        } 
-        $apartment = Apartment::findOrFail($id);
-        $sponsorship = Sponsorship::findOrFail($request -> get('amount'));
-        $apartment -> sponsorships() -> attach($sponsorship);
-        $apartment -> update($data);
-        $apartment->save();
     ////
-        /* Use payment method nonce here */
         $gateway = new Braintree\Gateway([
             'environment' => getenv('BT_ENVIRONMENT'),
             'merchantId' => getenv('BT_MERCHANT_ID'),
@@ -67,9 +43,11 @@ class PaymentsController extends Controller
         ]);
 
         $amount = $_POST["amount"];
+
         //! ERROR codice non funzionante
-        //TODO $nonce = $_POST["payment_method_nonce"]; 
-        //* 'fake-valid-nonce' "FAKER"
+            // $nonce = $_POST["payment_method_nonce"]; 
+        //! 'fake-valid-nonce' "FAKER"
+
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => 'fake-valid-nonce',
@@ -80,6 +58,30 @@ class PaymentsController extends Controller
         //!-------------------------------------------- 
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
+            //?--------------------------------------------
+                $dateTime = date('y-m-d h:i:s');
+                $dateTimeEnd = new DateTime($dateTime);
+                //--------------------------------------
+                $data['payment_dateTime'] = $dateTime;
+                $data['start_sponsorship'] = $dateTime;
+
+                // creazione data in base al costo
+                if($amount = '2.99'){
+                    $dateTimeEnd->modify("+1 day");//lo "sposto" di 24 ore in avanti
+                    $data['end_sponsorship'] = $dateTimeEnd;
+                }else if($amount = '5.99'){
+                    $dateTimeEnd->modify("+3 day");//lo "sposto" 72 ore in avanti
+                    $data['end_sponsorship'] = $dateTimeEnd;
+                }else if($amount = '9.99'){
+                    $dateTimeEnd->modify("+6 day");//lo "sposto" 144 ore in avanti
+                    $data['end_sponsorship'] = $dateTimeEnd;
+                } 
+                $apartment = Apartment::findOrFail($id);
+                $sponsorship = Sponsorship::findOrFail($request -> get('amount'));
+                $apartment -> sponsorships() -> attach($sponsorship);
+                $apartment -> update($data);
+                $apartment->save();
+            //?--------------------------------------------
             return redirect() -> route('show', $apartment -> id);
         }else {
             $errorString = "";
