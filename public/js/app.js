@@ -55096,8 +55096,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Francesco Santi\Documents\Santi Francesco\Corsi\Boolean\Esercitazioni pomeridiane\progetto-finale\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Francesco Santi\Documents\Santi Francesco\Corsi\Boolean\Esercitazioni pomeridiane\progetto-finale\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
