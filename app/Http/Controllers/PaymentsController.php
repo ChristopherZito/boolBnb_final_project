@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Apartment;
 use App\Sponsorship;
+use App\ApartmentSponsorship;
 use DateTime;
 
 use Braintree;
@@ -64,32 +65,42 @@ class PaymentsController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
+    ////    
         //!-------------------------------------------- 
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
             //?--------------------------------------------
+                $data = $request->validate([
+                    'payment_dateTime',
+                    'start_sponsorship',
+                    'end_sponsorship',
+                ]);
                 $dateTime = date('y-m-d h:i:s');
                 $dateTimeEnd = new DateTime($dateTime);
                 //--------------------------------------
                 $data['payment_dateTime'] = $dateTime;
                 $data['start_sponsorship'] = $dateTime;
-
                 // creazione data in base al costo
-                if($amount = '2.99'){
+
+                if($amount == 2.99){
                     $dateTimeEnd->modify("+1 day");//lo "sposto" di 24 ore in avanti
-                    $data['end_sponsorship'] = $dateTimeEnd;
-                }else if($amount = '5.99'){
+                    $result = $dateTimeEnd->format('Y-m-d H:i:s');
+                    $data['end_sponsorship'] = $result;
+                }else if($amount == 5.99){
                     $dateTimeEnd->modify("+3 day");//lo "sposto" 72 ore in avanti
-                    $data['end_sponsorship'] = $dateTimeEnd;
-                }else if($amount = '9.99'){
+                    $result = $dateTimeEnd->format('Y-m-d H:i:s');
+                    $data['end_sponsorship'] = $result;
+                }else if($amount == 9.99){
                     $dateTimeEnd->modify("+6 day");//lo "sposto" 144 ore in avanti
-                    $data['end_sponsorship'] = $dateTimeEnd;
-                } 
+                    $result = $dateTimeEnd->format('Y-m-d H:i:s');
+                    $data['end_sponsorship'] = $result;
+                }
+                //! dd($data);
                 $apartment = Apartment::findOrFail($id);
-                
                 $apartment -> sponsorships() -> attach($sponsorship);
                 $apartment -> update($data);
-                $apartment->save();
+                $apartment -> save();
+                
             //?--------------------------------------------
             return redirect() -> route('paymentSuccess', $apartment -> id);
         }else {
@@ -100,7 +111,6 @@ class PaymentsController extends Controller
             $_SESSION["errors"] = $errorString;
             return redirect() -> route('home');
         }
-    ////
     }
 
     public function paymentSuccess($id){

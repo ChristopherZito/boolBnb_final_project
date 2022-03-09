@@ -30,24 +30,8 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
-  <div class="container">
-    <div class="row">
-      {{-- @foreach ($sponsoredApartmentsArr as $apartment)
-      <div class="col-lg-4 col-sm-12 container-apart-home">
-        <a href="{{route('show', $apartment -> id )}}">
-          <div class="style-home-spons">
-            <img class="img-preview img-home" src="{{$apartment -> image}}" alt="">
-          </div>
-          <div class="text-home-apart">
-            Description: {{$apartment -> description }} <br>
-            City: {{$apartment -> city}} <br>
-          </div>
-        </a>              
-      </div>
-      @endforeach --}}
-    </div>
-  </div>
+  
+  <sponsorship-component></sponsorship-component>
 
   <div class="container">
     <div class="row">

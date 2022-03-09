@@ -55,3 +55,6 @@ Route::get('/message/store/success/{id}', 'GuestController@messageStoreSuccess')
 Route::get('/sponsorship/{id}', 'PaymentsController@sponsorship') -> name('sponsorship');
 Route::post('/payment/{id}', 'PaymentsController@payment') -> name('payment');
 Route::get('/payment/success/{id}', 'PaymentsController@paymentSuccess') -> name('paymentSuccess'); 
+
+//axios call for sponsored apartment
+Route::get('/axios/sponsoredapartment', 'GuestController@getApiSponsoredApartment') -> name('getApiSponsoredApartment');

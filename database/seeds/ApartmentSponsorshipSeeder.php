@@ -29,7 +29,7 @@ class ApartmentSponsorshipSeeder extends Seeder
                 }else{
                     $dateTimeEnd->modify("+6 day");//lo "sposto" 144 ore in avanti
                 } 
-
+                $result = $dateTimeEnd->format('Y-m-d H:i:s');
                 $apartment = rand(1,20);
                 DB::table('apartment_sponsorship')->insert([
                     'payment_dateTime' => $dateTimePayment,

@@ -1,6 +1,6 @@
 @extends('layouts.main-layout')
 @section('title')
-    Thanks for tour Sponsor!
+    Thanks for your Sponsor!
 @endsection
 @section('content')
 <div class="text-center py-5">

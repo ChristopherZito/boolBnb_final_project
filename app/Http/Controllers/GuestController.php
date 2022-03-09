@@ -14,22 +14,23 @@ class GuestController extends Controller
 {
     public function home(){
         $apartments = Apartment::inRandomOrder()->limit(6)->get();
-
+        return view('pages.home', compact('apartments'));
+    }
+    public function getApiSponsoredApartment(){
         $sponsoredApartments = Apartment::all();
-        // dd($sponsoredApartment);
 
         $sponsoredApartmentsArr = [];
         foreach ($sponsoredApartments as $sponsoredApartment){
             $sponsorships_id = DB::table('apartment_sponsorship')->where('apartment_id', $sponsoredApartment -> id)->get();
-
-            $sponsoredApartmentsArr[] = 
-            [
-                'sponsoredApartment' => $sponsoredApartment,
-                'sponsorships_id' => $sponsorships_id,
-            ];
+            if(count($sponsorships_id) != 0){
+                $sponsoredApartmentsArr[] = 
+                [
+                    'sponsoredApartment' => $sponsoredApartment,
+                    'sponsorships_id' => $sponsorships_id,
+                ];
+            }
         }
-        // dd($sponsoredApartmentsArr);
-        return view('pages.home', compact('apartments'));
+       return json_encode($sponsoredApartmentsArr);
     }
 
     public function show($id){
