@@ -31,6 +31,10 @@ class PaymentsController extends Controller
         //! composer require laravel/cashier-braintree
         //! npm i braintree-web-drop-in
         //! npm i braintree
+        //? BT_ENVIRONMENT=sandbox
+        //? BT_MERCHANT_ID=y7wk79q94jzg3hzd
+        //? BT_PUBLIC_KEY=f8fg287qdt7qrzzv
+        //? BT_PRIVATE_KEY=382f628ad5ca782584424465c0bd879d
         return view('pages.sponsorship', compact('apartment', 'sponsorships', 'gateway'));
     }
     public function payment(Request $request, $id){
@@ -41,8 +45,13 @@ class PaymentsController extends Controller
             'publicKey' => getenv('BT_PUBLIC_KEY'),
             'privateKey' => getenv('BT_PRIVATE_KEY')
         ]);
-
-        $amount = $_POST["amount"];
+        $sponsorship = Sponsorship::findOrFail($request -> get('amount'));
+        $sponsorships = Sponsorship::all();
+        foreach($sponsorships as $getsponsorship ){
+            if($getsponsorship -> id == $sponsorship -> id){
+                $amount = $getsponsorship -> price;
+            }            
+        } 
 
         //! ERROR codice non funzionante
             // $nonce = $_POST["payment_method_nonce"]; 
@@ -77,7 +86,7 @@ class PaymentsController extends Controller
                     $data['end_sponsorship'] = $dateTimeEnd;
                 } 
                 $apartment = Apartment::findOrFail($id);
-                $sponsorship = Sponsorship::findOrFail($request -> get('amount'));
+                
                 $apartment -> sponsorships() -> attach($sponsorship);
                 $apartment -> update($data);
                 $apartment->save();
