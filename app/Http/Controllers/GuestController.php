@@ -45,11 +45,90 @@ class GuestController extends Controller
             'city' => 'required|string'
         ]);
         $city = $data['city'];
+
         return view('pages.search', compact('city'));
     }
-    public function getApiApartmentOptionals($city){
+
+    public function distance($lat1, $lon1, $lat2, $lon2) {
+
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+      
+        return round($miles * 1.609344);
+    }
+
+    public function getApiApartmentOptionals($city, $userDistance){
+
+        // richiesta delle coordinate della città inserita nella barra di ricerca
+
+        define('API_KEY', 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI');
+        define('API_URL', 'https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT');
+
+        $url = API_URL . '&municipality=' .  urlencode($city) . '&language=it-IT&view=Unified&key=' . API_KEY;
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $response = curl_exec($ch);
+        if(curl_error($ch)) {
+            return null;
+        }
+        $dataCord = json_decode($response, true);
+
+        $results = $dataCord['results'];
+        
+        if(!$results){
+            return 'Non abbiamo trovato la città';
+        }
+
+        foreach ($results as $result) {
+
+            if($result['entityType'] === "Municipality") {
+
+                $foundcity = $result['address']['municipality'];
+                
+                if (strtolower($foundcity) === strtolower($city) ) {
+                    // dd($result['position']);
+                    $cordinate = $result['position'];
+    
+                    $lat = $cordinate['lat'];
+                    $lon = $cordinate['lon'];
+                    break;
+                    
+                }
+            }
+        }
+        if(!$lat) {
+            return 'Non abbiamo trovato la tua città';
+        }
+
+        // $apartments = DB::table('apartments')->whereBetween('latitude', [$lat-1, $lat+1])->get();
+
+        $allApartments = DB::table('apartments')->get();
+        $apartments;
+
+        foreach ($allApartments as $apartment) {
+            $lat2 = $apartment -> latitude;
+            $lon2 = $apartment -> longitude;
+
+            $distance = $this->distance($lat, $lon, $lat2, $lon2);
+            
+            if($distance <= $userDistance) {
+                $apartments []= $apartment;
+            }
+        }
+
+        // qui inizia la parte già funzionante
+
         //array di appartamenti trovati nella città cercata
-        $apartments = DB::table('apartments')->where('city', $city)->get();
+
+        // $apartments = DB::table('apartments')->where('city', $city)->get();
 
         $apartmentArr = [];
         foreach ($apartments as $apartment){
