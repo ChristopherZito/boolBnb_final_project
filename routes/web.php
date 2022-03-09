@@ -52,4 +52,4 @@ Route::get('/message/store/success/{id}', 'GuestController@messageStoreSuccess')
 
 //sponsorship
 Route::get('/sponsorship/{id}', 'PaymentsController@sponsorship') -> name('sponsorship');
-Route::post('/payment', 'PaymentsController@payment') -> name('payment');
+Route::post('/payment/{id}', 'PaymentsController@payment') -> name('payment');

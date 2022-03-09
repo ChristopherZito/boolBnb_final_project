@@ -56,7 +56,7 @@ class HomeController extends Controller
             'image' => 'required',
             'optionals' => 'nullable'
         ]);
-        ////////////////////////////////////////////////////////////////////////////////////////
+    //!-------------------------------------------------------------------------------------------
 
         define('API_KEY', 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI');
         define('API_URL', 'https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT');
@@ -103,7 +103,8 @@ class HomeController extends Controller
                 return 'Non abbiamo trovato la tua città';
             }
         }
-        ////////////////////////////////////////////////////////////////////////////////////////
+    //!-------------------------------------------------------------------------------------------
+
 
         $imageFile = $data['image'];
 
@@ -117,7 +118,8 @@ class HomeController extends Controller
         if ($data['streetNumber']) {
             $data['address'] = $data['address'] . ' ' . $data['streetNumber'];
         }
-        ////////////////////////////////////////////////////////////////////////////////////////
+    //!-------------------------------------------------------------------------------------------
+
         
         $apartment = Apartment::make($data);
         $user = Auth::user($data);

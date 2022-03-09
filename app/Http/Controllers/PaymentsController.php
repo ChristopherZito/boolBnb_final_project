@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Apartment;
 use App\Sponsorship;
+use DateTime;
 
 use Braintree;
 use Braintree_Transaction;
@@ -21,10 +22,10 @@ class PaymentsController extends Controller
         $apartment = Apartment::findOrFail($id);
         $sponsorships = Sponsorship::all();      
         $gateway = new Braintree\Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => 'y7wk79q94jzg3hzd',
-            'publicKey' => 'f8fg287qdt7qrzzv',
-            'privateKey' => '382f628ad5ca782584424465c0bd879d'
+            'environment' => getenv('BT_ENVIRONMENT'),
+            'merchantId' => getenv('BT_MERCHANT_ID'),
+            'publicKey' => getenv('BT_PUBLIC_KEY'),
+            'privateKey' => getenv('BT_PRIVATE_KEY')
         ]);
         //! composer require braintree/braintree_php
         //! composer require laravel/cashier-braintree
@@ -32,45 +33,63 @@ class PaymentsController extends Controller
         //! npm i braintree
         return view('pages.sponsorship', compact('apartment', 'sponsorships', 'gateway'));
     }
-    public function payment(Request $request){
-        
+    public function payment(Request $request, $id){
+        //?--------------------------------------------
+        $dateTime = date('y-m-d h:i:s');
+        $dateTimeEnd = new DateTime($dateTime);
+        //--------------------------------------
+        $data['payment_dateTime'] = $dateTime;
+        $data['start_sponsorship'] = $dateTime;
+
+        // creazione data in base al costo
+        if($amount = '2.99'){
+            $dateTimeEnd->modify("+1 day");//lo "sposto" di 24 ore in avanti
+            $data['end_sponsorship'] = $dateTimeEnd;
+        }else if($amount = '5.99'){
+            $dateTimeEnd->modify("+3 day");//lo "sposto" 72 ore in avanti
+            $data['end_sponsorship'] = $dateTimeEnd;
+        }else if($amount = '9.99'){
+            $dateTimeEnd->modify("+6 day");//lo "sposto" 144 ore in avanti
+            $data['end_sponsorship'] = $dateTimeEnd;
+        } 
+        $apartment = Apartment::findOrFail($id);
+        $sponsorship = Sponsorship::findOrFail($request -> get('amount'));
+        $apartment -> sponsorships() -> attach($sponsorship);
+        $apartment -> update($data);
+        $apartment->save();
+    ////
+        /* Use payment method nonce here */
         $gateway = new Braintree\Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => 'y7wk79q94jzg3hzd',
-            'publicKey' => 'f8fg287qdt7qrzzv',
-            'privateKey' => '382f628ad5ca782584424465c0bd879d'
+            'environment' => getenv('BT_ENVIRONMENT'),
+            'merchantId' => getenv('BT_MERCHANT_ID'),
+            'publicKey' => getenv('BT_PUBLIC_KEY'),
+            'privateKey' => getenv('BT_PRIVATE_KEY')
         ]);
+
         $amount = $_POST["amount"];
-        $nonce = $_POST["payment_method_nonce"];
-        // dd($nonce);
-        $baseUrl = stripslashes(dirname($_SERVER['SCRIPT_NAME']));
-
-        $baseUrl = $baseUrl == '/' ? $baseUrl : $baseUrl . '/';
-        
-        
-
+        //! ERROR codice non funzionante
+        //TODO $nonce = $_POST["payment_method_nonce"]; 
+        //* 'fake-valid-nonce' "FAKER"
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
-            'paymentMethodNonce' => $nonce,
+            'paymentMethodNonce' => 'fake-valid-nonce',
             'options' => [
                 'submitForSettlement' => true
             ]
         ]);
-        // dd($result);
+        //!-------------------------------------------- 
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
-            header("Location: " . $baseUrl . "transaction.php?id=" . $transaction->id);
-        } else {
+            return redirect() -> route('show', $apartment -> id);
+        }else {
             $errorString = "";
-        
             foreach($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
-        
             $_SESSION["errors"] = $errorString;
-            header("Location: " . $baseUrl . "index.php");
+            return redirect() -> route('home');
         }
-
-        return redirect() -> route('dashboard');
+    ////
+        
     }
 }

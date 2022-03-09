@@ -14,10 +14,11 @@ class CreateApartmentSponsorshipTable extends Migration
     public function up()
     {
         Schema::create('apartment_sponsorship', function (Blueprint $table) {
+            $dateTime = date('y-m-d h:i:s');
             $table->id();
-            $table->dateTime('payment_dateTime');
-            $table->dateTime('start_sponsorship');
-            $table->dateTime('end_sponsorship');
+            $table->dateTime('payment_dateTime')->default($dateTime);
+            $table->dateTime('start_sponsorship')->default($dateTime);
+            $table->dateTime('end_sponsorship')->default($dateTime);
 
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('sponsorship_id');

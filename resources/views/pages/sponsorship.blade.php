@@ -9,36 +9,45 @@
     </h3>
   {{-------------------------------------------------------------------------------------------------}}
 
-    <form method="post" id="payment-form" action="{{route('payment')}}">
-      @method("POST")
-      @csrf
-      <section>
-        <label for="amount">
-          {{-- <span class="input-label">Amount</span>
+  <div class="wrapper">
+    <div class="checkout container">
+      <form method="post" id="payment-form" action="{{route('payment', $apartment -> id)}}">
+        @method("POST")
+        @csrf
+        <section>
+          {{-- <label for="amount">
+          <span class="input-label">Amount</span>
           <div class="input-wrapper amount-wrapper">
               <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
           </div> --}}
-          <select class="p-2" name="amount">
-            @foreach ($sponsorships as $sponsorship)
-              <option value="{{$sponsorship -> price}}">{{$sponsorship -> description}}</option>
-            @endforeach
-          </select>
-        </label>
-        {{-- Creazione dropin menu --}}
-        <div class="bt-drop-in-wrapper">
-          <div id="bt-dropin"></div>
-        </div>
-      </section>
-      {{-- pulsante pagamento --}}
-      <input id="nonce" name="payment_method_nonce" type="hidden" />
-      <button class="button" type="submit"><span>Abbonati</span></button>
-    </form>
+      
+          <label>
+            <span class="input-label">Schegli il tipo di sponsorizzazione</span>
+            <div class="input-wrapper amount-wrapper">
+              <select class="p-2" name="amount">
+                @foreach ($sponsorships as $sponsorship)
+                  <option value="{{$sponsorship -> id}}">{{$sponsorship -> description}}</option>
+                @endforeach
+              </select>
+            </div>
+          </label>
+          {{-- Creazione dropin menu --}}
+          <div class="bt-drop-in-wrapper">
+            <div id="bt-dropin"></div>
+          </div>
+        </section>
+        {{-- pulsante pagamento --}}
+        <input id="nonce" name="payment_method_nonce" type="hidden" />
+        <button class="button" type="submit"><span>Abbonati</span></button>
+      </form>
+
+    </div>
+  </div>
 
   {{-------------------------------------------------------------------------------------------------}}
   <script type="application/javascript">
     var form = document.querySelector('#payment-form');
-      var client_token = '<?php  echo($clientToken = $gateway->clientToken()->generate())?>';
-
+    var client_token = '<?php  echo($clientToken = $gateway->clientToken()->generate())?>';
       // Creazione del Dropin Menu
       braintree.dropin.create({
         authorization: client_token,
@@ -47,7 +56,7 @@
         // paypal: {
         //   flow: 'vault'
         // }
-      }, 
+      },
 
       //! Errore nel caricamento della carta
       function (createErr, instance) {
@@ -64,9 +73,9 @@
               console.log('Request Payment Method Error', err);
               return;
             }
-            // Add il #nonce al form e al submit
+            // Add the #nonce to the form and submit
             document.querySelector('#nonce').value = payload.nonce;
-            console.log( "playload",payload);
+            console.log("ciao");
             form.submit();
           });
         });
