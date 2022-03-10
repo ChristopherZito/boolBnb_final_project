@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap);/*!
  * Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
@@ -19150,6 +19150,21 @@ body {
   margin-left: 15px;
 }
 
+#style-logo {
+  width: 150px;
+}
+
+.navbar-brand {
+  position: relative;
+}
+
+.style-text-logo {
+  position: absolute;
+  left: 0;
+  transform: translate(-50%, -50%);
+  font-family: "Alex Brush", cursive;
+}
+
 #position-header {
   z-index: 9999;
 }
@@ -19679,6 +19694,22 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+
+@media (max-width: 575.98px) {
+  .img-container-search {
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+  }
+
+  .img-container-search .img-search {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
 }
 
 .style-button-search {

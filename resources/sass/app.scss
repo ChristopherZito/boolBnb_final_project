@@ -10,6 +10,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//font-logo
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
 
 body{
@@ -33,6 +35,22 @@ body{
 }
 
 // header
+
+#style-logo{
+    
+    width: 150px;
+}
+
+.navbar-brand{
+    position: relative;
+}
+
+.style-text-logo{
+    position: absolute;
+    left: 0;
+    transform: translate(-50%, -50%);
+    font-family: 'Alex Brush', cursive;
+}
 #position-header{
     z-index: 9999;
 }
@@ -538,6 +556,21 @@ body{
         height: 100%;
         border-radius: 5px;
     }
+ }
+
+ @include media-breakpoint-only(xs) { 
+    .img-container-search{
+        width: 100%;
+        height: 200px;
+        margin: 20px 0;
+    
+        .img-search{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+     }
  }
 
 .style-button-search{

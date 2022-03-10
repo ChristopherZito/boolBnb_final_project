@@ -61,25 +61,29 @@
 
         <!-- show apartments from the searched city -->
         <section class="p-5 style-list-home flex-wrap container">
-            <div 
-            v-for="result in filteredListofApartments" :key="result.apartment.id"
-            class="col-lg-6 col-sm-12 py-2">
-                <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
-                
-                <a :href="'show/'+ result.apartment.id">
-                    <div class="img-container-search">
-                        <img class="img img-fluid img-search" :src="result.apartment.image" alt="">
+            <div class="row">
+
+                <div 
+                v-for="result in filteredListofApartments" :key="result.apartment.id"
+                class="col-lg-6 col-sm-12">
+                    <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
+                    
+                    <a :href="'show/'+ result.apartment.id">
+                        <div class="img-container-search">
+                            <img class="img img-fluid img-search" :src="result.apartment.image" alt="">
+                        </div>
+                    </a>
+                    
+                    <div class="style-info-search">
+                        <span><strong>Descrizione: </strong> </span>{{result.apartment.description}} <br>
+                        <span><strong>Città: </strong></span>{{result.apartment.city}} <br>
+                        <span><strong>Stanze: </strong></span>{{result.apartment.rooms}} <br>
+                        <span><strong>Letti: </strong></span>{{result.apartment.beds}} <br>
+                        <span><strong>Bagni: </strong></span>{{result.apartment.bathrooms}} <br>
+                        <span><strong>Indirizzo: </strong></span>{{result.apartment.address}} <br>
                     </div>
-                </a>
-                
-                <div class="style-info-search">
-                    <span><strong>Descrizione: </strong> </span>{{result.apartment.description}} <br>
-                    <span><strong>Città: </strong></span>{{result.apartment.city}} <br>
-                    <span><strong>Stanze: </strong></span>{{result.apartment.rooms}} <br>
-                    <span><strong>Letti: </strong></span>{{result.apartment.beds}} <br>
-                    <span><strong>Bagni: </strong></span>{{result.apartment.bathrooms}} <br>
-                    <span><strong>Indirizzo: </strong></span>{{result.apartment.address}} <br>
                 </div>
+
             </div>
             <div v-if="filteredListofApartments.length === 0">
                 <h4>Ci dispiace, ma non ci sono appartamenti che soddisfano i requisiti richiesti.</h4>
