@@ -57,7 +57,8 @@ class PaymentsController extends Controller
         // $payload = $request->input('payment_method_nonce', false);
         // $nonce = $payload['nonce'];
         //! ERROR codice non funzionante
-            $nonce = $_POST["payment_method_nonce"]; 
+            // $nonce = $_POST["payment_method_nonce"]; 
+            // dd($nonce);
         //! 'fake-valid-nonce' "FAKER"
 
         $result = $gateway->transaction()->sale([
