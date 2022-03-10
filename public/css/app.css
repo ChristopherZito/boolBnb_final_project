@@ -19500,7 +19500,7 @@ body {
 }
 
 .style-title-edit {
-  margin: 20px 0 20px 0px;
+  margin: 20px auto;
   width: 25%;
   background-color: burlywood;
   padding: 10px;
@@ -19530,6 +19530,75 @@ body {
   .style-title-edit h3,
   .style-title-edit .h3 {
     color: white;
+  }
+}
+
+.style-form-edit {
+  text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .style-form-edit {
+    text-align: left;
+  }
+}
+
+.img-container-edit {
+  width: 400px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+.img-container-edit .img-preview {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+@media (max-width: 575.98px) {
+  .img-container-edit {
+    width: 200px;
+    height: 100px;
+    margin: 20px 0 20px 0;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .img-container-edit .img-preview {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+}
+
+.optionals-box {
+  margin: 10px auto;
+  width: 17%;
+}
+
+@media (max-width: 575.98px) {
+  .optionals-box {
+    width: 100%;
+  }
+}
+
+.button-edit-create {
+  margin: 10px auto;
+  width: 18%;
+}
+
+.button-edit-create .style-btn-edit-create {
+  width: 90%;
+  border: solid 2px burlywood;
+}
+
+@media (max-width: 575.98px) {
+  .button-edit-create {
+    width: 100%;
   }
 }
 
