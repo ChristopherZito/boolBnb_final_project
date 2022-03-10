@@ -61,8 +61,12 @@
                     @if ($selectApartment -> user_id == Auth::user() -> id )
                         <div class="row-6">
                             <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
-                            <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a> 
-                            <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
+                            <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a>
+                            @if (count($sponsorshipsApartment) > 0)
+                                <a class="btn btn-secondary" >Appartamento sponsorizzato</a> 
+                            @else
+                                <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
+                            @endif 
                         </div>
                     @endif   
                 @endauth

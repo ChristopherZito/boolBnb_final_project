@@ -31,7 +31,7 @@
           </div>
         </section>
         {{-- pulsante pagamento --}}
-        <input id="nonce" name="payment_method_nonce" type="hidden" />
+        <input id="nonce" name="payment_method_nonce" type="hidden"/>
         <button class="button text-light btn btn-success" type="submit"><span>Abbonati</span></button>
       </form>
 
@@ -42,7 +42,6 @@
   {{-------------------------------------------------------------------------------------------------}}
   <script type="application/javascript">
     var form = document.querySelector('#payment-form');
-    var button = document.querySelector('#submit-button');
     var client_token = '<?php  echo($clientToken = $gateway->clientToken()->generate())?>';
       // Creazione del Dropin Menu
       braintree.dropin.create({

@@ -7,7 +7,6 @@ use App\Apartment;
 use App\Optional;
 use App\Message;
 
-
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -36,8 +35,9 @@ class GuestController extends Controller
     public function show($id){
 
         $selectApartment = Apartment::findOrFail($id);
-        $messages = DB::table('messages')->where('apartment_id', $selectApartment ->id)->get();
-        return view('pages.show', compact('selectApartment', 'messages'));
+        $messages = DB::table('messages')->where('apartment_id', $selectApartment -> id)->get();
+        $sponsorshipsApartment = DB::table('apartment_sponsorship')->where('apartment_id', $selectApartment -> id)->get();
+        return view('pages.show', compact('selectApartment', 'messages','sponsorshipsApartment'));
     }
 
     public function search(Request $request){
