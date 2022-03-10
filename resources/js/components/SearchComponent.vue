@@ -60,10 +60,10 @@
 
 
         <!-- show apartments from the searched city -->
-        <section class="p-5 style-list-home flex-wrap">
+        <section class="p-5 style-list-home flex-wrap container">
             <div 
             v-for="result in filteredListofApartments" :key="result.apartment.id"
-            class="col-6 py-2">
+            class="col-lg-6 col-sm-12 py-2">
                 <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
                 
                 <a :href="'show/'+ result.apartment.id">

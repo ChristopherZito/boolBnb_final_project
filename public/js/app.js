@@ -42533,12 +42533,15 @@ var render = function () {
     _vm._v(" "),
     _c(
       "section",
-      { staticClass: "p-5 style-list-home flex-wrap" },
+      { staticClass: "p-5 style-list-home flex-wrap container" },
       [
         _vm._l(_vm.filteredListofApartments, function (result) {
           return _c(
             "div",
-            { key: result.apartment.id, staticClass: "col-6 py-2" },
+            {
+              key: result.apartment.id,
+              staticClass: "col-lg-6 col-sm-12 py-2",
+            },
             [
               _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
                 _c("div", { staticClass: "img-container-search" }, [
@@ -55334,8 +55337,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
