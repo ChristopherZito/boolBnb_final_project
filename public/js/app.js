@@ -42653,7 +42653,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container my-5 " }, [
     _c("h2", { staticClass: "fw-bold fs-1 text-success" }, [
-      _vm._v("Sponsored Apartment"),
+      _vm._v("Appartamenti sponsorizzati"),
     ]),
     _vm._v(" "),
     _c(

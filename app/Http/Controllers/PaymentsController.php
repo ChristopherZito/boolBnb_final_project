@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Apartment;
 use App\Sponsorship;
-use App\ApartmentSponsorship;
+use Illuminate\Support\Facades\DB;
 use DateTime;
 
 use Braintree;
@@ -54,8 +54,10 @@ class PaymentsController extends Controller
             }            
         } 
 
+        // $payload = $request->input('payment_method_nonce', false);
+        // $nonce = $payload['nonce'];
         //! ERROR codice non funzionante
-            // $nonce = $_POST["payment_method_nonce"]; 
+            $nonce = $_POST["payment_method_nonce"]; 
         //! 'fake-valid-nonce' "FAKER"
 
         $result = $gateway->transaction()->sale([
@@ -70,18 +72,12 @@ class PaymentsController extends Controller
         if ($result->success || !is_null($result->transaction)) {
             $transaction = $result->transaction;
             //?--------------------------------------------
-                $data = $request->validate([
-                    'payment_dateTime',
-                    'start_sponsorship',
-                    'end_sponsorship',
-                ]);
                 $dateTime = date('y-m-d h:i:s');
                 $dateTimeEnd = new DateTime($dateTime);
                 //--------------------------------------
                 $data['payment_dateTime'] = $dateTime;
                 $data['start_sponsorship'] = $dateTime;
                 // creazione data in base al costo
-
                 if($amount == 2.99){
                     $dateTimeEnd->modify("+1 day");//lo "sposto" di 24 ore in avanti
                     $result = $dateTimeEnd->format('Y-m-d H:i:s');
@@ -95,12 +91,14 @@ class PaymentsController extends Controller
                     $result = $dateTimeEnd->format('Y-m-d H:i:s');
                     $data['end_sponsorship'] = $result;
                 }
-                //! dd($data);
                 $apartment = Apartment::findOrFail($id);
-                $apartment -> sponsorships() -> attach($sponsorship);
-                $apartment -> update($data);
-                $apartment -> save();
-                
+                DB::table('apartment_sponsorship')->insert([
+                    'payment_dateTime' =>   $data['payment_dateTime'],
+                    'start_sponsorship' => $data['start_sponsorship'],
+                    'end_sponsorship' =>  $data['end_sponsorship'],
+                    'apartment_id' =>  $apartment -> id,
+                    'sponsorship_id' => $sponsorship -> id,
+                ]);
             //?--------------------------------------------
             return redirect() -> route('paymentSuccess', $apartment -> id);
         }else {
