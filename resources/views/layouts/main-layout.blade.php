@@ -11,8 +11,6 @@
     {{-- js tomtom --}}
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js"></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
-    {{-- braintree --}}
-    <script src="https://js.braintreegateway.com/web/dropin/1.33.0/js/dropin.min.js"></script>
     <title>@yield('title')</title>
     
 </head>

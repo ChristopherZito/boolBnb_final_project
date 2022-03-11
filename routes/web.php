@@ -52,8 +52,11 @@ Route::post('/message/store/{id}', 'GuestController@messageStore') ->name('messa
 Route::get('/message/store/success/{id}', 'GuestController@messageStoreSuccess') -> name('messageStoreSuccess'); 
 
 //sponsorship
+// Route::get('/sponsorship/{id}', 'PaymentsController@sponsorship') -> name('sponsorship');
+// Route::post('/payment/{id}', 'PaymentsController@payment') -> name('payment');
+
 Route::get('/sponsorship/{id}', 'PaymentsController@sponsorship') -> name('sponsorship');
-Route::post('/payment/{id}', 'PaymentsController@payment') -> name('payment');
+Route::post('/payment/process/{id}', 'PaymentsController@process')->name('payment.process');
 Route::get('/payment/success/{id}', 'PaymentsController@paymentSuccess') -> name('paymentSuccess'); 
 
 //axios call for sponsored apartment
