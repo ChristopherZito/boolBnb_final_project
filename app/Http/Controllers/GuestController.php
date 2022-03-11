@@ -47,6 +47,92 @@ class GuestController extends Controller
         ]);
         $city = $data['city'];
 
+
+        // parte da scommentare solo in fase di test per poter usare il dd e vedere i risultati intermedi
+
+        // define('API_KEY', 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI');
+        // define('API_URL', 'https://api.tomtom.com/search/2/structuredGeocode.json?countryCode=IT');
+
+        // $url = API_URL . '&municipality=' .  urlencode($city) . '&language=it-IT&view=Unified&key=' . API_KEY;
+        
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        // $response = curl_exec($ch);
+        // if(curl_error($ch)) {
+        //     return null;
+        // }
+        // $dataCord = json_decode($response, true);
+
+        // $results = $dataCord['results'];
+        
+        // if(!$results){
+        //     return 'Non abbiamo trovato la città';
+        // }
+
+        // foreach ($results as $result) {
+
+        //     if($result['entityType'] === "Municipality") {
+
+        //         $foundcity = $result['address']['municipality'];
+                
+        //         if (strtolower($foundcity) === strtolower($city) ) {
+        //             // dd($result['position']);
+        //             $cordinate = $result['position'];
+    
+        //             $lat = $cordinate['lat'];
+        //             $lon = $cordinate['lon'];
+        //             break;
+                    
+        //         }
+        //     }
+        // }
+        // if(!$lat) {
+        //     return 'Non abbiamo trovato la tua città';
+        // }
+
+        // // $apartments = DB::table('apartments')->whereBetween('latitude', [$lat-1, $lat+1])->get();
+
+        // $allApartments = DB::table('apartments')->get();
+        // $apartments = [];
+
+        // foreach ($allApartments as $apartment) {
+        //     $lat2 = $apartment -> latitude;
+        //     $lon2 = $apartment -> longitude;
+
+        //     $distance = $this->distance($lat, $lon, $lat2, $lon2);
+            
+        //     if($distance <= 20) {
+
+        //         $sponsorships_apartment = DB::table('apartment_sponsorship')->where('apartment_id', $apartment -> id)->get();
+
+        //         $active_sponsorship = false;
+
+        //         foreach ($sponsorships_apartment as $sponsorship_apartment) 
+        //         {
+        //             $today = date("Y-m-d");
+        //             $end_sponsorship_date = $sponsorship_apartment -> end_sponsorship;
+
+        //             if($end_sponsorship_date >= $today) 
+        //             {
+        //                 $active_sponsorship = true;
+        //             }
+        //         }
+        //         // se l'appartamento è sponsorizzato
+        //         if($active_sponsorship) {
+        //             array_unshift($apartments, $apartment);
+        //         } else {
+        //             $apartments []= $apartment;
+        //         }
+        //     }
+        // }
+
+        // dd($apartments);
+
+
         return view('pages.search', compact('city'));
     }
 
@@ -112,7 +198,7 @@ class GuestController extends Controller
         // $apartments = DB::table('apartments')->whereBetween('latitude', [$lat-1, $lat+1])->get();
 
         $allApartments = DB::table('apartments')->get();
-        $apartments;
+        $apartments = [];
 
         foreach ($allApartments as $apartment) {
             $lat2 = $apartment -> latitude;
@@ -121,9 +207,31 @@ class GuestController extends Controller
             $distance = $this->distance($lat, $lon, $lat2, $lon2);
             
             if($distance <= $userDistance) {
-                $apartments []= $apartment;
+
+                $sponsorships_apartment = DB::table('apartment_sponsorship')->where('apartment_id', $apartment -> id)->get();
+
+                $active_sponsorship = false;
+
+                foreach ($sponsorships_apartment as $sponsorship_apartment) 
+                {
+                    $today = date("Y-m-d");
+                    $end_sponsorship_date = $sponsorship_apartment -> end_sponsorship;
+
+                    if($end_sponsorship_date >= $today) 
+                    {
+                        $active_sponsorship = true;
+                    }
+                }
+                // se l'appartamento è sponsorizzato
+                if($active_sponsorship) {
+                    array_unshift($apartments, $apartment);
+                } else {
+                    $apartments []= $apartment;
+                }
             }
         }
+
+
 
         // qui inizia la parte già funzionante
 
