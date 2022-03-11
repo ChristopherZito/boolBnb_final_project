@@ -112,7 +112,7 @@ class GuestController extends Controller
         // $apartments = DB::table('apartments')->whereBetween('latitude', [$lat-1, $lat+1])->get();
 
         $allApartments = DB::table('apartments')->get();
-        $apartments;
+        $apartments = [];
 
         foreach ($allApartments as $apartment) {
             $lat2 = $apartment -> latitude;
@@ -121,9 +121,50 @@ class GuestController extends Controller
             $distance = $this->distance($lat, $lon, $lat2, $lon2);
             
             if($distance <= $userDistance) {
+
+                $apartment->distance = $distance;
+
+                $sponsorships_apartment = DB::table('apartment_sponsorship')->where('apartment_id', $apartment -> id)->get();
+
+                $active_sponsorship = false;
+
+                foreach ($sponsorships_apartment as $sponsorship_apartment) 
+                {
+                    $today = date("Y-m-d");
+                    $end_sponsorship_date = $sponsorship_apartment -> end_sponsorship;
+
+                    if($end_sponsorship_date >= $today) 
+                    {
+                        $active_sponsorship = true;
+                    }
+                }
+
+                $apartment->active_sponsorship = $active_sponsorship;
                 $apartments []= $apartment;
             }
         }
+
+        // dd($apartments);
+        // $my_array = $this->array_sort($apartments, 'distance', SORT_ASC);
+        // $apartments = $this->array_sort($apartments);
+
+        for ($i=0; $i < count($apartments); $i++) { 
+            
+            for ($j=0; $j < count($apartments); $j++) { 
+                
+                $first = $apartments[$i];
+                $second = $apartments[$j];
+
+                if($first->distance < $second->distance) {
+                    $apartments[$i] = $second;
+                    $apartments[$j] = $first;
+                } elseif ($first->distance === $second->distance && $first->active_sponsorship && !$second->active_sponsorship) {
+                    $apartments[$i] = $second;
+                    $apartments[$j] = $first;
+                }
+            }
+        }
+
 
         // qui inizia la parte già funzionante
 
