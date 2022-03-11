@@ -30,7 +30,7 @@
                 <input type="text" name="city" value="{{$apartment->city}}"><br><br>
                 <label for="image">Immagine:</label>
                 <input type="file" name="image"><br>
-                <div class="img-container">
+                <div class="img-container-edit">
                     <h5>Immagine attuale:</h5>
                     <img class="img img-preview" src="{{$apartment -> image}}" alt="">
                 </div>
@@ -52,8 +52,10 @@
                 @endforeach
             </div>
             
-
-            <input class="btn btn-primary m-4" type="submit" value="Aggiorna">
+            <div class="button-edit-create">
+                <input class="btn btn-primary m-4 style-btn-edit-create" type="submit" value="Aggiorna">
+            </div>
+            
         </form>
     </div>
 @endsection

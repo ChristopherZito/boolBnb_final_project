@@ -45,7 +45,10 @@
 
             </div>
 
-            <input class="btn btn-primary m-4" type="submit" value="Invia">
+            <div class="button-edit-create">
+                <input class="btn btn-primary m-4 style-btn-edit-create" type="submit" value="Invia">
+            </div>
+            
         </form>
     </div>
 @endsection

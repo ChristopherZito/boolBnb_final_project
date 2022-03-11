@@ -10,6 +10,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//font-logo
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
 
 body{
@@ -33,6 +35,28 @@ body{
 }
 
 // header
+
+#style-logo{
+    width: 100%
+}
+
+.navbar-brand{
+    position: relative;
+    width: 150px;
+    height: 80px;
+}
+
+.style-text-logo{
+    position: absolute;
+    left: 45%;
+    top: 60%;
+    text-align: center;
+    line-height: 32px;
+    font-family: 'Alex Brush', cursive;
+    font-weight: 800;
+    font-size:25px;
+    transform: translate(-50%, -50%);
+}
 #position-header{
     z-index: 9999;
 }
@@ -361,7 +385,7 @@ body{
 
 
  .style-title-edit{
-    margin: 20px 0 20px 0px;
+    margin: 20px auto;
     width: 25%;
     background-color: burlywood;
     padding: 10px;
@@ -389,6 +413,76 @@ body{
     }
  }
 
+ .style-form-edit{
+     text-align: center;
+ }
+
+ @include media-breakpoint-only(xs) { 
+    .style-form-edit{
+        text-align: left;
+    }
+ }
+
+
+ .img-container-edit{
+    width: 400px;
+    height: 300px;
+    margin: 20px auto;
+    .img-preview{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+
+}
+@include media-breakpoint-only(xs) { 
+    .img-container-edit{
+        width: 200px;
+        height: 100px;
+        margin: 20px 0 20px 0;
+        display: block;
+        margin: 20px auto;
+        .img-preview{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+    }
+ }
+
+ .optionals-box{
+     margin: 10px auto;
+     width: 17%;
+ }
+
+ @include media-breakpoint-only(xs) { 
+    .optionals-box{
+        width: 100%;
+    }
+ }
+
+
+.button-edit-create{
+    margin: 10px auto;
+    width: 18%;
+    .style-btn-edit-create{
+        width: 90%;
+        border: solid 2px burlywood;
+    }
+    
+    
+
+}
+
+@include media-breakpoint-only(xs) { 
+    .button-edit-create{
+        width: 100%;
+    }
+}
+ 
+ 
 
  //home
 
@@ -468,6 +562,21 @@ body{
         height: 100%;
         border-radius: 5px;
     }
+ }
+
+ @include media-breakpoint-only(xs) { 
+    .img-container-search{
+        width: 100%;
+        height: 200px;
+        margin: 20px 0;
+    
+        .img-search{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+     }
  }
 
 .style-button-search{

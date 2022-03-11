@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap);/*!
  * Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
@@ -19150,6 +19150,28 @@ body {
   margin-left: 15px;
 }
 
+#style-logo {
+  width: 100%;
+}
+
+.navbar-brand {
+  position: relative;
+  width: 150px;
+  height: 80px;
+}
+
+.style-text-logo {
+  position: absolute;
+  left: 45%;
+  top: 60%;
+  text-align: center;
+  line-height: 32px;
+  font-family: "Alex Brush", cursive;
+  font-weight: 800;
+  font-size: 25px;
+  transform: translate(-50%, -50%);
+}
+
 #position-header {
   z-index: 9999;
 }
@@ -19500,7 +19522,7 @@ body {
 }
 
 .style-title-edit {
-  margin: 20px 0 20px 0px;
+  margin: 20px auto;
   width: 25%;
   background-color: burlywood;
   padding: 10px;
@@ -19530,6 +19552,75 @@ body {
   .style-title-edit h3,
   .style-title-edit .h3 {
     color: white;
+  }
+}
+
+.style-form-edit {
+  text-align: center;
+}
+
+@media (max-width: 575.98px) {
+  .style-form-edit {
+    text-align: left;
+  }
+}
+
+.img-container-edit {
+  width: 400px;
+  height: 300px;
+  margin: 20px auto;
+}
+
+.img-container-edit .img-preview {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+@media (max-width: 575.98px) {
+  .img-container-edit {
+    width: 200px;
+    height: 100px;
+    margin: 20px 0 20px 0;
+    display: block;
+    margin: 20px auto;
+  }
+
+  .img-container-edit .img-preview {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+}
+
+.optionals-box {
+  margin: 10px auto;
+  width: 17%;
+}
+
+@media (max-width: 575.98px) {
+  .optionals-box {
+    width: 100%;
+  }
+}
+
+.button-edit-create {
+  margin: 10px auto;
+  width: 18%;
+}
+
+.button-edit-create .style-btn-edit-create {
+  width: 90%;
+  border: solid 2px burlywood;
+}
+
+@media (max-width: 575.98px) {
+  .button-edit-create {
+    width: 100%;
   }
 }
 
@@ -19610,6 +19701,22 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 5px;
+}
+
+@media (max-width: 575.98px) {
+  .img-container-search {
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+  }
+
+  .img-container-search .img-search {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
 }
 
 .style-button-search {
