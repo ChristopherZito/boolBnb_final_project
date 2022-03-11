@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Apartment;
 use App\Sponsorship;
@@ -12,7 +12,9 @@ use Braintree;
 use Braintree_Transaction;
 class PaymentsController extends Controller
 {
-
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function sponsorship(Request $request,$id){
         $apartment = Apartment::findOrFail($id);
         $sponsorships = Sponsorship::all();

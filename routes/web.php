@@ -61,3 +61,6 @@ Route::get('/payment/success/{id}', 'PaymentsController@paymentSuccess') -> name
 
 //axios call for sponsored apartment
 Route::get('/axios/sponsoredapartment', 'GuestController@getApiSponsoredApartment') -> name('getApiSponsoredApartment');
+
+//grafico statistiche
+Route::get('chart/{id}', 'ChartController@chart') -> name('chart');
