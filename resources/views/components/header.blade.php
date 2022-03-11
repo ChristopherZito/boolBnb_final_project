@@ -6,7 +6,7 @@
             <a class="navbar-brand" href="{{route('home')}}">
               <img id="style-logo" src="{{asset('storage/apartments_images/logo b&b.png')}}" alt="">
 
-              <span class="style-text-logo">5 Heroes B&B</span>
+              <span class="style-text-logo">5 Heroes <br> B&B</span>
               
             </a>
           
