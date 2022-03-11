@@ -582,12 +582,25 @@ body{
     width: 90%;
     height: 400px;
     margin: 20px 0;
+    position: relative;
 
     .img-search{
         object-fit: cover;
         width: 100%;
         height: 100%;
         border-radius: 5px;
+    }
+
+    .sponsored {
+        background-color: burlywood;
+        color: black;
+        padding: 3px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px;
+        text-decoration: none;
+        position: absolute;
+        top: 10px;
+        right: 10px;
     }
  }
 

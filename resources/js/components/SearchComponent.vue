@@ -71,6 +71,7 @@
                     <a :href="'show/'+ result.apartment.id">
                         <div class="img-container-search">
                             <img class="img img-fluid img-search" :src="result.apartment.image" alt="">
+                            <div class="sponsored" v-if="result.apartment.active_sponsorship">Sponsorizzato</div>
                         </div>
                     </a>
                     
@@ -113,6 +114,7 @@
             axios.get(`/${this.city}/${this.userDistance}/apartment/optionals`)
             .then(r => {
                 this.apartmentsWithOptionals=r.data;
+                console.log(this.apartmentsWithOptionals);
             })
             .catch(e => console.log(e));
         },

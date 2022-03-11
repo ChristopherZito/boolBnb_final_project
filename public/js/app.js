@@ -5277,6 +5277,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: String //città trovata attraverso l'input
@@ -5301,6 +5302,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getOptionalsApi();
     axios.get("/".concat(this.city, "/").concat(this.userDistance, "/apartment/optionals")).then(function (r) {
       _this.apartmentsWithOptionals = r.data;
+      console.log(_this.apartmentsWithOptionals);
     })["catch"](function (e) {
       return console.log(e);
     });
@@ -42550,6 +42552,12 @@ var render = function () {
                     staticClass: "img img-fluid img-search",
                     attrs: { src: result.apartment.image, alt: "" },
                   }),
+                  _vm._v(" "),
+                  result.apartment.active_sponsorship
+                    ? _c("div", { staticClass: "sponsored" }, [
+                        _vm._v("Sponsorizzato"),
+                      ])
+                    : _vm._e(),
                 ]),
               ]),
               _vm._v(" "),
