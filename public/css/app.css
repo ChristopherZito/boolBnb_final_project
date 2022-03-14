@@ -19141,6 +19141,12 @@ body {
   border-color: burlywood;
 }
 
+.label-sponsored-dash {
+  background-color: burlywood;
+  color: white;
+  border-radius: 5px;
+}
+
 .prova-display {
   display: flex;
 }

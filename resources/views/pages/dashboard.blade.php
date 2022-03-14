@@ -25,8 +25,12 @@
                                 Descrizione: {{$apartment -> description }} <br>
                                 Indirizzo: {{$apartment -> address}} <br>
                                 Citt&agrave;: {{$apartment -> city}} <br>
+                                @if ($apartment->active_sponsorship)
+                                    <span class="label-sponsored-dash p-1">Sponsorizzato</span> 
+                                @endif
                             </div>
-                            
+                           
+                           
                         </div>
                         
                     </a>

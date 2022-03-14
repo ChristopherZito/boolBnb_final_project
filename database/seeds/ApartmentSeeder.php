@@ -811,36 +811,7 @@ class ApartmentSeeder extends Seeder
             'user_id' => 2,
 
         ]);
-        DB::table('apartments')->insert([
-            'description' => 'La Tartuga,intera unità in affitto',
-            'rooms' => 3,
-            'beds' => 2,
-            'bathrooms' => 1,
-            'square_meters' => 75,
-            'address' => 'Via di li graniti, 52',
-            'city' => 'Monte Petrosu',
-            'latitude' => 40.8347233,
-            'longitude' => 9.6800912,
-            'image' => 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52543557/original/9bb74928-0ce4-4ba3-8ec2-2741d83b2391.jpeg?im_w=1200',
-            'visibility' => 1,
-            'user_id' => 2,
-
-        ]);
-        DB::table('apartments')->insert([
-            'description' => 'La Tartuga,intera unità in affitto',
-            'rooms' => 3,
-            'beds' => 2,
-            'bathrooms' => 1,
-            'square_meters' => 75,
-            'address' => 'Via di li graniti, 52',
-            'city' => 'Monte Petrosu',
-            'latitude' => 40.8347233,
-            'longitude' => 9.6800912,
-            'image' => 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52543557/original/9bb74928-0ce4-4ba3-8ec2-2741d83b2391.jpeg?im_w=1200',
-            'visibility' => 1,
-            'user_id' => 2,
-
-        ]);
+       
         DB::table('apartments')->insert([
             'description' => "AirBnb Forini, Suite nata dalla ristrutturazione in stile moderno di un'antica abitazione del quartiere popolare di Porta Sant'Angelo",
             'rooms' => 2,

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 use App\Apartment;
 use App\Optional;
@@ -22,9 +24,26 @@ class HomeController extends Controller
     public function dashboard(){
         $apartments = [];
         $allApartments = Apartment::all();
+
         foreach ($allApartments as $apartment){
             if ($apartment -> user_id == Auth::user() -> id){
+                
+                $sponsorships_apartment = DB::table('apartment_sponsorship')->where('apartment_id', $apartment -> id)->get();
+                $active_sponsorship = false;
+                foreach ($sponsorships_apartment as $sponsorship_apartment) 
+                {
+                    $today = date("Y-m-d");
+                    $end_sponsorship_date = $sponsorship_apartment -> end_sponsorship;
+
+                    if($end_sponsorship_date >= $today) 
+                    {
+                        $active_sponsorship = true;
+                    }
+                }
+                $apartment->active_sponsorship = $active_sponsorship;
+
                 array_push($apartments,$apartment);
+
             }
         }
         return view('pages.dashboard', compact('apartments'));

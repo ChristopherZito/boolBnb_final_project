@@ -26,11 +26,14 @@ class GuestController extends Controller
                     $today = date("Y-m-d");
                     $end_sponsorship_date = $sponsorship_apartment -> end_sponsorship;
 
-                    if($end_sponsorship_date >= $today){
+                    if($end_sponsorship_date >= $today && $sponsoredApartment->visibility === 1){
                         $sponsoredApartmentsArr[] =[
                             'sponsoredApartment' => $sponsoredApartment,
                         ];
+                        break;
                     }
+
+
                 }
 
             
@@ -147,7 +150,10 @@ class GuestController extends Controller
                 }
 
                 $apartment->active_sponsorship = $active_sponsorship;
-                $apartments []= $apartment;
+                if($apartment->visibility) {
+                    $apartments []= $apartment;
+                }
+                
             }
         }
 

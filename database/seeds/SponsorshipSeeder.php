@@ -19,21 +19,21 @@ class SponsorshipSeeder extends Seeder
 
             'price' => 2.99 ,
             'type' => 1 ,
-            'description' => 'abbonamento da 2,99 euro' ,
+            'description' => "Sponsorizza per 1 giorno (2,99 €)" ,
         ]);
 
         DB::table('sponsorships')->insert([
 
             'price' => 5.99 ,
             'type' => 2 ,
-            'description' => 'abbonamento da 5,99 euro' ,
+            'description' => "Sponsorizza per 3 giorni (5,99 €)" ,
         ]);
 
         DB::table('sponsorships')->insert([
 
             'price' => 9.99 ,
             'type' => 3 ,
-            'description' => 'abbonamento da 9,99 euro' ,
+            'description' => "Sponsorizza per 6 giorni (9,99 €)" ,
         ]);
 
     
