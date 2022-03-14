@@ -19,7 +19,7 @@
                 </ul>
             </div>
 
-            <div>
+            <div class="style-search-ap">
                 <label for="">Raggio di ricerca (km)</label>
                 <input type="number" name="userDistance" step="5" min="5" v-model="userDistance" @change="newDistanceValue">
             </div>
@@ -49,23 +49,23 @@
         
 
         <!-- ----------------------------------------- -->
-        <!-- <div class="text-light">
+        <div class="text-light style-option-search">
             <span  v-for="optional in optionals" :key="optional.id">
-                <span class="d-inline-block rounded m-1 p-2 btn" :class="selectedOptionals.includes(optional.id) ? 'btn-success' : 'bg-info'"
+                <span class="d-inline-block rounded m-1 p-2 btn" :class="selectedOptionals.includes(optional.id) ? 'btn-success' : 'btn-user-command'"
                 @click="selectedOptional(optional.id)">
                      {{optional.name}}
                 </span> 
             </span> 
-        </div> -->
+        </div>
 
 
         <!-- show apartments from the searched city -->
-        <section class="p-5 style-list-home flex-wrap container">
+        <section class="p-5 container">
             <div class="row">
 
                 <div 
                 v-for="result in filteredListofApartments" :key="result.apartment.id"
-                class="col-lg-6 col-sm-12">
+                class="col col-lg-6 col-sm-12">
                     <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
                     
                     <a :href="'show/'+ result.apartment.id">

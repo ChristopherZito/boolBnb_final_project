@@ -42429,7 +42429,7 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", [
+      _c("div", { staticClass: "style-search-ap" }, [
         _c("label", { attrs: { for: "" } }, [_vm._v("Raggio di ricerca (km)")]),
         _vm._v(" "),
         _c("input", {
@@ -42532,14 +42532,43 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _c("section", { staticClass: "p-5 style-list-home flex-wrap container" }, [
+    _c(
+      "div",
+      { staticClass: "text-light style-option-search" },
+      _vm._l(_vm.optionals, function (optional) {
+        return _c("span", { key: optional.id }, [
+          _c(
+            "span",
+            {
+              staticClass: "d-inline-block rounded m-1 p-2 btn",
+              class: _vm.selectedOptionals.includes(optional.id)
+                ? "btn-success"
+                : "btn-user-command",
+              on: {
+                click: function ($event) {
+                  return _vm.selectedOptional(optional.id)
+                },
+              },
+            },
+            [
+              _vm._v(
+                "\n                 " + _vm._s(optional.name) + "\n            "
+              ),
+            ]
+          ),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("section", { staticClass: "p-5 container" }, [
       _c(
         "div",
         { staticClass: "row" },
         _vm._l(_vm.filteredListofApartments, function (result) {
           return _c(
             "div",
-            { key: result.apartment.id, staticClass: "col-lg-6 col-sm-12" },
+            { key: result.apartment.id, staticClass: "col col-lg-6 col-sm-12" },
             [
               _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
                 _c("div", { staticClass: "img-container-search" }, [
@@ -55341,8 +55370,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Christopher\Desktop\Boolean\test\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\boolBnb_final_project\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolBnb_final_project\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

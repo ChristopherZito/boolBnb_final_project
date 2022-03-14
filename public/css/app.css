@@ -19794,6 +19794,83 @@ body {
   align-items: center;
 }
 
+@media (min-width: 1400px) {
+  .option-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .dropdown {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .option-search {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .dropdown {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .option-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .dropdown {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .option-search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .dropdown {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .option-search {
+    display: block;
+    margin-top: 150px;
+  }
+
+  .dropdown {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .style-search-ap {
+    text-align: center;
+  }
+
+  .style-option-search {
+    display: none;
+  }
+}
+
 .style-list-home {
   display: flex;
 }
@@ -19804,6 +19881,10 @@ body {
 
 .opt-not-sel {
   background-color: lightgray;
+}
+
+.style-option-search {
+  padding: 0 50px;
 }
 
 #back-footer {
