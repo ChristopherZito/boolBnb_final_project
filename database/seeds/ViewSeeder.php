@@ -17,7 +17,7 @@ class ViewSeeder extends Seeder
     {
         for($x = 0; $x < 50; $x++){
 
-            $i = rand(1,23);
+            $i = rand(1,68);
 
             DB::table('views')->insert([
                 'data_views' => '2022-02-03',

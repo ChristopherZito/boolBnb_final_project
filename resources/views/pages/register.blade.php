@@ -3,7 +3,7 @@
     Crea Account
 @endsection
 @section('content')
-<section class="d-flex justify-content-around content-register">
+<section class="d-flex justify-content-around">
     <div>
         <h1> Registrati: </h1>
         <form action="{{route('register')}}" method="POST">
@@ -22,8 +22,8 @@
             <input type="password" name="password" placeholder="Password di almeno 8 caratteri" required><br>
             <label for="password_confirmation">* Conferma Password</label><br>
             <input type="password" name="password_confirmation" placeholder="conferma password" required><br>
-            <p>* Campo obbligatorio</p> <br>
-            <input class="btn btn-primary m-4" type="submit" value="Register">
+            <p class="mt-4">* Campo obbligatorio</p> <br>
+            <input class="btn btn-primary mb-3" type="submit" value="Registrati">
         </form>
     </div>
 </section>
