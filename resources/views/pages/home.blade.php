@@ -33,7 +33,7 @@
   
   <sponsorship-component></sponsorship-component>
 
-  <div class="container">
+  {{-- <div class="container">
     <div class="row">
       @foreach ($apartments as $apartment)
       <div class="col-lg-4 col-sm-12 container-apart-home">
@@ -49,7 +49,7 @@
       </div>
       @endforeach
     </div>
-  </div>
+  </div> --}}
     
 </section>
 @endsection

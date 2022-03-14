@@ -10,10 +10,10 @@
             @method("POST")
             @csrf
 
-            <label for="email">Email:</label><br>
-            <input type="email" name="email" ><br>
-            <label for="password">Password:</label><br>
-            <input type="password" name="password" ><br>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" required><br>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" required><br>
             <input class="btn btn-primary m-4" type="submit" value="Login">
         </form>
     </div>

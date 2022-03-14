@@ -9,8 +9,8 @@
                         <img class="img-preview img-home" :src="apartment.sponsoredApartment.image" alt="">
                     </div>
                     <div class="text-home-apart">
-                        Description: {{apartment.sponsoredApartment.description }} <br>
-                        City: {{apartment.sponsoredApartment.city}} <br>
+                        Descrizione: {{apartment.sponsoredApartment.description }} <br>
+                        Citt&agrave;: {{apartment.sponsoredApartment.city}} <br>
                     </div>
                 </a>              
             </div>
@@ -29,12 +29,9 @@
             axios.get(`/axios/sponsoredapartment`)
             .then(r => {
                 this.sponsoredApartments = r.data;
-                console.log(r.data);
+                // console.log(r.data);
             })
             .catch(e => console.log(e))
-        },
-        methods: {
-           
         },
     }
 </script>

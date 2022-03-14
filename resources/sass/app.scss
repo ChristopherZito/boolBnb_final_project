@@ -95,9 +95,10 @@ body{
 }
 
 .account{
-    width: 15%;
+    width: 18%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 @include media-breakpoint-only(xs) { 
     .account{
@@ -236,6 +237,31 @@ body{
     }
 }
 
+.style-mess-reciv{
+    list-style-type: none;
+}
+
+@include media-breakpoint-only(xs) { 
+    .style-mess-reciv{
+        list-style-type: none;
+        .style-mess-phone{
+            width: 100%;
+            overflow: auto;
+        }
+    }
+ }
+
+ .style-mess-phone{
+    padding: 0 !important;
+ }
+ @include media-breakpoint-only(xs) { 
+    .style-mess-phone{
+        padding: 0 !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+     }
+ }
+
 
 //dashboard/profilo
 
@@ -281,6 +307,9 @@ body{
     h3{
         color: white;
     }
+    a{
+        text-decoration: none;
+    }
 }
 @include media-breakpoint-only(xs) { 
     .style-add-title{
@@ -294,6 +323,9 @@ body{
         justify-content: center;
         h3{
             color: white;
+        }
+        a{
+            text-decoration: none;
         }
     }
  }
@@ -655,60 +687,65 @@ body{
         display: flex;
         justify-content: space-around;
         align-items: center;
+        .dropdown{
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     }
-    .dropdown{
-        display: none;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+    
  }
  @include media-breakpoint-only(xl) { 
     .option-search{
         display: none;
         justify-content: space-around;
         align-items: center;
+        .dropdown{
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     }
-    .dropdown{
-        display: none;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+    
  }
  @include media-breakpoint-only(lg) { 
     .option-search{
         display: flex;
         justify-content: space-around;
         align-items: center;
+        .dropdown{
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     }
-    .dropdown{
-        display: none;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+    
  }
  @include media-breakpoint-only(md) { 
     .option-search{
         display: flex;
         justify-content: space-around;
         align-items: center;
+        .dropdown{
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     }
-    .dropdown{
-        display: none;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+    
  }
 
  @include media-breakpoint-only(xs) { 
     .option-search{
         display: block;
         margin-top: 150px;
+        .dropdown{
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     }
-    .dropdown{
-        display: block;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+    
     .style-search-ap{
         text-align: center;
     }

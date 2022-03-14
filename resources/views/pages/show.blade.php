@@ -48,9 +48,9 @@
             </div>
 
             <div class="apart-info">
-                description: {{$selectApartment -> description}} <br>
-                address: {{$selectApartment -> address}} <br>
-                city: {{$selectApartment -> city}} <br>
+                Descrizione: {{$selectApartment -> description}} <br>
+                Indirizzo: {{$selectApartment -> address}} <br>
+                Citt&agrave;: {{$selectApartment -> city}} <br>
             </div>
             
             <div class="separator">  </div>
@@ -60,8 +60,8 @@
                 @auth
                     @if ($selectApartment -> user_id == Auth::user() -> id )
                         <div class="row-6">
-                            <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
-                            <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a>
+                            <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Rimuovi</a> 
+                            <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Modifica</a>
                             <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
                         </div>
                     @endif   
@@ -76,7 +76,7 @@
         
 
         <div class="col-xl col-sm-0 col-laterali">
-            <div class="container-fluid ">
+            <div class="container-fluid style-mess-phone">
                 @auth
                     @if ($selectApartment -> user_id == Auth::user() -> id)
                         <div class="row box-opt-cont">
@@ -85,9 +85,9 @@
                             </div>
                         </div>  
                         <div class="row">
-                            <ul>
+                            <ul class="style-mess-reciv">
                                 @foreach ($messages as $message)
-                                <li class="border my-2 p-1">
+                                <li class="border my-2 p-1 ">
                                     <h5>{{$message->email_sender}}</h5>
                                     <p>{{$message->text}}</p>
                                 </li> 

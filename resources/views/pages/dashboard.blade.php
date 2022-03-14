@@ -22,9 +22,9 @@
                                 <img class="img-preview" src="{{$apartment -> image}}" alt="">
                             </div>
                             <div class="container-info">
-                                Description: {{$apartment -> description }} <br>
-                                Address: {{$apartment -> address}} <br>
-                                City: {{$apartment -> city}} <br>
+                                Descrizione: {{$apartment -> description }} <br>
+                                Indirizzo: {{$apartment -> address}} <br>
+                                Citt&agrave;: {{$apartment -> city}} <br>
                             </div>
                             
                         </div>

@@ -5422,13 +5422,11 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/axios/sponsoredapartment").then(function (r) {
-      _this.sponsoredApartments = r.data;
-      console.log(r.data);
+      _this.sponsoredApartments = r.data; // console.log(r.data);
     })["catch"](function (e) {
       return console.log(e);
     });
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -42716,13 +42714,13 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "text-home-apart" }, [
                   _vm._v(
-                    "\n                    Description: " +
+                    "\n                    Descrizione: " +
                       _vm._s(apartment.sponsoredApartment.description) +
                       " "
                   ),
                   _c("br"),
                   _vm._v(
-                    "\n                    City: " +
+                    "\n                    Città: " +
                       _vm._s(apartment.sponsoredApartment.city) +
                       " "
                   ),
