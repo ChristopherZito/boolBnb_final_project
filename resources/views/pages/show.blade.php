@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col">
 
-                        <div class=" container-fluid optionals-box">
+                        <div class=" container-fluid py-3">
                             @foreach ($selectApartment -> optionals as $optional)
                                 {{$optional->name}}<br>
                             @endforeach
@@ -62,11 +62,7 @@
                         <div class="row-6">
                             <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Remove</a> 
                             <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Edit</a>
-                            @if (count($sponsorshipsApartment) > 0)
-                                <a class="btn btn-secondary" >Appartamento sponsorizzato</a> 
-                            @else
-                                <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
-                            @endif 
+                            <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
                         </div>
                     @endif   
                 @endauth

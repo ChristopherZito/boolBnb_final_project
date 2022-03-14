@@ -5422,13 +5422,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get("/axios/sponsoredapartment").then(function (r) {
-      _this.sponsoredApartments = r.data; // console.log(r.data);
-
-      _this.sponsoredApartments.forEach(function (item) {
-        item.sponsorships_id.forEach(function (sponsor) {
-          console.log(sponsor); // console.log("id",sponsor.id , "sponsor type: ",sponsor.sponsorship_id , "apartment type: ", sponsor.apartment_id);
-        });
-      });
+      _this.sponsoredApartments = r.data;
+      console.log(r.data);
     })["catch"](function (e) {
       return console.log(e);
     });

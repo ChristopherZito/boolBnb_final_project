@@ -29,15 +29,7 @@
             axios.get(`/axios/sponsoredapartment`)
             .then(r => {
                 this.sponsoredApartments = r.data;
-                // console.log(r.data);
-                this.sponsoredApartments.forEach(item =>  {
-                    item.sponsorships_id.forEach(sponsor => {
-                        
-                        console.log(sponsor);
-                        // console.log("id",sponsor.id , "sponsor type: ",sponsor.sponsorship_id , "apartment type: ", sponsor.apartment_id);
-                    })
-                    
-                })
+                console.log(r.data);
             })
             .catch(e => console.log(e))
         },

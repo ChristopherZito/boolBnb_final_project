@@ -17,17 +17,23 @@ class GuestController extends Controller
     }
     public function getApiSponsoredApartment(){
         $sponsoredApartments = Apartment::all();
-
         $sponsoredApartmentsArr = [];
+
         foreach ($sponsoredApartments as $sponsoredApartment){
             $sponsorships_id = DB::table('apartment_sponsorship')->where('apartment_id', $sponsoredApartment -> id)->get();
-            if(count($sponsorships_id) != 0){
-                $sponsoredApartmentsArr[] = 
-                [
-                    'sponsoredApartment' => $sponsoredApartment,
-                    'sponsorships_id' => $sponsorships_id,
-                ];
-            }
+
+                foreach ($sponsorships_id as $sponsorship_apartment){
+                    $today = date("Y-m-d");
+                    $end_sponsorship_date = $sponsorship_apartment -> end_sponsorship;
+
+                    if($end_sponsorship_date >= $today){
+                        $sponsoredApartmentsArr[] =[
+                            'sponsoredApartment' => $sponsoredApartment,
+                        ];
+                    }
+                }
+
+            
         }
        return json_encode($sponsoredApartmentsArr);
     }
@@ -36,8 +42,9 @@ class GuestController extends Controller
 
         $selectApartment = Apartment::findOrFail($id);
         $messages = DB::table('messages')->where('apartment_id', $selectApartment -> id)->get();
-        $sponsorshipsApartment = DB::table('apartment_sponsorship')->where('apartment_id', $selectApartment -> id)->get();
-        return view('pages.show', compact('selectApartment', 'messages','sponsorshipsApartment'));
+        // $sponsorshipsApartment = DB::table('apartment_sponsorship')->where('apartment_id', $selectApartment -> id)->get();
+        // dd($sponsorshipsApartment);
+        return view('pages.show', compact('selectApartment', 'messages'));
     }
 
     public function search(Request $request){
@@ -62,7 +69,7 @@ class GuestController extends Controller
     }
 
     public function getApiApartmentOptionals($city, $userDistance){
-
+        ////
         // richiesta delle coordinate della città inserita nella barra di ricerca
 
         define('API_KEY', 'QP8w5tRMWAql5zBK3TpGZWGKdO1Ls5AI');
@@ -108,7 +115,7 @@ class GuestController extends Controller
         if(!$lat) {
             return 'Non abbiamo trovato la tua città';
         }
-
+        ////
         // $apartments = DB::table('apartments')->whereBetween('latitude', [$lat-1, $lat+1])->get();
 
         $allApartments = DB::table('apartments')->get();
