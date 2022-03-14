@@ -123,6 +123,20 @@
           </div>
         </div>
 
+        <hr>
+
+        <div class="row">
+          <div class="col">
+            <h6 class="text-center mt-2">
+              Made by Alberto, Christopher, Francesco, Gabriele, Jacopo
+            </h6>
+            <h6 class="text-center mt-2">
+              &copy; Classe &num;46, Boolean
+            </h6>
+
+          </div>
+        </div>
+
         
 
       </div>
