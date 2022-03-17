@@ -16,35 +16,24 @@ class ChartController extends Controller
     }
 
     public function chart($id){
-        $record = DB::table('users')->all()->get();
-
-        $record = select(\DB::raw("COUNT(*) as count"), \DB::raw("DAYNAME(created_at) as day_name"), \DB::raw("DAY(created_at) as day"))
-            ->where('created_at', '>', Carbon::today()->subDay(60))
-            ->groupBy('day_name','day')
-            ->orderBy('day')
-            ->get();
-        dd($record);
         $apartment = Apartment::findOrFail($id);
-        $messages = Message::where('apartment_id', $apartment -> id)->get();
-        $views = View::where('apartment_id', $apartment -> id)->get();
-
-        // $record = View::where('apartment_id', $apartment -> id)
-        //     ->groupBy('data_views')
-        //     ->orderBy('data_views')
-        //     ->get();
-
-        //     dd($record);
-        // $data = [];
-        // dd($views);
-        $a = [180,23,32,64,87];
-        $dataM['data'][] = $a;
-
-        $b = [40,10,5,40,70];
-        $dataV['data'][] = $b;
-        
+        $record = DB::table('views')
+            ->select('data_views as date',DB::raw('count(*) as amount'))
+            ->where('apartment_id', $apartment -> id)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+        // $messages = Message::where('apartment_id', $apartment -> id)->get();
+        $data = [];
+        dd($record);
+        foreach($record as $row) {
+            $data['label'][] = $row->date;
+            $data['data'][] = (int) $row->amount;
+          }
         // dd($dataM, $dataV);
-        $dataV['dataV'] = json_encode($dataV);
-        $dataM['dataM'] = json_encode($dataM);
-        return view('pages.chart', $dataV , $dataM , compact('apartment') );
+        // dd($data);
+        $data['data'] = json_encode($data);
+        // $dataM['dataM'] = json_encode($dataM);
+        return view('pages.chart', $data , compact('apartment') );
     }
 }
