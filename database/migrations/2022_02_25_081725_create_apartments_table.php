@@ -25,7 +25,7 @@ class CreateApartmentsTable extends Migration
             $table->float('latitude' , 10,7);
             $table->float('longitude' , 10,7);
             $table->string('image');
-            $table->boolean('visibility');
+            $table->boolean('visibility')-> default(1);
             
             $table->unsignedBigInteger('user_id');
 
