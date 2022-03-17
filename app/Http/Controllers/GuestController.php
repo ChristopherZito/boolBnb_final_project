@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Apartment;
 use App\Optional;
 use App\Message;
-
+use App\View;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -50,6 +50,21 @@ class GuestController extends Controller
         return view('pages.show', compact('selectApartment', 'messages'));
     }
 
+    public function viewCreate(Request $request){
+        $date = date("Y-m-d");
+        $time = date("H:i:s");
+        DB::table('views')->insert([
+            'data_views' => $date,
+            'time_views' => $time,
+            'ip' =>  '127.1.159.2',
+            'apartment_id' =>  $request->apartmentId,
+        ]);
+        return response()->json([
+            'message' => 'New post created'
+        ]);
+ 
+    }
+    
     public function search(Request $request){
         //verifica città cercata
         $data = $request->validate([

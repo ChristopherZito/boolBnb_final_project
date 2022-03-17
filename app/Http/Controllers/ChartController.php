@@ -17,23 +17,35 @@ class ChartController extends Controller
 
     public function chart($id){
         $apartment = Apartment::findOrFail($id);
-        $record = DB::table('views')
+        $today = date("Y-m-d");
+        $views = DB::table('views')
             ->select('data_views as date',DB::raw('count(*) as amount'))
             ->where('apartment_id', $apartment -> id)
             ->groupBy('date')
             ->orderBy('date')
             ->get();
-        // $messages = Message::where('apartment_id', $apartment -> id)->get();
+        $messages =  DB::table('messages')
+            ->select('created_at as date',DB::raw('count(*) as amount'))
+            ->where('apartment_id', $apartment -> id , 'date' == $today)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        // dd($views, $messages);
         $data = [];
-        dd($record);
-        foreach($record as $row) {
-            $data['label'][] = $row->date;
-            $data['data'][] = (int) $row->amount;
-          }
-        // dd($dataM, $dataV);
+        foreach($views as $rowV) {
+            $data['label'][] = $rowV->date;
+            $data['data']['view'][] = (int) $rowV->amount;
+        }
+        foreach($messages as $rowM) {
+            if ($data['label'] == $rowM->date) {
+                $data['label'][] = $rowM->date;
+            }
+            $data['data']['message'][] = (int) $rowM->amount;
+        }
+
         // dd($data);
-        $data['data'] = json_encode($data);
-        // $dataM['dataM'] = json_encode($dataM);
+        $data['chart'] = json_encode($data);
         return view('pages.chart', $data , compact('apartment') );
     }
 }

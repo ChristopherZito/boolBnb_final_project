@@ -62,6 +62,7 @@
                         <div class="row-6">
                             <a class="btn btn-primary btn-user-command" href="{{route('delete', $selectApartment -> id)}}">Rimuovi</a> 
                             <a class="btn btn-primary btn-user-command" href="{{route('edit', $selectApartment -> id)}}">Modifica</a>
+                            <a class="btn btn-primary btn-user-command" href="{{route('chart', $selectApartment -> id)}}">Statistiche</a>
                             <a class="btn btn-primary btn-user-command" href="{{route('sponsorship', $selectApartment -> id)}}">Sponsorizza questo appartamento</a> 
                         </div>
                     @endif   
@@ -75,7 +76,7 @@
         </div>
         
 
-        <div class="col-xl col-sm-0 col-laterali">
+        <div class="col-xl col-sm-0 col-laterali ">
             <div class="container-fluid style-mess-phone">
                 @auth
                     @if ($selectApartment -> user_id == Auth::user() -> id)
@@ -84,7 +85,7 @@
                                 <h2>Messaggi Ricevuti</h2>
                             </div>
                         </div>  
-                        <div class="row">
+                        <div class="row msg-box">
                             <ul class="style-mess-reciv">
                                 @foreach ($messages as $message)
                                 <li class="border my-2 p-1 ">

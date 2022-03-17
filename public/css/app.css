@@ -19322,6 +19322,11 @@ body {
   margin: 0 auto;
 }
 
+.msg-box {
+  height: 500px;
+  overflow-y: auto;
+}
+
 @media (max-width: 575.98px) {
   .style-show {
     margin-top: 150px;

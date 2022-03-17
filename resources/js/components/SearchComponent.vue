@@ -67,8 +67,7 @@
                 v-for="result in filteredListofApartments" :key="result.apartment.id"
                 class="col col-lg-6 col-sm-12">
                     <!-- se la lista di appartamenti da mostrare oppure se questo appartamento fa parte della lista di quelli da mostrare -->
-                    
-                    <a :href="'show/'+ result.apartment.id">
+                    <a  :href="'show/'+ result.apartment.id" @click="addView(result.apartment.id)">
                         <div class="img-container-search">
                             <img class="img img-fluid img-search" :src="result.apartment.image" alt="">
                             <div class="sponsored" v-if="result.apartment.active_sponsorship">Sponsorizzato</div>
@@ -114,7 +113,7 @@
             axios.get(`/${this.city}/${this.userDistance}/apartment/optionals`)
             .then(r => {
                 this.apartmentsWithOptionals=r.data;
-                console.log(this.apartmentsWithOptionals);
+                // console.log(this.apartmentsWithOptionals);
             })
             .catch(e => console.log(e));
         },
@@ -178,6 +177,16 @@
                     this.apartmentsWithOptionals = r.data;
                 })
                 .catch(e => console.log(e))
+            },
+            addView(id){
+                axios.post(`view` ,{
+                    apartmentId: id
+                })
+                .then(r => {
+                    $('#success').html(r.data.message)
+                    // console.log("response",r.data );
+                })
+                .catch(e => console.error(e))
             }
         },
     }

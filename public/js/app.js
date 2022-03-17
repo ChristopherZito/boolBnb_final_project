@@ -5277,7 +5277,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     city: String //città trovata attraverso l'input
@@ -5301,8 +5300,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.getOptionalsApi();
     axios.get("/".concat(this.city, "/").concat(this.userDistance, "/apartment/optionals")).then(function (r) {
-      _this.apartmentsWithOptionals = r.data;
-      console.log(_this.apartmentsWithOptionals);
+      _this.apartmentsWithOptionals = r.data; // console.log(this.apartmentsWithOptionals);
     })["catch"](function (e) {
       return console.log(e);
     });
@@ -5376,6 +5374,15 @@ __webpack_require__.r(__webpack_exports__);
         _this5.apartmentsWithOptionals = r.data;
       })["catch"](function (e) {
         return console.log(e);
+      });
+    },
+    addView: function addView(id) {
+      axios.post("view", {
+        apartmentId: id
+      }).then(function (r) {
+        $('#success').html(r.data.message); // console.log("response",r.data );
+      })["catch"](function (e) {
+        return console.error(e);
       });
     }
   }
@@ -42568,20 +42575,31 @@ var render = function () {
             "div",
             { key: result.apartment.id, staticClass: "col col-lg-6 col-sm-12" },
             [
-              _c("a", { attrs: { href: "show/" + result.apartment.id } }, [
-                _c("div", { staticClass: "img-container-search" }, [
-                  _c("img", {
-                    staticClass: "img img-fluid img-search",
-                    attrs: { src: result.apartment.image, alt: "" },
-                  }),
-                  _vm._v(" "),
-                  result.apartment.active_sponsorship
-                    ? _c("div", { staticClass: "sponsored" }, [
-                        _vm._v("Sponsorizzato"),
-                      ])
-                    : _vm._e(),
-                ]),
-              ]),
+              _c(
+                "a",
+                {
+                  attrs: { href: "show/" + result.apartment.id },
+                  on: {
+                    click: function ($event) {
+                      return _vm.addView(result.apartment.id)
+                    },
+                  },
+                },
+                [
+                  _c("div", { staticClass: "img-container-search" }, [
+                    _c("img", {
+                      staticClass: "img img-fluid img-search",
+                      attrs: { src: result.apartment.image, alt: "" },
+                    }),
+                    _vm._v(" "),
+                    result.apartment.active_sponsorship
+                      ? _c("div", { staticClass: "sponsored" }, [
+                          _vm._v("Sponsorizzato"),
+                        ])
+                      : _vm._e(),
+                  ]),
+                ]
+              ),
               _vm._v(" "),
               _c("div", { staticClass: "style-info-search" }, [
                 _vm._m(0, true),

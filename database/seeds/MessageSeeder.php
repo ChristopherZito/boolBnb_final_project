@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+use App\Apartment;
 class MessageSeeder extends Seeder
 {
     /**
@@ -15,59 +15,19 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('messages')->insert([
-            'email_sender' => 'christopher.zito@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 2,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'alberto.dragoni@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 4,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'francesco.santi@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 1,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'gabriele.manfre@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 5,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'jacopo.chessa@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 3,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'nome.cognome@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 2,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'nome.cognome@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 4,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'nome.cognome@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 1,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'nome.cognome@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 5,
-        ]);
-        DB::table('messages')->insert([
-            'email_sender' => 'nome.cognome@gmail.com',
-            'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
-            'apartment_id' => 3,
-        ]);
-
-        
-
-        
+        $apartment = Apartment::all();
+        for ($i=1; $i < count($apartment); $i++) { 
+            for($x = 0; $x < 100; $x++){
+                $day = rand(1,10);
+                $date = '2022-03-'.$day;
+                DB::table('messages')->insert([
+                    'email_sender' => 'nome.cognome@gmail.com',
+                    'text' => 'sono interessato al suo locale, mi ricontatti a questa email',
+                    'apartment_id' => $i,
+                    'created_at' => $date,
+                ]); 
+            }
+        }
+          
     }
 }

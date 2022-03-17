@@ -187,12 +187,7 @@ body{
  .btn-outline-success:active:focus{
      box-shadow: none;
  }
-
-
-
-
-
-
+ 
 .separator{
     border: .5px solid burlywood;
     margin: 0 auto;
@@ -200,6 +195,10 @@ body{
 
 
 //apartment 
+.msg-box{
+    height: 500px;
+    overflow-y: auto;
+}
 @include media-breakpoint-only(xs) { 
     .style-show{
         margin-top: 150px ;
